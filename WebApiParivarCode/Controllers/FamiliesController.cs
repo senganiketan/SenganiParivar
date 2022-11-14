@@ -12,8 +12,6 @@ namespace WebApiParivarCode.Controllers
     [ApiController]
     public class FamilyController : ControllerBase
     {
-      //  private readonly ApplicationDbContext _context;
-
         private readonly IFamilyRepository _familyRepository;
 
         public FamilyController(IFamilyRepository familyRepository)
@@ -28,13 +26,42 @@ namespace WebApiParivarCode.Controllers
             return Ok(await _familyRepository.GetFamily());          
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult<List<Family>>> CreateFamily(Family family)
-        //{
-        //    _context.Families.Add(family);
-        //    await _context.SaveChangesAsync();
-        //    return Ok(await _context.Families.ToListAsync());
-        //}
+        [HttpGet]
+        [Route("GetFamilyByID/{Id}")]
+        public async Task<IActionResult> GetFamilyById(int Id)
+        {
+            return Ok(await _familyRepository.GetFamilyByID(Id));
+        }
+
+        [HttpPost]
+        [Route("AddFamily")]
+        public async Task<IActionResult> Post(Family objFamily)
+        {
+            var result = await _familyRepository.InsertFamily(objFamily);
+            if (result.FamilyID == 0)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Something Went Wrong");
+            }
+            return Ok("Added Successfully");
+        }
+
+        [HttpPut]
+        [Route("UpdateFamily")]
+        public async Task<IActionResult> Put(Family objFamily)
+        {
+            await _familyRepository.UpdateFamily(objFamily);
+            return Ok("Updated Successfully");
+        }
+
+        [HttpDelete]
+        [Route("DeleteFamily")]
+        public JsonResult Delete(int id)
+        {
+            _familyRepository.DeleteFamily(id);
+            return new JsonResult("Deleted Successfully");
+        }
+
+       
 
         //[HttpPut]
         //public async Task<ActionResult<List<Family>>> UpdateFamily(Family family)
