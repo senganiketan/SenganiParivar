@@ -8,7 +8,6 @@ namespace WebApiParivarCode.Repository
           Task<IEnumerable<Family>> GetFamily();
          // Task<Family> CreateFamily(Family family);
          //Task<Family> UpdateFamily(Family family);
-
     }
 
     public class FamilyRepository:IFamilyRepository
