@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ParivarCode/ClientApp/.angular/cache/14.0.3/angular-webpack/24f13a22654e59ff43f5b129d588bbd869a738b2/0.pack
+/ParivarCode/ClientApp/.angular/cache/14.0.3/angular-webpack/24f13a22654e59ff43f5b129d588bbd869a738b2/index.pack
+/.vs/SenganiParivar/v17/.suo
