@@ -1,0 +1,136 @@
+
+<mat-card>
+  <mat-card-title>Create Family Member</mat-card-title>
+
+  <mat-card-content>
+    <form class="example-form" name="form" [formGroup]="familyForm" (ngSubmit)="onSubmitfamilyForm()">
+      <p>
+        <!--<mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>First name</mat-label>
+          <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Father or Husband Name</mat-label>
+          <input id="fatherhusband name" matInput type="text" placeholder="fathername" [formControl]="fatherhusbandname">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Relation</mat-label>
+          <input id="Relation" matInput type="text" placeholder="son" [formControl]="relation">
+        </mat-form-field>
+
+
+        <label id="example-radio-group-label">gender</label>
+        <mat-radio-group aria-label="gender" [formControl]="gender">
+          <mat-radio-button value="1">Male</mat-radio-button>
+          <mat-radio-button value="0">Female</mat-radio-button>
+        </mat-radio-group>
+
+        <br>
+
+        <label id="example-radio-group-label">maritalstatus</label>
+        <mat-radio-group aria-label="maritalstatus" [formControl]="maritalstatus">
+          <mat-radio-button value="Single">Single</mat-radio-button>
+          <mat-radio-button value="Married">Married</mat-radio-button>
+          <mat-radio-button value="Other">Other</mat-radio-button>
+        </mat-radio-group>
+
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Birthdate</mat-label>
+          <input matInput [matDatepicker]="picker" placeholder="DOB(MM/DD/YYYY)" [formControl]="birthdate">
+
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Education</mat-label>
+          <input id="Education" matInput type="text" placeholder="Education" [formControl]="education">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Business</mat-label>
+          <input id="Business" matInput type="text" placeholder="Business" [formControl]="business">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Mobile</mat-label>
+          <input id="Mobile" matInput type="text" maxlength="10" min="10" required placeholder="Mobile" [formControl]="mobile">
+        </mat-form-field>-->
+
+
+
+
+
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>OriginalVillage</mat-label>
+          <input id="OriginalVillage" matInput type="text" placeholder="OriginalVillage" [formControl]="originalvillage">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>OriginalDistrict</mat-label>
+          <input id="OriginalDistrict" matInput type="text" placeholder="OriginalDistrict" [formControl]="originaldistrict">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>CurrentAddress</mat-label>
+          <input id="CurrentAddress" matInput type="text" placeholder="CurrentAddress" [formControl]="currentaddress">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>CurrentVillage</mat-label>
+          <input id="CurrentVillage" matInput type="text" placeholder="CurrentVillage" [formControl]="currentvillage">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>CurrentDistrict</mat-label>
+          <input id="CurrentDistrict" matInput type="text" placeholder="CurrentDistrict" [formControl]="currentdistrict">
+        </mat-form-field>
+     
+        <mat-form-field appearance="fill">
+          <mat-label>Current State</mat-label>
+          <mat-select [formControl]="currentstate">
+            <mat-option value="andhra pradesh">Andhra Pradesh</mat-option>
+            <mat-option value="arunachal pradesh">Arunachal Pradesh</mat-option>
+            <mat-option value="assam">Assam</mat-option>
+            <mat-option value="bihar">Bihar</mat-option>
+            <mat-option value="chhattisgarh">Chhattisgarh</mat-option>
+            <mat-option value="goa">Goa</mat-option>
+            <mat-option value="gujarat">Gujarat</mat-option>
+            <mat-option value="haryana">Haryana</mat-option>
+            <mat-option value="himachal pradesh">Himachal Pradesh</mat-option>
+            <mat-option value="jharkhand">Jharkhand</mat-option>
+            <mat-option value="karnataka">Karnataka</mat-option>
+            <mat-option value="kerala">Kerala</mat-option>
+            <mat-option value="madhya pradesh">Madhya Pradesh</mat-option>
+            <mat-option value="maharashtra">Maharashtra</mat-option>
+            <mat-option value="manipur">Manipur</mat-option>
+            <mat-option value="meghalaya">Meghalaya</mat-option>
+            <mat-option value="mizoram">Mizoram</mat-option>
+            <mat-option value="nagaland">Nagaland</mat-option>
+            <mat-option value="odisha">Odisha</mat-option>
+            <mat-option value="punjab">Punjab</mat-option>
+            <mat-option value="rajasthan">Rajasthan</mat-option>
+            <mat-option value="sikkim">Sikkim</mat-option>
+            <mat-option value="tamil nadu">Tamil Nadu</mat-option>
+            <mat-option value="telangana">Telangana</mat-option>
+            <mat-option value="tripura">Tripura</mat-option>
+            <mat-option value="uttar pradesh">Uttar Pradesh</mat-option>
+            <mat-option value="uttarakhand">Uttarakhand</mat-option>
+            <mat-option value="west bengal">West Bengal</mat-option>
+            <mat-option value="other">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>CurrentPincode</mat-label>
+          <input id="CurrentPincode" matInput type="text" placeholder="CurrentPincode" [formControl]="currentpincode">
+        </mat-form-field>
+      </p>
+      <div class="button">
+        <button type="submit" mat-raised-button>submit</button>
+        <button type="button" mat-raised-button>clear</button>
+      </div>
+    </form>
+  </mat-card-content>
+
+
+</mat-card>
+
