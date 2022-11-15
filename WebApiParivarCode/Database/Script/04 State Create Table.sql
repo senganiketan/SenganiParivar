@@ -8,7 +8,7 @@ GO
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[State]') AND type in (N'U'))
 BEGIN
 CREATE TABLE [dbo].[State](
-	[StateID] [int] NOT NULL,
+	[StateID] [int] IDENTITY(1,1) NOT NULL,	
 	[StateName] [varchar](150) NOT NULL,
  CONSTRAINT [PK_State] PRIMARY KEY CLUSTERED 
 (
