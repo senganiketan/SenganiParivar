@@ -8,6 +8,7 @@ namespace WebApiParivarCode.Model
         public int FamilyID { get; set; }
         public string? OriginalVillage { get; set; }
         public string? OriginalDistrict { get; set; }
+        public string? PostalAddressName { get; set; }        
         public string? CurrentAddress { get; set; }
         public string? CurrentVillage { get; set; }
         public string? CurrentDistrict { get; set; }

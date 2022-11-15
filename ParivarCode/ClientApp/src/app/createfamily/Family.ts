@@ -2,6 +2,7 @@ export class Family {
   familyID?: number;
   originalVillage = "";
   originalDistrict = "";
+  postalAddressName = "";
   currentAddress = "";
   currentVillage = "";
   currentDistrict = "";
