@@ -29,7 +29,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\listfamily\listfamily.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Model\Family.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\model\Family.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

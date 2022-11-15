@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListFamilyService } from './listfamily.service';
-import { Family } from '../Model/Family';
+import { Family } from '../model/Family';
 
 
 @Component({
