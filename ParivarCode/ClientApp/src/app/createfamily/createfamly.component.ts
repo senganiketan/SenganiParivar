@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CreatefamilyService } from './createfamily.service';
+import { Family } from './Family';
 
 
 @Component({
@@ -12,6 +14,20 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 export class CreatefamilyComponent {
+
+  public family: Family[] = [];
+  constructor(private createfamilyservice: CreatefamilyService) { }
+
+  ngOnInit() {
+  
+    this.createfamilyservice
+      .getfamily()
+      .subscribe((result: Family[]) => (this.family = result));
+
+
+    //this.family = this.createfamilyservice.getfamily();
+    //console.log(this.family);
+  }
 
   
   familyForm = new FormGroup({

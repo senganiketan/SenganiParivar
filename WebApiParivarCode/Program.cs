@@ -10,6 +10,13 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr"))
 );
 
+builder.Services.AddCors(options => options.AddPolicy(name: "FamilyOrigins",
+    policy =>
+    {
+        policy.WithOrigins("http://localhost:44489", "https://localhost:44489").AllowAnyMethod().AllowAnyHeader();
+    }));
+
+
 builder.Services.AddScoped<IFamilyRepository, FamilyRepository>();
     
 var app = builder.Build();
@@ -19,6 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.UseCors("FamilyOrigins");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -84,7 +84,7 @@
           <mat-label>CurrentDistrict</mat-label>
           <input id="CurrentDistrict" matInput type="text" placeholder="CurrentDistrict" [formControl]="currentdistrict">
         </mat-form-field>
-     
+
         <mat-form-field appearance="fill">
           <mat-label>Current State</mat-label>
           <mat-select [formControl]="currentstate">
@@ -132,5 +132,41 @@
   </mat-card-content>
 
 
+
+
 </mat-card>
 
+
+<mat-card>
+  <p> List the Family here.</p>
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="family">
+    <thead>
+      <tr>
+        <th>Family ID</th>
+        <th>Original village</th>
+        <th>Original District</th>
+        <th>Current Address</th>
+        <th>Current Village</th>
+        <th>Current District</th>
+        <th>Current State</th>
+        <th>Current PinCode</th>
+        <th>ModifiedByID</th>
+        <th>Modfied Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let famly of family">
+        <td>{{ famly.familyID }}</td>
+        <td>{{ famly.originalVillage }}</td>
+        <td>{{ famly.originalDistrict }}</td>
+        <td>{{ famly.currentAddress }}</td>
+        <td>{{ famly.currentVillage }}</td>
+        <td>{{ famly.currentDistrict }}</td>
+        <td>{{ famly.currentState }}</td>
+        <td>{{ famly.currentPincode }}</td>
+        <td>{{ famly.modifiedByID }}</td>
+        <td>{{ famly.modifiedDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>
