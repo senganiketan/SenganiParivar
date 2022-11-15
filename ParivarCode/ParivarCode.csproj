@@ -24,10 +24,12 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\createfamily\Family.ts" />
+    <None Remove="ClientApp\src\app\listfamily\listfamily.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\createfamily\Family.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\listfamily\listfamily.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Model\Family.ts" />
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

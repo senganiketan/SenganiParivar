@@ -9,7 +9,7 @@ import { Family } from '../Model/Family';
 })
 
 
-export class CreateFamilyService {
+export class ListFamilyService {
 
   private url = "Family"; //Controller Name
   
@@ -19,8 +19,6 @@ export class CreateFamilyService {
   public getfamily(): Observable<Family[]> {
     return this.http.get<Family[]>(`${environment.apiUrl}/${this.url}/GetFamily`);    
   }
-  //public createfamily(): Observable<Family[]> {
-  //  return this.http.get<Family[]>(`${environment.apiUrl}/${this.url}/GetFamily`);
-  //}
+  
 
 }

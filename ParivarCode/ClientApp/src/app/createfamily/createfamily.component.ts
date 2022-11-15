@@ -1,30 +1,24 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CreatefamilyService } from './createfamily.service';
-import { Family } from './Family';
+import { CreateFamilyService } from './createfamily.service';
+import { Family } from '../Model/Family';
 
 
 @Component({
   selector: 'app-create-family',
   templateUrl: './createfamily.component.html'
-  , styleUrls: ['createfamly.component.css'],
+  , styleUrls: ['createfamily.component.css'],
 
 })
 
 
 
-export class CreatefamilyComponent {
+export class CreateFamilyComponent {
 
-  public family: Family[] = [];
-  constructor(private createfamilyservice: CreatefamilyService) { }
+ 
+  constructor(private createfamilyservice: CreateFamilyService) { }
 
-  ngOnInit() {
-  
-    this.createfamilyservice
-      .getfamily()
-      .subscribe((result: Family[]) => (this.family = result));
-  }
-
+ 
   
   familyForm = new FormGroup({
     //firstname: new FormControl('', [Validators.required]),
