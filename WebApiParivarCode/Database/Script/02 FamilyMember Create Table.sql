@@ -9,7 +9,7 @@ GO
 	[FamilyID] [int] not null,
 	[FirstName]	Nvarchar(max) NOT NULL,
 	[FatherHusbandName] Nvarchar(max) NOT NULL,
-	[Relation] Nvarchar(max) NOT NULL,
+	[Relation] int NULL,
 	[Gender] Nvarchar(max) NOT NULL,
 	[Birthdate] date NULL,
 	[MaritalStatus] Nvarchar(max)  NULL,
