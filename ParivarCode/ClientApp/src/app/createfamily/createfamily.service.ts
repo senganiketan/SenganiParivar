@@ -11,23 +11,16 @@ import { Family } from './Family';
 
 export class CreatefamilyService {
 
-  private url = "Family/GetFamily"; //Controller Name
+  private url = "Family"; //Controller Name
+  
   constructor(private http: HttpClient) {
   }
 
   public getfamily(): Observable<Family[]> {
-    return this.http.get<Family[]>(`${environment.apiUrl}/${this.url}`);    
+    return this.http.get<Family[]>(`${environment.apiUrl}/${this.url}/GetFamily`);    
   }
-
-
-  //public getfamily(): Family[] {
-  //  let family = new Family();
-
-  //  family.familyid = 1;
-  //  family.originalvillage = "Vadodara";
-  //  family.familyid = 2;
-  //  family.originalvillage = "Surat";
-
-  //  return [family];
+  //public createfamily(): Observable<Family[]> {
+  //  return this.http.get<Family[]>(`${environment.apiUrl}/${this.url}/GetFamily`);
   //}
+
 }

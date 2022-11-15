@@ -23,10 +23,6 @@ export class CreatefamilyComponent {
     this.createfamilyservice
       .getfamily()
       .subscribe((result: Family[]) => (this.family = result));
-
-
-    //this.family = this.createfamilyservice.getfamily();
-    //console.log(this.family);
   }
 
   

@@ -6,15 +6,16 @@ GO
  CREATE TABLE dbo.Family
 (  
 	[FamilyID] [int] IDENTITY(1,1) NOT NULL,	
-	[OriginalVillage] varchar(500)  NULL,
-	[OriginalDistrict] varchar(500)  NULL,
-	[CurrentAddress] VARCHAR(MAX) NULL,
-	[CurrentVillage] varchar(500)  NULL,
-	[CurrentDistrict] varchar(500)  NULL,
-	[CurrentState] varchar(500)  NULL,		
-	[CurrentPincode] int null,
-        [ModifiedByID] [int]  NULL,
-	[ModifiedDate] datetime NOT NULL
+	[OriginalVillage] Nvarchar(max)  NULL,
+	[OriginalDistrict] Nvarchar(max)  NULL,
+	[PostalAddressName] Nvarchar(max) NULL,
+	[CurrentAddress] Nvarchar(max) NULL,
+	[CurrentVillage] Nvarchar(max) NULL,
+	[CurrentDistrict] Nvarchar(max)  NULL,
+	[CurrentState] Nvarchar(max)  NULL,		
+	[CurrentPincode] int NULL,
+    [ModifiedByID] int  NULL,
+	[ModifiedDate] datetime NOT NULL default getdate()
 	CONSTRAINT [PKCX_Family_FamilyID(K)] PRIMARY KEY CLUSTERED 
 	(
 		[FamilyID] ASC
