@@ -23,8 +23,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
-//import { CreateFamilyComponent } from './createfamily/createfamily.component';
-//import { ListFamilyComponent } from './listfamily/listfamily.component';
+import { CreateFamilyComponent } from './createfamily/createfamily.component';
+import { ListFamilyComponent } from './listfamily/listfamily.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +33,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     FetchDataComponent,
     LoginComponent,
-    //CreateFamilyComponent,
-    //ListFamilyComponent,
+    CreateFamilyComponent,
+    ListFamilyComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,8 +56,8 @@ import { LoginComponent } from './login/login.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },    
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login-data', component: LoginComponent },
-      //{ path: 'family-create', component: CreateFamilyComponent },
-      //{ path: 'family-list', component: ListFamilyComponent },
+      { path: 'family-create', component: CreateFamilyComponent },
+      { path: 'family-list', component: ListFamilyComponent },
     ]),   
   ],
   providers: [],
