@@ -11,14 +11,16 @@ GO
 	[HusbandName] Nvarchar(max) NOT NULL,
 	[FatherInLawName] Nvarchar(max) NOT NULL,
 	[Surname] Nvarchar(max) NOT NULL,
-	[Relation] int NULL,
+	[RelationID] int NULL,
 	[Village] Nvarchar(max) NOT NULL,
 	[Birthdate] date NULL,	
 	[Mobile] int NOT NULL,	
+	[Active] bit default 1,
     [ModifiedByID] [int]  NULL,
 	[ModifiedDate] datetime NOT NULL default getdate(),
 	CONSTRAINT PK_DaughterDetail_DaughterDetailID PRIMARY KEY (DaughterDetailID),
-	CONSTRAINT FK_DaughterDetail_FamilyID FOREIGN KEY (FamilyID) REFERENCES Family(FamilyID)    
+	CONSTRAINT FK_DaughterDetail_FamilyID FOREIGN KEY (FamilyID) REFERENCES Family(FamilyID),
+	CONSTRAINT FK_DaughterDetail_RelationID FOREIGN KEY (RelationID) REFERENCES Relation(RelationID)    
 	);
 GO
 

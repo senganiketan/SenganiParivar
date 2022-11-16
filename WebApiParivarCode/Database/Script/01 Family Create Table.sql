@@ -14,6 +14,7 @@ GO
 	[CurrentDistrict] Nvarchar(max)  NULL,
 	[CurrentState] Nvarchar(max)  NULL,		
 	[CurrentPincode] int NULL,
+	[Active] bit default 1,
     [ModifiedByID] int  NULL,
 	[ModifiedDate] datetime NOT NULL default getdate()
 	CONSTRAINT [PKCX_Family_FamilyID(K)] PRIMARY KEY CLUSTERED 

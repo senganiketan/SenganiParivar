@@ -9,17 +9,19 @@ GO
 	[FamilyID] [int] not null,
 	[FirstName]	Nvarchar(max) NOT NULL,
 	[FatherHusbandName] Nvarchar(max) NOT NULL,
-	[Relation] int NULL,
+	[RelationID] int NULL,
 	[Gender] Nvarchar(max) NOT NULL,
 	[Birthdate] date NULL,
 	[MaritalStatus] Nvarchar(max)  NULL,
 	[Education] Nvarchar(max)  NULL,
 	[Business] Nvarchar(max)  NULL,
 	[Mobile] int NOT NULL,	
+	[Active] bit default 1,
     [ModifiedByID] [int]  NULL,
 	[ModifiedDate] datetime NOT NULL default getdate(),	
 	CONSTRAINT PK_FamilyMember_FamilyMemberID PRIMARY KEY (FamilyMemberID),
-	CONSTRAINT FK_FamilyMember_FamilyID FOREIGN KEY (FamilyID) REFERENCES Family(FamilyID)    
+	CONSTRAINT FK_FamilyMember_FamilyID FOREIGN KEY (FamilyID) REFERENCES Family(FamilyID),
+	CONSTRAINT FK_FamilyMember_RelationID FOREIGN KEY (RelationID) REFERENCES Relation(RelationID)    
 	
 ) 
 	
