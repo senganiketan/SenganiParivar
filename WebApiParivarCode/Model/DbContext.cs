@@ -7,6 +7,9 @@ namespace WebApiParivarCode.Model
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Family> Families { get; set; }     
+        public DbSet<Family> Families { get; set; }
+
+        public DbSet<FamilyMember> FamilyMembers { get; set; }
+        public DbSet<Relation> Relations { get; set; }
     }
 }

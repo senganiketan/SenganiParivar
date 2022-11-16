@@ -24,7 +24,7 @@ namespace WebApiParivarCode.Repository
 
         public async Task<IEnumerable<Family>> GetFamily()
         {
-            return await _context.Families.ToListAsync();
+            return await _context.Families.Where(x => x.Active).ToListAsync();
         }
 
         public async Task<Family> GetFamilyByID(int ID)
@@ -54,7 +54,8 @@ namespace WebApiParivarCode.Repository
             var family = _context.Families.Find(ID);
             if (family != null)
             {
-                _context.Entry(family).State = EntityState.Deleted;
+                family.Active = false;
+                _context.Entry(family).State = EntityState.Modified;
                 _context.SaveChanges();
                 result = true;
             }
