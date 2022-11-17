@@ -16,6 +16,7 @@ GO
 	[Education] Nvarchar(max)  NULL,
 	[Business] Nvarchar(max)  NULL,
 	[Mobile] int NOT NULL,	
+	[AttendingProgram] bit default 0,
 	[Active] bit default 1,
     [ModifiedByID] [int]  NULL,
 	[ModifiedDate] datetime NOT NULL default getdate(),	

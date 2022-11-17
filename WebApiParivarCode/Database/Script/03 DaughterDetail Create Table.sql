@@ -16,6 +16,8 @@ GO
 	[Birthdate] date NULL,	
 	[Mobile] int NOT NULL,	
 	[Active] bit default 1,
+	[AttendingProgram] bit default 0,
+	[GiftRecieved] bit default 0,
     [ModifiedByID] [int]  NULL,
 	[ModifiedDate] datetime NOT NULL default getdate(),
 	CONSTRAINT PK_DaughterDetail_DaughterDetailID PRIMARY KEY (DaughterDetailID),
