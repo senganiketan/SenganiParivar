@@ -1,0 +1,58 @@
+1. Admin --Aapde  ( Full Rights)
+  1. Admin can add, edit & delete multiple family,members.
+  2. Admin can export csv file. 
+  
+
+2. Member -- Single family (view,edit,delete only for their own family & view all family)
+----------------------------
+
+
+
+AdminUser
+
+AdminUserID
+AdminUserMobile
+AdminUserPassword(OTP)
+
+
+We will redirect main page with only this users which are register in system. In that page user have full rights.
+
+Mobile number should be unique across system.
+Mobile number is required only for self person. No any other person required mobile.
+
+
+----------------
+When family is created, we need to update familyId in LoginAudit Table.
+
+LoginAudit
+
+LoginAuditID
+UserID
+datetime
+
+--------------------------
+BlockUser
+
+BlockUserID
+UserMobile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
