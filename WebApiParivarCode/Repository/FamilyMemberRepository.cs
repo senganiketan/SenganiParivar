@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using System.Reflection;
 using WebApiParivarCode.Model;
 
@@ -27,38 +28,63 @@ namespace WebApiParivarCode.Repository
         {
             List<FamilyMember> familyMemberList = new List<FamilyMember>();
 
-            return await _context.FamilyMembers.Where(x => x.FamilyID == FamilyID).ToListAsync();
 
-            //familyMemberList = await _context.FamilyMembers
-            //                            .Where(x => x.FamilyID == FamilyID)
-            //                            .Join(_context.Relations,
-            //                                    x => x.RelationID,
-            //                                    y => y.RelationID,
-            //                                    (x, y) => new
-            //                                    {
-            //                                        FamilyMemberID = x.FamilyMemberID,
-            //                                        FirstName = x.FirstName,
-            //                                        FatherHusbandName = x.FatherHusbandName,
-            //                                        Gender = x.Gender,
-            //                                        Birthdate = x.Birthdate,
-            //                                        MaritalStatus = x.MaritalStatus,
-            //                                        Education = x.Education,
-            //                                        Business = x.Business,
-            //                                        Mobile = x.Mobile,
-            //                                        FamilyID = x.FamilyID,
-            //                                        RelatoinID = x.RelationID,
-            //                                        RelationName = y.RelationName
-            //                                    }
-            //                            ).ToListAsync();
+            familyMemberList = await _context.FamilyMembers
+                                        .Where(x => x.FamilyID == FamilyID)
+                                        .Join(_context.Relations,
+                                                x => x.RelationID,
+                                                y => y.RelationID,
+                                                (x, y) => new FamilyMember
+                                                {
+                                                    FamilyMemberID = x.FamilyMemberID,
+                                                    FirstName = x.FirstName,
+                                                    FatherHusbandName = x.FatherHusbandName,
+                                                    Gender = x.Gender,
+                                                    Birthdate = x.Birthdate,
+                                                    MaritalStatus = x.MaritalStatus,
+                                                    Education = x.Education,
+                                                    Business = x.Business,
+                                                    Mobile = x.Mobile,
+                                                    FamilyID = x.FamilyID,
+                                                    AttendingProgram = x.AttendingProgram,
+                                                    RelationID = x.RelationID,
+                                                    RelationName = y.RelationName
+                                                }
+                                        ).ToListAsync();
 
-            //return familyMemberList;
+            return familyMemberList;
 
-            //return await _context.FamilyMembers.Where(x => x.FamilyID == FamilyID).ToListAsync();
         }
 
         public async Task<FamilyMember> GetFamilyMemberByID(int ID)
         {
-            return await _context.FamilyMembers.FindAsync(ID);
+            FamilyMember familyMemberobj = new FamilyMember();
+
+            familyMemberobj = await _context.FamilyMembers
+                                        .Where(x => x.FamilyMemberID == ID)
+                                        .Join(_context.Relations,
+                                                x => x.RelationID,
+                                                y => y.RelationID,
+                                                (x, y) => new FamilyMember
+                                                {
+                                                    FamilyMemberID = x.FamilyMemberID,
+                                                    FirstName = x.FirstName,
+                                                    FatherHusbandName = x.FatherHusbandName,
+                                                    Gender = x.Gender,
+                                                    Birthdate = x.Birthdate,
+                                                    MaritalStatus = x.MaritalStatus,
+                                                    Education = x.Education,
+                                                    Business = x.Business,
+                                                    Mobile = x.Mobile,
+                                                    FamilyID = x.FamilyID,
+                                                    AttendingProgram = x.AttendingProgram,
+                                                    RelationID = x.RelationID,
+                                                    RelationName = y.RelationName
+                                                }
+                                        ).FirstOrDefaultAsync() ?? new FamilyMember();
+
+            return familyMemberobj;
+            //return await _context.FamilyMembers.FindAsync(ID);
 
         }
 
