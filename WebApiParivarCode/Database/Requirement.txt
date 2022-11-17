@@ -35,7 +35,12 @@ BlockUser
 
 BlockUserID
 UserMobile
+------------------------
 
+we need to add these two columns in family or members.
+
+Required residential facility?
+Are you attending program?
 
 
 
