@@ -6,9 +6,9 @@ namespace WebApiParivarCode.Model
     public class FamilyMember
     {
         public int FamilyMemberID { get; set; }
-        public string FirstName { get; set; }
-        public string FatherHusbandName { get; set; }
-        public string Gender { get; set; }
+        public string? FirstName { get; set; }
+        public string? FatherHusbandName { get; set; }
+        public string? Gender { get; set; }
         public DateTime Birthdate { get; set; }
         public string? MaritalStatus { get; set; }
         public string? Education { get; set; }
@@ -19,6 +19,6 @@ namespace WebApiParivarCode.Model
         public bool Active { get; set; }
         public int FamilyID { get; set; }
         public int RelationID { get; set; }
-        public string RelationName { get; set; }
+        public string? RelationName { get; set; }
     }
 }
