@@ -34,8 +34,18 @@ namespace WebApiParivarCode.Repository
 
         public async Task<Family> InsertFamily(Family objFamily)
         {
-            _context.Families.Add(objFamily);
-            await _context.SaveChangesAsync();
+            try
+            {
+                objFamily.Active = true;
+                objFamily.ModifiedDate = DateTime.Now;
+
+                _context.Families.Add(objFamily);
+                await _context.SaveChangesAsync();
+
+            }
+            catch(Exception ex) {
+                string result = ex.Message;
+            }
             return objFamily;
 
         }

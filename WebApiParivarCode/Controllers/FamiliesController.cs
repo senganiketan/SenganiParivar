@@ -42,7 +42,7 @@ namespace WebApiParivarCode.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Something Went Wrong");
             }
-            return Ok("Added Successfully");
+            return Ok(await _familyRepository.GetFamily());
         }
 
         [HttpPut]

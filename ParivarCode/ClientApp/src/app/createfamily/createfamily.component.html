@@ -3,67 +3,8 @@
   <mat-card-title>Create Family Member</mat-card-title>
 
   <mat-card-content>
-    <form class="example-form" name="form" [formGroup]="familyForm" (ngSubmit)="onSubmitfamilyForm()">
+    <form class="example-form" name="form" [formGroup]="familyForm" (ngSubmit)="onSubmitfamilyForm(familyForm.value)">
       <p>
-        <!--<mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>First name</mat-label>
-          <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Father or Husband Name</mat-label>
-          <input id="fatherhusband name" matInput type="text" placeholder="fathername" [formControl]="fatherhusbandname">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Relation</mat-label>
-          <input id="Relation" matInput type="text" placeholder="son" [formControl]="relation">
-        </mat-form-field>
-
-
-        <label id="example-radio-group-label">gender</label>
-        <mat-radio-group aria-label="gender" [formControl]="gender">
-          <mat-radio-button value="1">Male</mat-radio-button>
-          <mat-radio-button value="0">Female</mat-radio-button>
-        </mat-radio-group>
-
-        <br>
-
-        <label id="example-radio-group-label">maritalstatus</label>
-        <mat-radio-group aria-label="maritalstatus" [formControl]="maritalstatus">
-          <mat-radio-button value="Single">Single</mat-radio-button>
-          <mat-radio-button value="Married">Married</mat-radio-button>
-          <mat-radio-button value="Other">Other</mat-radio-button>
-        </mat-radio-group>
-
-
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Birthdate</mat-label>
-          <input matInput [matDatepicker]="picker" placeholder="DOB(MM/DD/YYYY)" [formControl]="birthdate">
-
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-
-
-
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Education</mat-label>
-          <input id="Education" matInput type="text" placeholder="Education" [formControl]="education">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Business</mat-label>
-          <input id="Business" matInput type="text" placeholder="Business" [formControl]="business">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Mobile</mat-label>
-          <input id="Mobile" matInput type="text" maxlength="10" min="10" required placeholder="Mobile" [formControl]="mobile">
-        </mat-form-field>-->
-
-
-
-
-
-
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>OriginalVillage</mat-label>
           <input id="OriginalVillage" matInput type="text" placeholder="OriginalVillage" [formControl]="originalvillage">
@@ -123,6 +64,18 @@
           <mat-label>CurrentPincode</mat-label>
           <input id="CurrentPincode" matInput type="text" placeholder="CurrentPincode" [formControl]="currentpincode">
         </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Name for Postal Address</mat-label>
+          <input id="postaladdressname" matInput type="text" placeholder="Postal Address Name" [formControl]="postaladdressname">
+        </mat-form-field>
+        <!--<mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Residential Facility</mat-label>
+          <input id="residentialfacility" matInput type="text" placeholder="Residential Facility" [formControl]="residentialfacility">
+        </mat-form-field>-->
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Modified by ID</mat-label>
+          <input id="modifiedbyid" matInput type="text" placeholder="Modified by ID" [formControl]="modifiedbyid">
+        </mat-form-field>
       </p>
       <div class="button">
         <button type="submit" mat-raised-button>submit</button>
@@ -136,3 +89,56 @@
 
 </mat-card>
 
+<!--<mat-form-field class="example-full-width" appearance="fill">
+   <mat-label>First name</mat-label>
+   <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
+ </mat-form-field>
+ <mat-form-field class="example-full-width" appearance="fill">
+   <mat-label>Father or Husband Name</mat-label>
+   <input id="fatherhusband name" matInput type="text" placeholder="fathername" [formControl]="fatherhusbandname">
+ </mat-form-field>
+ <mat-form-field class="example-full-width" appearance="fill">
+   <mat-label>Relation</mat-label>
+   <input id="Relation" matInput type="text" placeholder="son" [formControl]="relation">
+ </mat-form-field>
+
+
+ <label id="example-radio-group-label">gender</label>
+ <mat-radio-group aria-label="gender" [formControl]="gender">
+   <mat-radio-button value="1">Male</mat-radio-button>
+   <mat-radio-button value="0">Female</mat-radio-button>
+ </mat-radio-group>
+
+ <br>
+
+ <label id="example-radio-group-label">maritalstatus</label>
+ <mat-radio-group aria-label="maritalstatus" [formControl]="maritalstatus">
+   <mat-radio-button value="Single">Single</mat-radio-button>
+   <mat-radio-button value="Married">Married</mat-radio-button>
+   <mat-radio-button value="Other">Other</mat-radio-button>
+ </mat-radio-group>
+
+
+ <mat-form-field class="example-full-width" appearance="fill">
+   <mat-label>Birthdate</mat-label>
+   <input matInput [matDatepicker]="picker" placeholder="DOB(MM/DD/YYYY)" [formControl]="birthdate">
+
+   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+   <mat-datepicker #picker></mat-datepicker>
+ </mat-form-field>
+
+
+
+
+ <mat-form-field class="example-full-width" appearance="fill">
+   <mat-label>Education</mat-label>
+   <input id="Education" matInput type="text" placeholder="Education" [formControl]="education">
+ </mat-form-field>
+ <mat-form-field class="example-full-width" appearance="fill">
+   <mat-label>Business</mat-label>
+   <input id="Business" matInput type="text" placeholder="Business" [formControl]="business">
+ </mat-form-field>
+ <mat-form-field class="example-full-width" appearance="fill">
+   <mat-label>Mobile</mat-label>
+   <input id="Mobile" matInput type="text" maxlength="10" min="10" required placeholder="Mobile" [formControl]="mobile">
+ </mat-form-field>-->

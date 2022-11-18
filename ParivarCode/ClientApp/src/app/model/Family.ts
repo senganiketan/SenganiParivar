@@ -8,7 +8,10 @@ export class Family {
   currentDistrict = "";
   currentState = "";
   currentPincode?: number;
+  //residentialFacility?: boolean;
+  active?: boolean;
   modifiedByID?: number;
   modifiedDate?: Date;
 }
+
 

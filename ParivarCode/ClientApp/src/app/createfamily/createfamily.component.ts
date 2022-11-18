@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreateFamilyService } from './createfamily.service';
 import { Family } from '../model/Family';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,10 +17,12 @@ import { Family } from '../model/Family';
 
 export class CreateFamilyComponent {
 
- 
-  constructor(private createfamilyservice: CreateFamilyService) { }
 
- 
+  public family: Family[] = [];
+
+  constructor(private createfamilyservice: CreateFamilyService, private router: Router) { }
+
+  ngOnInit(): void { }
   
   familyForm = new FormGroup({
     //firstname: new FormControl('', [Validators.required]),
@@ -37,7 +41,11 @@ export class CreateFamilyComponent {
     currentvillage: new FormControl(''),
     currentdistrict: new FormControl(''),
     currentstate: new FormControl('gujarat'),
-    currentpincode: new FormControl('')  
+    currentpincode: new FormControl(''),
+    postaladdressname: new FormControl(''),
+  //  residentialfacility: new FormControl(''),   
+    modifiedbyid: new FormControl(''),
+    
   });
 
  
@@ -102,8 +110,19 @@ export class CreateFamilyComponent {
     return this.familyForm.get('currentpincode');
   }
 
-    
-  onSubmitfamilyForm() {
+  get postaladdressname(): any {
+    return this.familyForm.get('postaladdressname');
+  }
+
+  //get residentialfacility(): any {
+  //  return this.familyForm.get('residentialfacility');
+  //}
+
+  get modifiedbyid(): any {
+    return this.familyForm.get('modifiedbyid');
+  }
+
+  onSubmitfamilyForm(family: any) {
 
     console.log(this.originalvillage.value);
     console.log(this.originaldistrict.value);
@@ -113,8 +132,23 @@ export class CreateFamilyComponent {
     console.log(this.currentpincode.value);
  
     console.log(this.familyForm.status);
+ 
 
-    
+    if (this.familyForm.valid) {
+
+      this.createfamilyservice
+        .createfamily(family)     
+        .subscribe({
+          next: (any) =>
+          {
+            this.router.navigateByUrl('family-list');
+            alert("family has been added");
+          },
+          error: (err) => {
+            console.log(err);
+          }
+          })
+    }    
   }
 
   

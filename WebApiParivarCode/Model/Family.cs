@@ -12,13 +12,13 @@ namespace WebApiParivarCode.Model
         public string? CurrentAddress { get; set; }
         public string? CurrentVillage { get; set; }
         public string? CurrentDistrict { get; set; }
-        public string? CurrentState { get; set; }      
+        public string? CurrentState { get; set; }
         public int CurrentPincode { get; set; }
-        public bool ResidentialFacility { get; set; }
+       // public bool ResidentialFacility { get; set; }
         public bool Active { get; set; }
         public int ModifiedByID { get; set; }
         public DateTime ModifiedDate { get; set; }
-       
+
         //public virtual ICollection<FamilyMember> FamilyMembers { get; set; }
     }
 }
