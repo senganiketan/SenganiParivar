@@ -23,7 +23,7 @@ export class CreateFamilyMemberService {
 
 
 
-  public createfamilymember(familymember: FamilyMember) {       
+  public createfamilymember(familymember: FamilyMember) {   
     return this.http.post(`${environment.apiUrl}/FamilyMember/AddFamilyMember`, familymember);
   }
 

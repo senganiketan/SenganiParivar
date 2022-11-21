@@ -1,21 +1,18 @@
 export class FamilyMember {
-  familymemberid?: number;
-  familyid?: number;
-  firstname = "";
-  fatherhusbandname = "";
-  relationid?: number;
+  familyMemberID?: number;
+  familyID?: number;
+  firstName = "";
+  fatherHusbandName = "";
+  relationID?: number;  
   gender="";
   birthdate?: Date;
-  maritalstatus="";
+  maritalStatus="";
   education = "";
   business = "";
   mobile?: bigint;
-// attendingprogram?: boolean;
+ attendingProgram?: boolean;
   active?: boolean;
-  modifiedbyid?: bigint;
-  modifieddate?: Date;
-  relationname = "";
+  modifiedByID?: bigint;
+  modifiedDate?: Date;
+  relationName = "";
 }
-
-
-

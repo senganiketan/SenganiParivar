@@ -16,7 +16,14 @@ export class ListFamilyMemberService {
   }
 
   public getfamilymember(): Observable<FamilyMember[]> {
-    return this.http.get<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/GetFamilyMember`);
+ 
+    return this.http.get<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/GetFamilyMember?id=` + 1);
+
+     //public deleteHero(hero: SuperHero): Observable<SuperHero[]> {
+  //  return this.http.delete<SuperHero[]>(
+  //    `${environment.apiUrl}/${this.url}/${hero.id}`
+  //  );
+  //}
   }
   
 
