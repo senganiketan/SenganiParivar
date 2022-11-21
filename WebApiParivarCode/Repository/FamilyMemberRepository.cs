@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis.FlowAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using System.Reflection;
 using WebApiParivarCode.Model;
@@ -7,7 +8,7 @@ namespace WebApiParivarCode.Repository
 {
     public interface IFamilyMemberRepository
     {
-        Task<IEnumerable<FamilyMember>> GetFamilyMembers(int ID);
+        Task<IEnumerable<FamilyMemberList>> GetFamilyMembers(int ID);
         Task<FamilyMember> GetFamilyMemberByID(int ID);
         Task<FamilyMember> InsertFamilyMember(FamilyMember objFamilyMember);
         Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember);
@@ -24,9 +25,9 @@ namespace WebApiParivarCode.Repository
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<FamilyMember>> GetFamilyMembers(int FamilyID)
+        public async Task<IEnumerable<FamilyMemberList>> GetFamilyMembers(int FamilyID)
         {
-            List<FamilyMember> familyMemberList = new List<FamilyMember>();
+            List<FamilyMemberList> familyMemberList = new List<FamilyMemberList>();
 
 
             familyMemberList = await _context.FamilyMembers
@@ -34,13 +35,13 @@ namespace WebApiParivarCode.Repository
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
                                                 y => y.RelationID,
-                                                (x, y) => new FamilyMember
+                                                (x, y) => new FamilyMemberList
                                                 {
                                                     FamilyMemberID = x.FamilyMemberID,
                                                     FirstName = x.FirstName,
                                                     FatherHusbandName = x.FatherHusbandName,
                                                     Gender = x.Gender,
-                                                    Birthdate = x.Birthdate,
+                                                    Birthdate = Convert.ToDateTime(x.Birthdate),
                                                     MaritalStatus = x.MaritalStatus,
                                                     Education = x.Education,
                                                     Business = x.Business,
@@ -78,8 +79,7 @@ namespace WebApiParivarCode.Repository
                                                     Mobile = x.Mobile,
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
-                                                    RelationID = x.RelationID,
-                                                    RelationName = y.RelationName
+                                                    RelationID = x.RelationID
                                                 }
                                         ).FirstOrDefaultAsync() ?? new FamilyMember();
 
@@ -93,7 +93,6 @@ namespace WebApiParivarCode.Repository
             _context.FamilyMembers.Add(objFamilyMember);
             await _context.SaveChangesAsync();
             return objFamilyMember;
-
         }
 
         public async Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember)
