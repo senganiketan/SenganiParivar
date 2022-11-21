@@ -34,7 +34,7 @@ export class CreateFamilyMemberComponent {
     education: new FormControl(''),
     business: new FormControl(''),
     mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
-    attendingprogram: new FormControl(''),
+  //  attendingprogram: new FormControl(''),
     modifiedbyid: new FormControl(''),    
   });
 
@@ -75,9 +75,9 @@ export class CreateFamilyMemberComponent {
     return this.familymemberForm.get('mobile');
   }
 
-  get attendingprogram(): any {
-    return this.familymemberForm.get('attendingprogram');
-  }
+  //get attendingprogram(): any {
+  //  return this.familymemberForm.get('attendingprogram');
+  //}
  
 
   get modifiedbyid(): any {

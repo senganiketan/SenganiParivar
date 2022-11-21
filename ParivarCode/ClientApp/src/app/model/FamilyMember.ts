@@ -9,10 +9,10 @@ export class FamilyMember {
   maritalstatus="";
   education = "";
   business = "";
-  mobile?: number;
-  attendingprogram?: boolean;
+  mobile?: bigint;
+// attendingprogram?: boolean;
   active?: boolean;
-  modifiedbyid?: number;
+  modifiedbyid?: bigint;
   modifieddate?: Date;
   relationname = "";
 }

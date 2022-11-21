@@ -24,7 +24,19 @@ namespace WebApiParivarCode.Repository
 
         public async Task<IEnumerable<Family>> GetFamily()
         {
-            return await _context.Families.Where(x => x.Active).ToListAsync();
+            return await _context.Families.Where(x => x.Active).Select(x=> new Family { 
+                FamilyID = x.FamilyID,
+                OriginalVillage=x.OriginalVillage,
+                OriginalDistrict=x.OriginalDistrict,
+                PostalAddressName=x.PostalAddressName,
+                CurrentAddress=x.CurrentAddress,
+                CurrentVillage=x.CurrentVillage,
+                CurrentDistrict= x.CurrentDistrict,
+                CurrentState=x.CurrentState,
+                CurrentPincode=x.CurrentPincode,
+                ModifiedByID=Convert.ToInt64(x.ModifiedByID),
+                ModifiedDate=x.ModifiedDate  
+            }) .ToListAsync();
         }
 
         public async Task<Family> GetFamilyByID(int ID)

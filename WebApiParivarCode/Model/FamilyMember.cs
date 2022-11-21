@@ -11,7 +11,7 @@ namespace WebApiParivarCode.Model
         public string? FatherHusbandName { get; set; }
         public int RelationID { get; set; }
         public string? Gender { get; set; }
-        public DateTime Birthdate { get; set; }
+        public DateTime? Birthdate { get; set; }
         public string? MaritalStatus { get; set; }
         public string? Education { get; set; }
         public string? Business { get; set; }
@@ -19,7 +19,7 @@ namespace WebApiParivarCode.Model
         public bool AttendingProgram { get; set; }
         public bool Active { get; set; }
         public Int64 ModifiedByID { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
     }
     public class FamilyMemberList
     {
@@ -29,7 +29,7 @@ namespace WebApiParivarCode.Model
         public string? FatherHusbandName { get; set; }
         public int RelationID { get; set; }
         public string? Gender { get; set; }
-        public DateTime Birthdate { get; set; }
+        public DateTime? Birthdate { get; set; }
         public string? MaritalStatus { get; set; }
         public string? Education { get; set; }
         public string? Business { get; set; }
@@ -37,7 +37,7 @@ namespace WebApiParivarCode.Model
         public bool AttendingProgram { get; set; }
         public bool Active { get; set; }
         public Int64 ModifiedByID { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public string? RelationName { get; set; }
     }
 }

@@ -10,7 +10,7 @@ export class Family {
   currentPincode?: number;
   //residentialFacility?: boolean;
   active?: boolean;
-  modifiedByID?: number;
+  modifiedByID?: bigint;
   modifiedDate?: Date;
 }
 
