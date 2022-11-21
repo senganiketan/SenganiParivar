@@ -1,0 +1,49 @@
+
+<mat-card>
+  <mat-card-title>Family Members.</mat-card-title>
+  <mat-card-content>
+    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="familymember">
+      <thead>
+        <tr>
+          <th>Family ID</th>
+          <th>First Name </th>
+          <th>FatherHusbandName</th>
+          <th>RelationID</th>
+          <th>Gender</th>
+          <th>Birthdate</th>
+          <th>Maritalstatus</th>
+          <th>Education </th>
+          <th>Business </th>
+          <th>Mobile</th>
+          <th>Attendingprogram</th>
+          <th>Active</th>
+          <th>Modifiedbyid</th>
+          <th>Modifieddate</th>
+          <th>Relationname </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of familymember">
+          <td>{{member.familymemberid}}</td>
+          <td>{{member.familyid}}</td>
+          <td>{{member.firstname }}</td>
+          <td>{{member.fatherhusbandname }}</td>
+          <td>{{member.relationid}}</td>
+          <td>{{member.gender}}</td>
+          <td>{{member.birthdate}}</td>
+          <td>{{member.maritalstatus}}</td>
+          <td>{{member.education }}</td>
+          <td>{{member.business }}</td>
+          <td>{{member.mobile}}</td>
+          <td>{{member.attendingprogram}}</td>
+          <td>{{member.active}}</td>
+          <td>{{member.modifiedbyid}}</td>
+          <td>{{member.modifieddate}}</td>
+          <td>{{member.relationname }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+
