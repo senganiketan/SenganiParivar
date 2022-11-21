@@ -16,6 +16,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 
 import { AppComponent } from './app.component';
@@ -56,6 +57,7 @@ import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.c
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatCheckboxModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },    
       { path: 'fetch-data', component: FetchDataComponent },

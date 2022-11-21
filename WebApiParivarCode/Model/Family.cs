@@ -14,7 +14,7 @@ namespace WebApiParivarCode.Model
         public string? CurrentDistrict { get; set; }
         public string? CurrentState { get; set; }
         public int CurrentPincode { get; set; }
-       // public bool ResidentialFacility { get; set; }
+        public bool ResidentialFacility { get; set; }
         public bool Active { get; set; }
         public Int64 ModifiedByID { get; set; }
         public DateTime ModifiedDate { get; set; }
