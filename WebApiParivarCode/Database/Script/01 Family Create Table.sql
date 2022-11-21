@@ -16,7 +16,7 @@ GO
 	[CurrentPincode] int NULL,
 	[ResidentialFacility] bit default 0,
 	[Active] bit default 1,
-    [ModifiedByID] int  NULL,
+    [ModifiedByID] numeric(10, 0)  NULL,
 	[ModifiedDate] datetime NOT NULL default getdate()
 	CONSTRAINT [PKCX_Family_FamilyID(K)] PRIMARY KEY CLUSTERED 
 	(

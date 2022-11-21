@@ -45,11 +45,13 @@ namespace WebApiParivarCode.Repository
                                                     MaritalStatus = x.MaritalStatus,
                                                     Education = x.Education,
                                                     Business = x.Business,
-                                                    Mobile = x.Mobile,
+                                                    Mobile = Convert.ToInt64(x.Mobile),
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
-                                                    RelationName = y.RelationName
+                                                    RelationName = y.RelationName,                                                    
+                                                    ModifiedByID= Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate= Convert.ToDateTime(x.ModifiedDate),
                                                 }
                                         ).ToListAsync();
 
@@ -76,15 +78,15 @@ namespace WebApiParivarCode.Repository
                                                     MaritalStatus = x.MaritalStatus,
                                                     Education = x.Education,
                                                     Business = x.Business,
-                                                    Mobile = x.Mobile,
+                                                    Mobile = Convert.ToInt64(x.Mobile),
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
-                                                    RelationID = x.RelationID
+                                                    RelationID = x.RelationID,
+                                                    ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
                                                 }
                                         ).FirstOrDefaultAsync() ?? new FamilyMember();
-
-            return familyMemberobj;
-            //return await _context.FamilyMembers.FindAsync(ID);
+            return familyMemberobj;        
 
         }
 

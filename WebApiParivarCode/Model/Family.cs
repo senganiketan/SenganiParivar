@@ -16,7 +16,7 @@ namespace WebApiParivarCode.Model
         public int CurrentPincode { get; set; }
        // public bool ResidentialFacility { get; set; }
         public bool Active { get; set; }
-        public int ModifiedByID { get; set; }
+        public Int64 ModifiedByID { get; set; }
         public DateTime ModifiedDate { get; set; }
 
         //public virtual ICollection<FamilyMember> FamilyMembers { get; set; }
