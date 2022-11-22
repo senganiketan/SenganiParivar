@@ -10,6 +10,8 @@ namespace WebApiParivarCode.Model
         public DbSet<Family> Families { get; set; }
 
         public DbSet<FamilyMember> FamilyMembers { get; set; }
+
+        public DbSet<DaughterDetail> DaughterDetails { get; set; }
         public DbSet<Relation> Relations { get; set; }
     }
 }
