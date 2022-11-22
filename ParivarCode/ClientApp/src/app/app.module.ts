@@ -22,7 +22,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { CreateFamilyComponent } from './createfamily/createfamily.component';
 import { ListFamilyComponent } from './listfamily/listfamily.component';
@@ -34,7 +33,6 @@ import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.c
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    FetchDataComponent,
     LoginComponent,
     CreateFamilyComponent,
     ListFamilyComponent,
@@ -60,7 +58,6 @@ import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.c
     MatCheckboxModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },    
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login-data', component: LoginComponent },
       { path: 'family-create', component: CreateFamilyComponent },
       { path: 'family-list', component: ListFamilyComponent },
