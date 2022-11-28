@@ -19,11 +19,11 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 
 export class FamilyComponent implements OnInit {
-
-  public family: Family[] = [];
+  
+  family: Family[] = [];
   dataSaved = false;
   familyForm: any;
-  dataSource!: MatTableDataSource<Family>;
+  dataSource !: MatTableDataSource<Family>;
   selection = new SelectionModel<Family>(true, []);
   familyIdUpdate = null;
   massage = null;
@@ -35,7 +35,7 @@ export class FamilyComponent implements OnInit {
   isFeMale = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['FamilyID', 'OriginalVillage', 'OriginalDistrict', 'PostalAddressName', 'CurrentAddress', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode',  'Edit', 'Delete'];
+  displayedColumns: string[] = ['select','FamilyID', 'OriginalVillage', 'OriginalDistrict', 'PostalAddressName', 'CurrentAddress', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator ;
   @ViewChild(MatSort) sort !: MatSort ;
 
@@ -82,11 +82,13 @@ export class FamilyComponent implements OnInit {
 
 
 
-  constructor(private formbulider: UntypedFormBuilder, private familyservice: FamilyService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {   
-    this.loadAllFamily();
+  constructor(private formbulider: UntypedFormBuilder, private familyservice: FamilyService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
+   
+    this.loadAllFamily();   
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+  
 
     this.familyForm = new FormGroup({
       originalvillage: new FormControl('', [Validators.required]),
@@ -98,11 +100,9 @@ export class FamilyComponent implements OnInit {
       currentpincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
       postaladdressname: new FormControl('', [Validators.required]),
       residentialfacility: new FormControl(''),
-      modifiedbyid: new FormControl(''),      
-    });
-    this.familyForm.modifiedbyid = "9876545678";
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+      modifiedbyid: new FormControl('9876789878'), // We need to assign login page mobile number here.      
+    }); 
+  
   }
   
   isAllSelected() {
@@ -115,12 +115,12 @@ export class FamilyComponent implements OnInit {
     this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(r => this.selection.select(r));
   }
   /** The label for the checkbox on the passed row */
-  //checkboxLabel(row: Family): string {
-  //  if (!row) {
-  //    return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-  //  }
-  //  return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.familyID + 1}`;
-  //}
+  checkboxLabel(row: Family): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${Number(row.familyID) + 1}`;
+  }
 
   DeleteData() {
     //debugger;
@@ -135,6 +135,14 @@ export class FamilyComponent implements OnInit {
     //} else {
     //  alert("Select at least one row");
     //}
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   loadAllFamily() {
