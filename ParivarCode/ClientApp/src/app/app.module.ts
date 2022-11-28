@@ -16,7 +16,19 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatToolbarModule } from '@angular/material/toolbar';
+//import { AppRoutingModule } from './app-routing.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+//import { NgMarqueeModule } from 'ng-marquee';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 import { AppComponent } from './app.component';
@@ -27,6 +39,7 @@ import { CreateFamilyComponent } from './createfamily/createfamily.component';
 import { ListFamilyComponent } from './listfamily/listfamily.component';
 import { CreateFamilyMemberComponent } from './createfamilymember/createfamilymember.component';
 import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.component';
+import { FamilyComponent } from './family/family.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +51,7 @@ import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.c
     ListFamilyComponent,
     CreateFamilyMemberComponent,
     ListFamilyMemberComponent,
+    FamilyComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,6 +70,16 @@ import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.c
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatTableModule,
+    CdkTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
+
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },    
       { path: 'login-data', component: LoginComponent },
@@ -63,6 +87,7 @@ import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.c
       { path: 'family-list', component: ListFamilyComponent },
       { path: 'family-create-member', component: CreateFamilyMemberComponent },
       { path: 'familymember-list', component: ListFamilyMemberComponent },
+      { path: 'family', component: FamilyComponent },
     ]),   
   ],
   providers: [],
