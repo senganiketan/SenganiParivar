@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, UntypedFormBuilder } from '@angular/forms';
 import { CreateFamilyMemberService } from './createfamilymember.service';
 import { Router } from '@angular/router';
 import { FamilyMember } from '../model/FamilyMember';
-
+import { Observable } from 'rxjs';
+import { Relation } from '../model/Relation';
 
 
 @Component({
@@ -14,20 +15,25 @@ import { FamilyMember } from '../model/FamilyMember';
 
 
 
-export class CreateFamilyMemberComponent {
-
-
+export class CreateFamilyMemberComponent implements OnInit {
   public familymember: FamilyMember[] = [];
+  familymemberForm: any;
+  allRelations!: Observable<Relation[]>;
 
-  constructor(private createfamilymemberservice: CreateFamilyMemberService, private router: Router) { }
 
-  ngOnInit(): void { }
-  
-  familymemberForm = new FormGroup({
+
+  constructor(private formbulider: UntypedFormBuilder, private createfamilymemberservice: CreateFamilyMemberService, private router: Router) {
+
+
+  }
+
+
+  ngOnInit(): void {  
+  this.familymemberForm = new FormGroup({
     familyid: new FormControl(''),
     firstname: new FormControl('', [Validators.required]),
     fatherhusbandname: new FormControl('', [Validators.required]),
-    relationid: new FormControl('1'),
+    relationid: new FormControl('2'),
     gender: new FormControl('male'),
     birthdate: new FormControl(''),
     maritalstatus: new FormControl('Single'),
@@ -36,9 +42,10 @@ export class CreateFamilyMemberComponent {
     mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
   //  attendingprogram: new FormControl(''),
     modifiedbyid: new FormControl(''),    
-  });
+    });
+    this.FillRelationDDL();
 
-
+  }
   get familyid(): any {
     return this.familymemberForm.get('familyid');
   }
@@ -84,6 +91,11 @@ export class CreateFamilyMemberComponent {
     return this.familymemberForm.get('modifiedbyid');
   }
 
+
+  FillRelationDDL() {
+    this.allRelations = this.createfamilymemberservice.getrelation();  
+  }
+
   onSubmitfamilyMemberForm(familymember: any) {
     console.log(this.familyid.value);
     console.log(this.firstname.value);
@@ -102,7 +114,6 @@ export class CreateFamilyMemberComponent {
         .subscribe({
           next: (any) =>
           {
-            debugger;
             this.router.navigateByUrl('familymember-list');
             alert("family member has been added");
           },

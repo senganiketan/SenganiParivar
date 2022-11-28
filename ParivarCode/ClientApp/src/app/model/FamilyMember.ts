@@ -10,7 +10,7 @@ export class FamilyMember {
   education = "";
   business = "";
   mobile?: bigint;
- attendingProgram?: boolean;
+  attendingProgram?: boolean;
   active?: boolean;
   modifiedByID?: bigint;
   modifiedDate?: Date;

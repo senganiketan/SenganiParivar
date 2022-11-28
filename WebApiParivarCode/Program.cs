@@ -20,6 +20,7 @@ builder.Services.AddCors(options => options.AddPolicy(name: "FamilyOrigins",
 builder.Services.AddScoped<IFamilyRepository, FamilyRepository>();
 builder.Services.AddScoped<IFamilyMemberRepository, FamilyMemberRepository>();
 builder.Services.AddScoped<IDaughterDetailRepository, DaughterDetailRepository>();
+builder.Services.AddScoped<IRelationRepository, RelationRepository>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

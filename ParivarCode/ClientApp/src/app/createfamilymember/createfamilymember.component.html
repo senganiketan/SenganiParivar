@@ -18,10 +18,13 @@
         <mat-label>Father or Husband Name</mat-label>
         <input id="fatherhusband name" matInput type="text" placeholder="fathername" [formControl]="fatherhusbandname">
       </mat-form-field>
+
       <mat-form-field appearance="fill">
-        <mat-select [formControl]="relationid">
-          <mat-option value="1">પોતે</mat-option>
-          <mat-option value="2">માતા</mat-option>
+        <mat-label>Relation</mat-label>
+        <mat-select [formControl]="relationid"  matTooltip="Select Relation" autocomplete="off">
+          <mat-option *ngFor="let Relation of (allRelations | async)" [value]="Relation.relationID">
+            {{Relation.relationName}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
