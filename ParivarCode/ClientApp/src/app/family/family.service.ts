@@ -20,8 +20,6 @@ export class FamilyService {
     return this.http.get<Family[]>(`${environment.apiUrl}/Family/GetFamily`);    
   }
 
-
-
   public createfamily(family: Family) {
        
     return this.http.post(`${environment.apiUrl}/Family/AddFamily`, family);

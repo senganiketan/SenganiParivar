@@ -4,7 +4,7 @@
     <!--<mat-card-title>Create Family</mat-card-title>-->
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
       <div align="center" style="text-align: right;">
-        Codingvila | Angular 14 CRUD Example with Web API
+        Add Family Detail
       </div>
     </mat-toolbar>
     <br><br>
@@ -72,14 +72,14 @@
                   <mat-option value="other">Other</mat-option>
                 </mat-select>
               </mat-form-field>
-              </td>
-            </tr>
+            </td>
+          </tr>
           <tr>
             <td class="tbl1">
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>CurrentPincode</mat-label>
-                <input id="CurrentPincode" matInput type="number" maxlength="5" placeholder="CurrentPincode" [formControl]="currentpincode">
+                <input id="CurrentPincode" matInput  minLength="5" maxLength="6" placeholder="CurrentPincode" [formControl]="currentpincode">
               </mat-form-field>
             </td>
             <td class="tbl1">
@@ -98,11 +98,11 @@
               <mat-checkbox id="residentialfacility" [formControl]="residentialfacility">Residential Facility</mat-checkbox>
             </td>
             <td class="tbl1">
-              <mat-form-field class="example-full-width" appearance="fill">
+              <!--<mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Modified by ID</mat-label>
                 <input id="modifiedbyid" matInput type="text" placeholder="Modified by ID" [formControl]="modifiedbyid">
-              </mat-form-field>
-              </td>
+              </mat-form-field>-->
+            </td>
           </tr>
           <tr>
             <td class="content-center">
@@ -111,15 +111,98 @@
             </td>
             <td>
               <!--<p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
-                {{massage}}
-              </p>-->
+          {{massage}}
+        </p>-->
             </td>
             <td></td>
             <td></td>
           </tr>
-          </table>
-            
-</form>
+        </table>
+        <br><br>
+            <div>
+              <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+
+                <!-- Checkbox Column -->
+                <!--<ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"></mat-checkbox>
+    </mat-cell>
+  </ng-container>-->
+                <ng-container matColumnDef="FamilyID">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>familyID</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.familyID}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="OriginalVillage">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Original Village </mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.originalVillage}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="OriginalDistrict">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Original District</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.originalDistrict}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="PostalAddressName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Postal Address Name</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.postalAddressName}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CurrentAddress">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Current Address</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CurrentVillage">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Current Village</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.currentVillage}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CurrentDistrict">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Current District</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.currentDistrict}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CurrentState">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Current State</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.currentState}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="CurrentPincode">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Current Pincode</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.currentPincode}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="ModifiedByID">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Modified ByID</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.modifiedByID}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="ModifiedDate">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Modified Date</mat-header-cell>
+                  <mat-cell *matCellDef="let family"> {{family.modifiedDate | date:'dd-MM-yyyy'}} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Edit">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+                  <mat-cell *matCellDef="let family">
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" type="button" mat-raised-button color="accent" matTooltip="Edit"><mat-icon>edit</mat-icon></button>
+                  </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+                  <mat-cell *matCellDef="let family"> <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete"><mat-icon>delete_forever</mat-icon></button></mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+
+
+
+
+      </form>
     </mat-card-content>
   </mat-card>
 </div>
