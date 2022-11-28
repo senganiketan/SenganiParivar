@@ -48,8 +48,21 @@ export class LoginComponent {
   onSubmitotpform() {
     if (this.otpForm.valid) {
       console.log("OTP : " + this.otp.value);
-      console.log(this.otpForm.status);
+      // To DO : We need to validate OTP by calling third party api and redirect below code accordingly.
+
+
+      // If user OTP is matched with third party then check entered mobile number used in any of the family? If yes then redirect in that family list page other wise shw create family page.
+
       this.router.navigate(['family-create']);
+      if (this.otp.value = "1111") {
+        //if ()
+       
+       
+
+       // this.router.navigate(['family-create']);
+      }
+     
+
     }
   }
 }
