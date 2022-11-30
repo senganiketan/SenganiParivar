@@ -74,10 +74,12 @@ export class FamilyComponent implements OnInit {
   }
 
   get modifiedbyid(): any {
-    return this.familyForm.get('modifiedbyid');
+    return "9876789878"; // We need to assign login page mobile number here.
   }
 
-
+  get modifiedDate(): any {
+    return new Date();
+  }
 
 
 
@@ -100,7 +102,8 @@ export class FamilyComponent implements OnInit {
       currentpincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
       postaladdressname: new FormControl('', [Validators.required]),
       residentialfacility: new FormControl(''),
-      modifiedbyid: new FormControl('9876789878'), // We need to assign login page mobile number here.      
+      //modifiedbyid: new FormControl(this.modifiedbyid), 
+      //modifiedDate: new FormControl(this.modifiedDate)
     }); 
   
   }
@@ -122,20 +125,36 @@ export class FamilyComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${Number(row.familyID) + 1}`;
   }
 
+
+  deleteFamily(familyid: any) {
+    if (confirm("Are you sure you want to delete this ?")) {
+      this.familyservice.deletefamily(familyid).subscribe(() => {
+        this.dataSaved = true;
+        this.SavedSuccessful(2);
+        this.loadAllFamily();
+        this.familyIdUpdate = null;
+        this.familyForm.reset();
+
+      });
+    }
+
+  }
+
+
   //DeleteData() {
-    //debugger;
-    //const numSelected = this.selection.selected;
-    //if (numSelected.length > 0) {
-    //  if (confirm("Are you sure to delete items ")) {
-    //    this.employeeService.deleteData(numSelected).subscribe(result => {
-    //      this.SavedSuccessful(2);
-    //      this.loadAllEmployees();
-    //    })
-    //  }
-    //} else {
-    //  alert("Select at least one row");
-    //}
- // }
+  //  debugger;
+  //  const numSelected = this.selection.selected;
+  //  if (numSelected.length > 0) {
+  //    if (confirm("Are you sure to delete items ")) {
+  //      this.employeeService.deleteData(numSelected).subscribe(result => {
+  //        this.SavedSuccessful(2);
+  //        this.loadAllEmployees();
+  //      })
+  //    }
+  //  } else {
+  //    alert("Select at least one row");
+  //  }
+  //}
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -164,15 +183,19 @@ export class FamilyComponent implements OnInit {
     console.log(this.familyForm.status);
 
     if (this.familyForm.valid) {
-      this.CreateFamily(family);
+      this.CreateUpdateFamily(family);
     }   
   }
 
-  CreateFamily(family: Family) {
+  CreateUpdateFamily(family: Family) {   
+    family.modifiedByID = this.modifiedbyid;
+    family.modifiedDate = this.modifiedDate;
+  
 
-   
-    this.familyservice
-      .createfamily(family)
+    if (this.familyIdUpdate == null) {
+     
+
+      this.familyservice.createfamily(family)
       .subscribe({
         next: (any) => {
           this.dataSaved = true;
@@ -186,6 +209,18 @@ export class FamilyComponent implements OnInit {
         }
       }       
       );
+    }
+    else {
+      family.familyID = this.familyIdUpdate;
+
+      this.familyservice.updatefamily(family).subscribe(() => {
+        this.dataSaved = true;
+        this.SavedSuccessful(0);
+        this.loadAllFamily();
+        this.familyIdUpdate = null;
+        this.familyForm.reset();
+      });
+    }
   }
 
 
@@ -195,7 +230,7 @@ export class FamilyComponent implements OnInit {
       this.massage = null;
       this.dataSaved = false;
       this.familyIdUpdate = result.familyID;
-      console.log(result.residentialFacility);
+      
       this.familyForm.controls['postaladdressname'].setValue(result.postalAddressName);
       this.familyForm.controls['currentaddress'].setValue(result.currentAddress);
       this.familyForm.controls['currentvillage'].setValue(result.currentVillage);

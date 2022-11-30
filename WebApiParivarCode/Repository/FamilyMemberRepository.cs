@@ -92,6 +92,8 @@ namespace WebApiParivarCode.Repository
 
         public async Task<FamilyMember> InsertFamilyMember(FamilyMember objFamilyMember)
         {
+            objFamilyMember.Active = true;
+            objFamilyMember.ModifiedDate = DateTime.Now;
             _context.FamilyMembers.Add(objFamilyMember);
             await _context.SaveChangesAsync();
             return objFamilyMember;
@@ -99,6 +101,8 @@ namespace WebApiParivarCode.Repository
 
         public async Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember)
         {
+            objFamilyMember.Active = true;
+            objFamilyMember.ModifiedDate = DateTime.Now;
             _context.Entry(objFamilyMember).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return objFamilyMember;
@@ -112,6 +116,7 @@ namespace WebApiParivarCode.Repository
             if (familyMember != null)
             {
                 familyMember.Active = false;
+                familyMember.ModifiedDate = DateTime.Now;   
                 _context.Entry(familyMember).State = EntityState.Modified;
                 _context.SaveChanges();
                 result = true;

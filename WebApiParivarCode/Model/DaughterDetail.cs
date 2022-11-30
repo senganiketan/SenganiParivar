@@ -16,11 +16,11 @@ namespace WebApiParivarCode.Model
         public int RelationID { get; set; }
         public string? Village { get; set; }
         public DateTime? Birthdate { get; set; }
-        public int Mobile { get; set; }
+        public Int64 Mobile { get; set; }
         public bool Active { get; set; }
         public bool AttendingProgram { get; set; }
         public bool GiftRecieved { get; set; }
-        public int ModifiedByID { get; set; }
+        public Int64 ModifiedByID { get; set; }
         public DateTime ModifiedDate { get; set; }
 
     }
@@ -36,11 +36,11 @@ namespace WebApiParivarCode.Model
         public int RelationID { get; set; }
         public string? Village { get; set; }
         public DateTime Birthdate { get; set; }
-        public int Mobile { get; set; }
+        public Int64 Mobile { get; set; }
         public bool Active { get; set; }
         public bool AttendingProgram { get; set; }
         public bool GiftRecieved { get; set; }
-        public int ModifiedByID { get; set; }
+        public Int64 ModifiedByID { get; set; }
         public DateTime ModifiedDate { get; set; }
 
         public string? RelationName { get; set; }

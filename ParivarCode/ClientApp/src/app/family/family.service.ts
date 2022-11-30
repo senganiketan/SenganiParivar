@@ -20,7 +20,7 @@ export class FamilyService {
     return this.http.get<Family[]>(`${environment.apiUrl}/Family/GetFamily`);    
   }
   public getfamilyByFamilyID(familyid: number): Observable<Family> {       
-    return this.http.get<Family>(`${environment.apiUrl}/Family/GetFamilyByID/` + familyid);;
+    return this.http.get<Family>(`${environment.apiUrl}/Family/GetFamilyByID/` + familyid);
   }
 
   public createfamily(family: Family) {       
@@ -28,8 +28,16 @@ export class FamilyService {
   }
 
 
+  public updatefamily(family: Family): Observable<Family> {
+    var result = this.http.put<Family>(`${environment.apiUrl}/Family/UpdateFamily`, family);
+    return result;
+  }
 
 
+  public deletefamily(familyid: number): Observable<any> {
+    var result = this.http.delete<any>(`${environment.apiUrl}/Family/DeleteFamily/?id=` + familyid);    
+    return result;
+  }
   //public updateHero(hero: SuperHero): Observable<SuperHero[]> {
   //  return this.http.put<SuperHero[]>(
   //    `${environment.apiUrl}/${this.url}`,

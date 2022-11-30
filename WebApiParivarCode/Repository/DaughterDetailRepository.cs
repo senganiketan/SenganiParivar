@@ -46,13 +46,13 @@ namespace WebApiParivarCode.Repository
                                                     GiftRecieved = x.GiftRecieved,
                                                     DaughterDetailID = x.DaughterDetailID,
                                                     Birthdate = Convert.ToDateTime(x.Birthdate),
-                                                    Mobile = x.Mobile,
+                                                    Mobile = Convert.ToInt64(x.Mobile),
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
                                                     RelationName = y.RelationName,
-                                                    ModifiedByID = x.ModifiedByID,
-                                                    ModifiedDate = x.ModifiedDate
+                                                    ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
                                                 }
                                         ).ToListAsync();
 
@@ -80,12 +80,12 @@ namespace WebApiParivarCode.Repository
                                                     GiftRecieved = x.GiftRecieved,
                                                     DaughterDetailID = x.DaughterDetailID,
                                                     Birthdate = Convert.ToDateTime(x.Birthdate),
-                                                    Mobile = x.Mobile,
+                                                    Mobile = Convert.ToInt64(x.Mobile),
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
-                                                    ModifiedByID = x.ModifiedByID,
-                                                    ModifiedDate = x.ModifiedDate
+                                                    ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
                                                 }
                                         ).FirstOrDefaultAsync() ?? new DaughterDetail();
 
@@ -95,6 +95,8 @@ namespace WebApiParivarCode.Repository
 
         public async Task<DaughterDetail> InsertDaughterDetail(DaughterDetail objDaughterDetail)
         {
+            objDaughterDetail.ModifiedDate=DateTime.Now;
+            objDaughterDetail.Active = true;
             _context.DaughterDetails.Add(objDaughterDetail);
             await _context.SaveChangesAsync();
             return objDaughterDetail;
@@ -102,6 +104,8 @@ namespace WebApiParivarCode.Repository
 
         public async Task<DaughterDetail> UpdateDaughterDetail(DaughterDetail objDaughterDetail)
         {
+            objDaughterDetail.ModifiedDate = DateTime.Now;
+            objDaughterDetail.Active = true;
             _context.Entry(objDaughterDetail).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return objDaughterDetail;
@@ -115,6 +119,7 @@ namespace WebApiParivarCode.Repository
             if (daughterDetail != null)
             {
                 daughterDetail.Active = false;
+                daughterDetail.ModifiedDate = DateTime.Now;
                 _context.Entry(daughterDetail).State = EntityState.Modified;
                 _context.SaveChanges();
                 result = true;
