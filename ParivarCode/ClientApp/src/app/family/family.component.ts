@@ -25,7 +25,7 @@ export class FamilyComponent implements OnInit {
   familyForm: any;
   dataSource !: MatTableDataSource<Family>;
   selection = new SelectionModel<Family>(true, []);
-  familyIdUpdate = null;
+  familyIdUpdate = null as any;
   massage = null;
   CountryId = null;
   StateId = null;
@@ -122,7 +122,7 @@ export class FamilyComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${Number(row.familyID) + 1}`;
   }
 
-  DeleteData() {
+  //DeleteData() {
     //debugger;
     //const numSelected = this.selection.selected;
     //if (numSelected.length > 0) {
@@ -135,7 +135,7 @@ export class FamilyComponent implements OnInit {
     //} else {
     //  alert("Select at least one row");
     //}
-  }
+ // }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -188,6 +188,27 @@ export class FamilyComponent implements OnInit {
       );
   }
 
+
+
+  loadFamilyToEdit(familyid: number) {   
+    this.familyservice.getfamilyByFamilyID(familyid).subscribe(result => {   
+      this.massage = null;
+      this.dataSaved = false;
+      this.familyIdUpdate = result.familyID;
+      console.log(result.residentialFacility);
+      this.familyForm.controls['postaladdressname'].setValue(result.postalAddressName);
+      this.familyForm.controls['currentaddress'].setValue(result.currentAddress);
+      this.familyForm.controls['currentvillage'].setValue(result.currentVillage);
+      this.familyForm.controls['currentdistrict'].setValue(result.currentDistrict);
+      this.familyForm.controls['currentstate'].setValue(result.currentState);
+      this.familyForm.controls['currentpincode'].setValue(result.currentPincode);
+      this.familyForm.controls['originalvillage'].setValue(result.originalVillage);
+      this.familyForm.controls['originaldistrict'].setValue(result.originalDistrict);
+      this.familyForm.controls['residentialfacility'].setValue(result.residentialFacility);
+
+      
+    });
+  }
 
 
   resetForm() {

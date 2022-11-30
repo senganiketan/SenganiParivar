@@ -99,9 +99,9 @@
             </td>
             <td class="tbl1">
               <!--<mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Modified by ID</mat-label>
-                <input id="modifiedbyid" matInput type="text" placeholder="Modified by ID" [formControl]="modifiedbyid">
-              </mat-form-field>-->
+          <mat-label>Modified by ID</mat-label>
+          <input id="modifiedbyid" matInput type="text" placeholder="Modified by ID" [formControl]="modifiedbyid">
+        </mat-form-field>-->
             </td>
           </tr>
           <tr>
@@ -110,19 +110,24 @@
               <button type="button" mat-raised-button>clear</button>
             </td>
             <td>
-              <!--<p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
+              <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
                 {{massage}}
-              </p>-->
+              </p>
             </td>
             <td></td>
             <td></td>
           </tr>
         </table>
         <br><br>
+
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+
         <div>
           <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
 
-            <!-- Checkbox Column -->
+           
             <ng-container matColumnDef="select">
               <mat-header-cell *matHeaderCellDef>
                 <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -172,20 +177,20 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header>Current Pincode</mat-header-cell>
               <mat-cell *matCellDef="let family"> {{family.currentPincode}} </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="ModifiedByID">
+            <!--<ng-container matColumnDef="ModifiedByID">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Modified ByID</mat-header-cell>
               <mat-cell *matCellDef="let family"> {{family.modifiedByID}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="ModifiedDate">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Modified Date</mat-header-cell>
               <mat-cell *matCellDef="let family"> {{family.modifiedDate | date:'dd-MM-yyyy'}} </mat-cell>
-            </ng-container>
+            </ng-container>-->
 
 
             <ng-container matColumnDef="Edit">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
               <mat-cell *matCellDef="let family">
-                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" type="button" mat-raised-button color="accent" matTooltip="Edit"><mat-icon>edit</mat-icon></button>
+                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" type="button" mat-raised-button color="accent" matTooltip="Edit" (click)="loadFamilyToEdit(family.familyID)"><mat-icon>edit</mat-icon></button>
               </mat-cell>
             </ng-container>
 

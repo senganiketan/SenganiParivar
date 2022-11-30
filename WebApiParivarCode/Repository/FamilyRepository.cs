@@ -6,7 +6,7 @@ namespace WebApiParivarCode.Repository
     public interface IFamilyRepository
     {
         Task<IEnumerable<Family>> GetFamily();
-        Task<Family> GetFamilyByID(int ID);
+        Task<Family?> GetFamilyByID(int ID);
         Task<Family> InsertFamily(Family objFamily);
         Task<Family> UpdateFamily(Family objFamily);
         bool DeleteFamily(int ID);
@@ -34,14 +34,30 @@ namespace WebApiParivarCode.Repository
                 CurrentDistrict= x.CurrentDistrict,
                 CurrentState=x.CurrentState,
                 CurrentPincode=x.CurrentPincode,
+                ResidentialFacility=x.ResidentialFacility,
                 ModifiedByID=Convert.ToInt64(x.ModifiedByID),
-                ModifiedDate=x.ModifiedDate  
+                ModifiedDate=Convert.ToDateTime(x.ModifiedDate)
             }) .ToListAsync();
         }
 
-        public async Task<Family> GetFamilyByID(int ID)
+        public async Task<Family?> GetFamilyByID(int ID)
         {
-            return await _context.Families.FindAsync(ID);
+             var result= await _context.Families.Where(x => x.FamilyID == ID).Select(x => new Family
+             {
+                 FamilyID = x.FamilyID,
+                 OriginalVillage = x.OriginalVillage,
+                 OriginalDistrict = x.OriginalDistrict,
+                 PostalAddressName = x.PostalAddressName,
+                 CurrentAddress = x.CurrentAddress,
+                 CurrentVillage = x.CurrentVillage,
+                 CurrentDistrict = x.CurrentDistrict,
+                 CurrentState = x.CurrentState,
+                 CurrentPincode = x.CurrentPincode,
+                 ResidentialFacility = x.ResidentialFacility,
+                 ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                 ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
+             }).FirstOrDefaultAsync();
+            return result;
         }
 
         public async Task<Family> InsertFamily(Family objFamily)

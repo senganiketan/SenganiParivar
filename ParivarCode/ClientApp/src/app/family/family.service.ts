@@ -19,9 +19,11 @@ export class FamilyService {
   public getfamily(): Observable<Family[]> {
     return this.http.get<Family[]>(`${environment.apiUrl}/Family/GetFamily`);    
   }
+  public getfamilyByFamilyID(familyid: number): Observable<Family> {       
+    return this.http.get<Family>(`${environment.apiUrl}/Family/GetFamilyByID/` + familyid);;
+  }
 
-  public createfamily(family: Family) {
-       
+  public createfamily(family: Family) {       
     return this.http.post(`${environment.apiUrl}/Family/AddFamily`, family);
   }
 
