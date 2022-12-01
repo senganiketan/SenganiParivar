@@ -35,8 +35,6 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { CreateFamilyComponent } from './createfamily/createfamily.component';
-import { ListFamilyComponent } from './listfamily/listfamily.component';
 import { CreateFamilyMemberComponent } from './createfamilymember/createfamilymember.component';
 import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.component';
 import { FamilyComponent } from './family/family.component';
@@ -47,8 +45,6 @@ import { FamilyComponent } from './family/family.component';
     NavMenuComponent,
     HomeComponent,
     LoginComponent,
-    CreateFamilyComponent,
-    ListFamilyComponent,
     CreateFamilyMemberComponent,
     ListFamilyMemberComponent,
     FamilyComponent,
@@ -82,9 +78,7 @@ import { FamilyComponent } from './family/family.component';
 
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },    
-      { path: 'login-data', component: LoginComponent },
-      { path: 'family-create', component: CreateFamilyComponent },
-      { path: 'family-list', component: ListFamilyComponent },
+      { path: 'login-data', component: LoginComponent },    
       { path: 'family-create-member', component: CreateFamilyMemberComponent },
       { path: 'familymember-list', component: ListFamilyMemberComponent },
       { path: 'family', component: FamilyComponent },
