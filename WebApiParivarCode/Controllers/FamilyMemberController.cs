@@ -22,10 +22,10 @@ namespace WebApiParivarCode.Controllers
         }
 
         [HttpGet]
-        [Route("GetFamilyMemberByID/{Id}")]
-        public async Task<IActionResult> GetFamilyMemberById(int Id)
+        [Route("GetFamilyMemberByMemberID/{Id}")]
+        public async Task<IActionResult> GetFamilyMemberByMemberId(int Id)
         {
-            return Ok(await _familyMemberRepository.GetFamilyMemberByID(Id));
+            return Ok(await _familyMemberRepository.GetFamilyMemberByMemberID(Id));
         }
 
         [HttpPost]

@@ -9,7 +9,7 @@ namespace WebApiParivarCode.Repository
     public interface IFamilyMemberRepository
     {
         Task<IEnumerable<FamilyMemberList>> GetFamilyMembers(int ID);
-        Task<FamilyMember> GetFamilyMemberByID(int ID);
+        Task<FamilyMember> GetFamilyMemberByMemberID(int ID);
         Task<FamilyMember> InsertFamilyMember(FamilyMember objFamilyMember);
         Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember);
         bool DeleteFamilyMember(int ID);
@@ -59,7 +59,7 @@ namespace WebApiParivarCode.Repository
 
         }
 
-        public async Task<FamilyMember> GetFamilyMemberByID(int ID)
+        public async Task<FamilyMember> GetFamilyMemberByMemberID(int ID)
         {
             FamilyMember familyMemberobj = new FamilyMember();
 
@@ -112,7 +112,30 @@ namespace WebApiParivarCode.Repository
         public bool DeleteFamilyMember(int ID)
         {
             bool result = false;
-            var familyMember = _context.FamilyMembers.Find(ID);
+            var familyMember =   _context.FamilyMembers
+                                        .Where(x => x.FamilyID == ID)
+                                        .Join(_context.Relations,
+                                                x => x.RelationID,
+                                                y => y.RelationID,
+                                                (x, y) => new FamilyMemberList
+                                                {
+                                                    FamilyMemberID = x.FamilyMemberID,
+                                                    FirstName = x.FirstName,
+                                                    FatherHusbandName = x.FatherHusbandName,
+                                                    Gender = x.Gender,
+                                                    Birthdate = Convert.ToDateTime(x.Birthdate),
+                                                    MaritalStatus = x.MaritalStatus,
+                                                    Education = x.Education,
+                                                    Business = x.Business,
+                                                    Mobile = Convert.ToInt64(x.Mobile),
+                                                    FamilyID = x.FamilyID,
+                                                    AttendingProgram = x.AttendingProgram,
+                                                    RelationID = x.RelationID,
+                                                    RelationName = y.RelationName,
+                                                    ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
+                                                }
+                                        ).FirstOrDefault();
             if (familyMember != null)
             {
                 familyMember.Active = false;

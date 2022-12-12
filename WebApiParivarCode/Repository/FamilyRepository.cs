@@ -87,8 +87,7 @@ namespace WebApiParivarCode.Repository
         public bool DeleteFamily(int ID)
         {
             bool result = false;
-             //var family = _context.Families.Find(ID);
-
+            
             var family = _context.Families.Where(x => x.FamilyID == ID).Select(x => new Family
             {
                 FamilyID = x.FamilyID,

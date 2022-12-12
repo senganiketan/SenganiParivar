@@ -38,6 +38,7 @@ import { LoginComponent } from './login/login.component';
 import { CreateFamilyMemberComponent } from './createfamilymember/createfamilymember.component';
 import { ListFamilyMemberComponent } from './listfamilymember/listfamilymember.component';
 import { FamilyComponent } from './family/family.component';
+import { FamilyMemberComponent } from './familymember/familymember.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { FamilyComponent } from './family/family.component';
     CreateFamilyMemberComponent,
     ListFamilyMemberComponent,
     FamilyComponent,
+    FamilyMemberComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -82,6 +84,7 @@ import { FamilyComponent } from './family/family.component';
       { path: 'family-create-member', component: CreateFamilyMemberComponent },
       { path: 'familymember-list', component: ListFamilyMemberComponent },
       { path: 'family', component: FamilyComponent },
+      { path: 'familymember', component: FamilyMemberComponent },
     ]),   
   ],
   providers: [],
