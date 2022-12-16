@@ -8,6 +8,7 @@ using WebApiParivarCode.Repository;
 
 namespace WebApiParivarCode.Controllers
 {
+    //first Check in :NP
     [Route("api/[controller]")]
     [ApiController]
     public class FamilyController : ControllerBase
