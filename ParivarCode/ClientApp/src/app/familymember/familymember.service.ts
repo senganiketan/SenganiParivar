@@ -28,8 +28,9 @@ export class FamilyMemberService {
   }
 
   //CREATE
-  public createfamily(familymember: FamilyMember) {       
-    return this.http.post(`${environment.apiUrl}/FamilyMember/AddFamilyMember`, familymember);
+  public createfamilyMember(familymember: FamilyMember): Observable<FamilyMember[]> {   
+    var result = this.http.post<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/AddFamilyMember`, familymember);
+    return result;
   }
 
   public getrelation(): Observable<Relation[]> {
@@ -37,13 +38,13 @@ export class FamilyMemberService {
   }
 
   //UPDATE
-  public updatefamily(familymember: FamilyMember): Observable<FamilyMember> {
+  public updatefamilyMember(familymember: FamilyMember): Observable<FamilyMember> {
     var result = this.http.put<FamilyMember>(`${environment.apiUrl}/FamilyMember/UpdateFamilyMember`, familymember);
     return result;
   }
 
   //DELETE
-  public deletefamily(familyid: number): Observable<any> {
+  public deletefamilyMember(familyid: number): Observable<any> {
     var result = this.http.delete<any>(`${environment.apiUrl}/FamilyMember/DeleteFamilyMember/?id=` + familyid);    
     return result;
   }

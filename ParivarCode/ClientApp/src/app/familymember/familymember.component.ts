@@ -20,6 +20,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 
 export class FamilyMemberComponent implements OnInit {
+
   familymember: FamilyMember[] = [];
   familymemberForm: any;
   allRelations!: Observable<Relation[]>;
@@ -113,6 +114,8 @@ export class FamilyMemberComponent implements OnInit {
       modifiedbyid: new FormControl(''),
     });
     this.FillRelationDDL();
+    //this.dataSource.paginator = this.paginator;
+   // this.dataSource.sort = this.sort;
   
   }
   
@@ -136,7 +139,7 @@ export class FamilyMemberComponent implements OnInit {
 
   deleteFamily(familyid: any) {
     if (confirm("Are you sure you want to delete this ?")) {
-      this.familymemberservice.deletefamily(familyid).subscribe(() => {
+      this.familymemberservice.deletefamilyMember(familyid).subscribe(() => {
         this.dataSaved = true;
         this.SavedSuccessful(2);
         this.loadAllFamily(familyid);
@@ -182,14 +185,12 @@ export class FamilyMemberComponent implements OnInit {
   }
 
   CreateUpdateFamily(familymember: FamilyMember) {
-    familymember.modifiedByID = this.modifiedbyid;
-    //familymember.modifiedDate = this.modifiedDate;
-  
+    //familymember.modifiedByID = this.modifiedbyid;
+    //familymember.modifiedDate = this.modifiedDate;  
 
     if (this.familyIdUpdate == null) {
      
-
-      this.familymemberservice.createfamily(familymember)
+      this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
         next: (any) => {
           this.dataSaved = true;
@@ -207,7 +208,7 @@ export class FamilyMemberComponent implements OnInit {
     else {
       familymember.familyID = this.familyIdUpdate;
 
-      this.familymemberservice.updatefamily(familymember).subscribe(() => {
+      this.familymemberservice.updatefamilyMember(familymember).subscribe(() => {
         this.dataSaved = true;
         this.SavedSuccessful(0);
         this.loadAllFamily(familymember.familyID);
@@ -231,7 +232,7 @@ export class FamilyMemberComponent implements OnInit {
       this.familymemberForm.controls['familyid'].setValue(result.familyID);
       this.familymemberForm.controls['firstname'].setValue(result.firstName);
       this.familymemberForm.controls['fatherhusbandname'].setValue(result.fatherHusbandName);
-      this.familymemberForm.controls['relationID'].setValue(result.relationID);
+      this.familymemberForm.controls['relationid'].setValue(result.relationID);
       this.familymemberForm.controls['birthdate'].setValue(result.birthdate);
       this.familymemberForm.controls['maritalstatus'].setValue(result.maritalStatus);
       this.familymemberForm.controls['gender'].setValue(result.gender);
