@@ -29,7 +29,7 @@ export class FamilyMemberComponent implements OnInit {
   selection = new SelectionModel<FamilyMember>(true, []);
   familyMemberIdUpdate = null as any;
   massage = null;
-  familyID : number;
+  familyID?: number;
   CountryId = null;
   StateId = null;
   CityId = null;
@@ -38,15 +38,12 @@ export class FamilyMemberComponent implements OnInit {
   isFeMale = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['select', 'familyMemberID', 'familyID', 'firstName', 'fatherHusbandName', 'relationID', 'gender', 'birthdate', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
+  displayedColumns: string[] = ['select',  'firstName', 'fatherHusbandName', 'relationID',  'birthdate', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator ;
   @ViewChild(MatSort) sort !: MatSort ;
 
 
-  get familyid(): any {
-    return this.familymemberForm.get('familyid');
-  }
-
+ 
   get firstname(): any {
     return this.familymemberForm.get('firstname');
   }
@@ -83,25 +80,24 @@ export class FamilyMemberComponent implements OnInit {
   //  return this.familymemberForm.get('attendingprogram');
   //}
 
-
   get modifiedbyid(): any {
-    return this.familymemberForm.get('modifiedbyid');
+    return "9876789878"; // We need to assign login page mobile number here.
   }
-
-
 
 
   constructor(private formbulider: UntypedFormBuilder, private familymemberservice: FamilyMemberService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
-    //this.loadAllFamily(this.familyid);// We need to set familyid from previous page
-    this.familyID = 1;
+    this.familyID = 1;  //this.loadAllFamily(this.familyid);// We need to set familyid from previous page
+  
+   
     this.loadAllFamily();    
   }
 
-  ngOnInit() {  
+  ngOnInit() {
+    
 
     this.familymemberForm = new FormGroup({
-      familyid: new FormControl(''),
+      familyid: new FormControl(this.familyID),
       firstname: new FormControl('', [Validators.required]),
       fatherhusbandname: new FormControl('', [Validators.required]),
       relationid: new FormControl('2'),
@@ -111,13 +107,10 @@ export class FamilyMemberComponent implements OnInit {
       education: new FormControl(''),
       business: new FormControl(''),
       mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
-      //  attendingprogram: new FormControl(''),
-      modifiedbyid: new FormControl(''),
+      //  attendingprogram: new FormControl(''),     
     });
     this.FillRelationDDL();
-    //this.dataSource.paginator = this.paginator;
-   // this.dataSource.sort = this.sort;
-  
+
   }
   
   isAllSelected() {
@@ -134,7 +127,7 @@ export class FamilyMemberComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${Number(row.familyID) + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${Number(row.familyMemberID) + 1}`;
   }
 
 
@@ -176,21 +169,18 @@ export class FamilyMemberComponent implements OnInit {
  
 
   onSubmitfamilyMemberForm(familymember: any) {
-    this.dataSaved = false;   
-   
+    this.dataSaved = false;      
     console.log(this.familymemberForm.status);
-
     if (this.familymemberForm.valid) {
       this.CreateUpdateFamily(familymember);
     }   
   }
 
-  CreateUpdateFamily(familymember: FamilyMember) {
-    //familymember.modifiedByID = this.modifiedbyid;
-    //familymember.modifiedDate = this.modifiedDate;  
+  CreateUpdateFamily(familymember: FamilyMember) {   
 
-    if (this.familyMemberIdUpdate == null) {
-     
+    familymember.modifiedByID = this.modifiedbyid;
+
+    if (this.familyMemberIdUpdate == null) {     
       this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
         next: (any) => {         
@@ -207,9 +197,8 @@ export class FamilyMemberComponent implements OnInit {
       );
     }
     else {
-      familymember.familyMemberID = this.familyMemberIdUpdate;
-
-
+      familymember.familyMemberID = this.familyMemberIdUpdate;     
+   
       this.familymemberservice.updatefamilyMember(familymember)
         .subscribe({
           next: (any) => {
@@ -227,17 +216,12 @@ export class FamilyMemberComponent implements OnInit {
     }
   }
 
-
-
   loadFamilyToEdit(familymemberid: number) {   
-    this.familymemberservice.getfamilyMemberByMemberID(familymemberid).subscribe(result => {
-
-      console.log("result.relationID : " + result.relationID);
+    this.familymemberservice.getfamilyMemberByMemberID(familymemberid).subscribe(result => {    
 
       this.massage = null;
       this.dataSaved = false;
-      this.familyMemberIdUpdate = result.familyMemberID;
-
+      this.familyMemberIdUpdate = result.familyMemberID;    
       this.familymemberForm.controls['familyid'].setValue(result.familyID);
       this.familymemberForm.controls['firstname'].setValue(result.firstName);
       this.familymemberForm.controls['fatherhusbandname'].setValue(result.fatherHusbandName);

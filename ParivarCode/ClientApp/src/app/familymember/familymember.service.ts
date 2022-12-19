@@ -19,7 +19,7 @@ export class FamilyMemberService {
 
   //SELECT
 
-  public getfamilymembers(FamilyID: number): Observable<FamilyMember[]> {   
+  public getfamilymembers(FamilyID?: number): Observable<FamilyMember[]> {   
     return this.http.get<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/GetFamilyMember?Id=` + FamilyID);
   }
 
@@ -44,7 +44,7 @@ export class FamilyMemberService {
   }
 
   //DELETE
-  public deletefamilyMember(familyid: number): Observable<any> {
+  public deletefamilyMember(familyid?: number): Observable<any> {
     var result = this.http.delete<any>(`${environment.apiUrl}/FamilyMember/DeleteFamilyMember/?id=` + familyid);    
     return result;
   }
