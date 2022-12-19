@@ -29,7 +29,7 @@ export class FamilyMemberService {
 
   //CREATE
   public createfamilyMember(familymember: FamilyMember): Observable<FamilyMember[]> {   
-    var result = this.http.post<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/AddFamilyMember`, familymember);
+    var result = this.http.post<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/AddFamilyMember`, familymember);  
     return result;
   }
 
@@ -38,7 +38,7 @@ export class FamilyMemberService {
   }
 
   //UPDATE
-  public updatefamilyMember(familymember: FamilyMember): Observable<FamilyMember> {
+  public updatefamilyMember(familymember: FamilyMember): Observable<FamilyMember> {  
     var result = this.http.put<FamilyMember>(`${environment.apiUrl}/FamilyMember/UpdateFamilyMember`, familymember);
     return result;
   }

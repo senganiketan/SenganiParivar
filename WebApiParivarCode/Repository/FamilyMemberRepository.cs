@@ -31,7 +31,7 @@ namespace WebApiParivarCode.Repository
 
 
             familyMemberList = await _context.FamilyMembers
-                                        .Where(x => x.FamilyID == FamilyID)
+                                        .Where(x => x.FamilyID == FamilyID && x.Active == true)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
                                                 y => y.RelationID,
@@ -109,15 +109,15 @@ namespace WebApiParivarCode.Repository
 
         }
 
-        public bool DeleteFamilyMember(int ID)
+        public bool DeleteFamilyMember(int FamilyMemberID)
         {
             bool result = false;
             var familyMember =   _context.FamilyMembers
-                                        .Where(x => x.FamilyID == ID)
+                                        .Where(x => x.FamilyMemberID == FamilyMemberID)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
                                                 y => y.RelationID,
-                                                (x, y) => new FamilyMemberList
+                                                (x, y) => new FamilyMember
                                                 {
                                                     FamilyMemberID = x.FamilyMemberID,
                                                     FirstName = x.FirstName,
@@ -130,8 +130,7 @@ namespace WebApiParivarCode.Repository
                                                     Mobile = Convert.ToInt64(x.Mobile),
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
-                                                    RelationID = x.RelationID,
-                                                    RelationName = y.RelationName,
+                                                    RelationID = x.RelationID,                                                   
                                                     ModifiedByID = Convert.ToInt64(x.ModifiedByID),
                                                     ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
                                                 }

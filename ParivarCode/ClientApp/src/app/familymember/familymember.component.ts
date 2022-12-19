@@ -25,11 +25,11 @@ export class FamilyMemberComponent implements OnInit {
   familymemberForm: any;
   allRelations!: Observable<Relation[]>;
   dataSaved = false;
-  //familyForm: any;
   dataSource !: MatTableDataSource<FamilyMember>;
   selection = new SelectionModel<FamilyMember>(true, []);
-  familyIdUpdate = null as any;
+  familyMemberIdUpdate = null as any;
   massage = null;
+  familyID : number;
   CountryId = null;
   StateId = null;
   CityId = null;
@@ -94,7 +94,8 @@ export class FamilyMemberComponent implements OnInit {
   constructor(private formbulider: UntypedFormBuilder, private familymemberservice: FamilyMemberService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
     //this.loadAllFamily(this.familyid);// We need to set familyid from previous page
-    this.loadAllFamily(1);    
+    this.familyID = 1;
+    this.loadAllFamily();    
   }
 
   ngOnInit() {  
@@ -137,13 +138,13 @@ export class FamilyMemberComponent implements OnInit {
   }
 
 
-  deleteFamily(familyid: any) {
+  deleteFamily(familyMemberID: any) {
     if (confirm("Are you sure you want to delete this ?")) {
-      this.familymemberservice.deletefamilyMember(familyid).subscribe(() => {
+      this.familymemberservice.deletefamilyMember(familyMemberID).subscribe(() => {
         this.dataSaved = true;
         this.SavedSuccessful(2);
-        this.loadAllFamily(familyid);
-        this.familyIdUpdate = null;
+        this.loadAllFamily();
+        this.familyMemberIdUpdate = null;
         this.familymemberForm.reset();
       });
     }
@@ -160,8 +161,8 @@ export class FamilyMemberComponent implements OnInit {
     }
   }
 
-  loadAllFamily(familyid: any) {
-    this.familymemberservice.getfamilymembers(familyid).subscribe(data => {
+  loadAllFamily() {
+    this.familymemberservice.getfamilymembers(this.familyID).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -188,15 +189,15 @@ export class FamilyMemberComponent implements OnInit {
     //familymember.modifiedByID = this.modifiedbyid;
     //familymember.modifiedDate = this.modifiedDate;  
 
-    if (this.familyIdUpdate == null) {
+    if (this.familyMemberIdUpdate == null) {
      
       this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
-        next: (any) => {
+        next: (any) => {         
           this.dataSaved = true;
           this.SavedSuccessful(1);
-          this.loadAllFamily(familymember.familyID);
-          this.familyIdUpdate = null;
+          this.loadAllFamily();
+          this.familyMemberIdUpdate = null;
           this.familymemberForm.reset();          
         },
         error: (err) => {
@@ -206,15 +207,23 @@ export class FamilyMemberComponent implements OnInit {
       );
     }
     else {
-      familymember.familyID = this.familyIdUpdate;
+      familymember.familyMemberID = this.familyMemberIdUpdate;
 
-      this.familymemberservice.updatefamilyMember(familymember).subscribe(() => {
-        this.dataSaved = true;
-        this.SavedSuccessful(0);
-        this.loadAllFamily(familymember.familyID);
-        this.familyIdUpdate = null;
-        this.familymemberForm.reset();
-      });
+
+      this.familymemberservice.updatefamilyMember(familymember)
+        .subscribe({
+          next: (any) => {
+            this.dataSaved = true;
+            this.SavedSuccessful(0);
+            this.loadAllFamily();
+            this.familyMemberIdUpdate = null;
+            this.familymemberForm.reset();
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        }
+        );
     }
   }
 
@@ -227,7 +236,7 @@ export class FamilyMemberComponent implements OnInit {
 
       this.massage = null;
       this.dataSaved = false;
-      this.familyIdUpdate = result.familyID;
+      this.familyMemberIdUpdate = result.familyMemberID;
 
       this.familymemberForm.controls['familyid'].setValue(result.familyID);
       this.familymemberForm.controls['firstname'].setValue(result.firstName);

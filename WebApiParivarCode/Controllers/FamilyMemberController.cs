@@ -37,15 +37,14 @@ namespace WebApiParivarCode.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Something Went Wrong");
             }
-            return Ok(_familyMemberRepository.GetFamilyMembers(result.FamilyID));
+            return Ok(await _familyMemberRepository.GetFamilyMembers(result.FamilyID));            
         }
 
         [HttpPut]
         [Route("UpdateFamilyMember")]
         public async Task<IActionResult> Put(FamilyMember objFamilyMember)
-        {
-            await _familyMemberRepository.UpdateFamilyMember(objFamilyMember);
-            return Ok("Updated Successfully");
+        {             
+            return Ok( await _familyMemberRepository.UpdateFamilyMember(objFamilyMember));
         }
 
         [HttpDelete]
@@ -55,5 +54,6 @@ namespace WebApiParivarCode.Controllers
             _familyMemberRepository.DeleteFamilyMember(id);
             return new JsonResult("Deleted Successfully");
         }
+
     }
 }
