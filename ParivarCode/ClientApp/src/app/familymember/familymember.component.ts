@@ -91,15 +91,12 @@ export class FamilyMemberComponent implements OnInit {
 
   constructor(private formbulider: UntypedFormBuilder, private familymemberservice: FamilyMemberService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
-    this.familyID = 1;  //this.loadAllFamily(this.familyid);// We need to set familyid from previous page
-  
+    this.familyID = 1;  //this.loadAllFamily(this.familyid);// We need to set familyid from previous page 
    
     this.loadAllFamily();    
   }
 
   ngOnInit() {
-    
-
     this.familymemberForm = new FormGroup({
       familyid: new FormControl(this.familyID),
       firstname: new FormControl('', [Validators.required]),
@@ -114,7 +111,6 @@ export class FamilyMemberComponent implements OnInit {
       attendingProgram: new FormControl('1'),     
     });
     this.FillRelationDDL();
-
   }
   
   isAllSelected() {
@@ -146,10 +142,7 @@ export class FamilyMemberComponent implements OnInit {
         
       });
     }
-
   }
-
-
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
