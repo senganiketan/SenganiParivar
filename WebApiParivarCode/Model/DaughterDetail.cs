@@ -15,7 +15,7 @@ namespace WebApiParivarCode.Model
         public string? Surname { get; set; }
         public int RelationID { get; set; }
         public string? Village { get; set; }
-        public DateTime? Birthdate { get; set; }
+        public int? Age { get; set; }
         public Int64 Mobile { get; set; }
         public bool Active { get; set; }
         public bool AttendingProgram { get; set; }
@@ -35,7 +35,7 @@ namespace WebApiParivarCode.Model
         public string? Surname { get; set; }
         public int RelationID { get; set; }
         public string? Village { get; set; }
-        public DateTime Birthdate { get; set; }
+        public int? Age { get; set; }
         public Int64 Mobile { get; set; }
         public bool Active { get; set; }
         public bool AttendingProgram { get; set; }

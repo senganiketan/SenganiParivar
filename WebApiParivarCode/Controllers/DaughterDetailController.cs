@@ -16,16 +16,16 @@ namespace WebApiParivarCode.Controllers
 
         [HttpGet]
         [Route("GetDaughterDetail")]
-        public async Task<IActionResult> Get(int Id)
+        public async Task<IActionResult> Get(int FamilyID)
         {
-            return Ok(await _daughterDetailRepository.GetDaughterDetail(Id));
+            return Ok(await _daughterDetailRepository.GetDaughterDetails(FamilyID));
         }
 
         [HttpGet]
-        [Route("GetDaughterDetailByID/{Id}")]
-        public async Task<IActionResult> GetDaughterDetailById(int Id)
+        [Route("GetDaughterDetailByID/{DaughterDetailID}")]
+        public async Task<IActionResult> GetDaughterDetailById(int DaughterDetailID)
         {
-            return Ok(await _daughterDetailRepository.GetDaughterDetailByID(Id));
+            return Ok(await _daughterDetailRepository.GetDaughterDetailByID(DaughterDetailID));
         }
 
         [HttpPost]
@@ -50,9 +50,9 @@ namespace WebApiParivarCode.Controllers
 
         [HttpDelete]
         [Route("DeleteDaughterDetail")]
-        public JsonResult Delete(int id)
+        public JsonResult Delete(int DaughterDetailID)
         {
-            _daughterDetailRepository.DeleteDaughterDetail(id);
+            _daughterDetailRepository.DeleteDaughterDetail(DaughterDetailID);
             return new JsonResult("Deleted Successfully");
         }
     }

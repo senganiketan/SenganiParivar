@@ -8,11 +8,11 @@ namespace WebApiParivarCode.Repository
 {
     public interface IDaughterDetailRepository
     {
-        Task<IEnumerable<DaughterDetailList>> GetDaughterDetail(int ID);
-        Task<DaughterDetail> GetDaughterDetailByID(int ID);
+        Task<IEnumerable<DaughterDetailList>> GetDaughterDetails(int FamilyID);
+        Task<DaughterDetail> GetDaughterDetailByID(int DaughterDetailID);
         Task<DaughterDetail> InsertDaughterDetail(DaughterDetail objDaughterDetail);
         Task<DaughterDetail> UpdateDaughterDetail(DaughterDetail objDaughterDetail);
-        bool DeleteDaughterDetail(int ID);
+        bool DeleteDaughterDetail(int DaughterDetailID);
     }
 
     public class DaughterDetailRepository : IDaughterDetailRepository
@@ -25,27 +25,27 @@ namespace WebApiParivarCode.Repository
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<DaughterDetailList>> GetDaughterDetail(int FamilyID)
+        public async Task<IEnumerable<DaughterDetailList>> GetDaughterDetails(int FamilyID)
         {
             List<DaughterDetailList> daughterDetailList = new List<DaughterDetailList>();
 
 
             daughterDetailList = await _context.DaughterDetails
-                                        .Where(x => x.FamilyID == FamilyID)
+                                        .Where(x => x.FamilyID == FamilyID && x.Active == true)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
                                                 y => y.RelationID,
                                                 (x, y) => new DaughterDetailList
                                                 {
+                                                    DaughterDetailID=x.DaughterDetailID,
                                                     FirstName = x.FirstName,
                                                     Surname = x.Surname,
                                                     FatherInLawName = x.FatherInLawName,
                                                     HusbandName = x.HusbandName,
                                                     Village = x.Village,
                                                     Active = x.Active,
-                                                    GiftRecieved = x.GiftRecieved,
-                                                    DaughterDetailID = x.DaughterDetailID,
-                                                    Birthdate = Convert.ToDateTime(x.Birthdate),
+                                                    GiftRecieved = x.GiftRecieved,                                                   
+                                                    Age = x.Age,
                                                     Mobile = Convert.ToInt64(x.Mobile),
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
@@ -60,26 +60,26 @@ namespace WebApiParivarCode.Repository
 
         }
 
-        public async Task<DaughterDetail> GetDaughterDetailByID(int ID)
+        public async Task<DaughterDetail> GetDaughterDetailByID(int DaughterDetailID)
         {
             DaughterDetail daughterDetailobj = new DaughterDetail();
 
             daughterDetailobj = await _context.DaughterDetails
-                                        .Where(x => x.DaughterDetailID == ID)
+                                        .Where(x => x.DaughterDetailID == DaughterDetailID)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
                                                 y => y.RelationID,
                                                 (x, y) => new DaughterDetail
                                                 {
+                                                    DaughterDetailID = x.DaughterDetailID,
                                                     FirstName = x.FirstName,
                                                     Surname = x.Surname,
                                                     FatherInLawName = x.FatherInLawName,
                                                     HusbandName = x.HusbandName,
                                                     Village = x.Village,
                                                     Active = x.Active,
-                                                    GiftRecieved = x.GiftRecieved,
-                                                    DaughterDetailID = x.DaughterDetailID,
-                                                    Birthdate = Convert.ToDateTime(x.Birthdate),
+                                                    GiftRecieved = x.GiftRecieved,                                                    
+                                                    Age = x.Age,
                                                     Mobile = Convert.ToInt64(x.Mobile),
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
@@ -112,10 +112,34 @@ namespace WebApiParivarCode.Repository
 
         }
 
-        public bool DeleteDaughterDetail(int ID)
+        public bool DeleteDaughterDetail(int DaughterDetailID)
         {
             bool result = false;
-            var daughterDetail = _context.DaughterDetails.Find(ID);
+            var daughterDetail = _context.DaughterDetails
+                                        .Where(x => x.DaughterDetailID == DaughterDetailID)
+                                        .Join(_context.Relations,
+                                                x => x.RelationID,
+                                                y => y.RelationID,
+                                                (x, y) => new DaughterDetail
+                                                {
+                                                    DaughterDetailID = x.DaughterDetailID,
+                                                    FirstName = x.FirstName,
+                                                    Surname = x.Surname,
+                                                    FatherInLawName = x.FatherInLawName,
+                                                    HusbandName = x.HusbandName,
+                                                    Village = x.Village,
+                                                    Active = x.Active,
+                                                    GiftRecieved = x.GiftRecieved,
+                                                    Age = x.Age,
+                                                    Mobile = Convert.ToInt64(x.Mobile),
+                                                    FamilyID = x.FamilyID,
+                                                    AttendingProgram = x.AttendingProgram,
+                                                    RelationID = x.RelationID,
+                                                    ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
+                                                }
+                                        ).FirstOrDefault();
+
             if (daughterDetail != null)
             {
                 daughterDetail.Active = false;
