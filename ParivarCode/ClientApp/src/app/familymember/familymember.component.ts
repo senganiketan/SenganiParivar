@@ -174,8 +174,8 @@ export class FamilyMemberComponent implements OnInit {
     }   
   }
 
-  CreateUpdateFamily(familymember: FamilyMember){      
-    familymember.attendingProgram = this.familymemberForm.attendingProgram == "0" ? false : true;  
+  CreateUpdateFamily(familymember: FamilyMember) {
+    familymember.attendingProgram = this.familymemberForm.controls['attendingProgram'].value == "0" ? false : true;  
     if (this.familyMemberIdUpdate == null) {     
       this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
@@ -194,7 +194,7 @@ export class FamilyMemberComponent implements OnInit {
     }
     else {
       familymember.familyMemberID = this.familyMemberIdUpdate;     
-   
+      
       this.familymemberservice.updatefamilyMember(familymember)
         .subscribe({
           next: (any) => {
