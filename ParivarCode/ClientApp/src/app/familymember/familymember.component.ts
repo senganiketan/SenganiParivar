@@ -39,11 +39,14 @@ export class FamilyMemberComponent implements OnInit {
   isFeMale = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['select',  'firstName', 'fatherHusbandName', 'relationID',  'birthdate', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
+  displayedColumns: string[] = ['select', 'firstName', 'fatherHusbandName', 'relationID',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator ;
   @ViewChild(MatSort) sort !: MatSort ;
 
 
+  get familyid(): any {
+    return this.familymemberForm.get('familyid');
+  }
  
   get firstname(): any {
     return this.familymemberForm.get('firstname');
@@ -60,8 +63,8 @@ export class FamilyMemberComponent implements OnInit {
     return this.familymemberForm.get('gender');
   }
 
-  get birthdate(): any {
-    return this.familymemberForm.get('birthdate');
+  get age(): any {
+    return this.familymemberForm.get('age');
   }
 
   get maritalstatus(): any {
@@ -103,7 +106,7 @@ export class FamilyMemberComponent implements OnInit {
       fatherhusbandname: new FormControl('', [Validators.required]),
       relationid: new FormControl('2'),
       gender: new FormControl('male'),
-      birthdate: new FormControl(''),
+      age: new FormControl(''),
       maritalstatus: new FormControl('Single'),
       education: new FormControl(''),
       business: new FormControl(''),
@@ -140,6 +143,7 @@ export class FamilyMemberComponent implements OnInit {
         this.loadAllFamily();
         this.familyMemberIdUpdate = null;
         this.familymemberForm.reset();
+        this.familymemberForm.controls['familyid'].setValue(this.familyID);
       });
     }
 
@@ -178,8 +182,7 @@ export class FamilyMemberComponent implements OnInit {
   }
 
   CreateUpdateFamily(familymember: FamilyMember){      
-      familymember.attendingProgram = this.familymemberForm.attendingProgram == "0" ? false : true;
-
+    familymember.attendingProgram = this.familymemberForm.attendingProgram == "0" ? false : true;  
     if (this.familyMemberIdUpdate == null) {     
       this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
@@ -226,7 +229,7 @@ export class FamilyMemberComponent implements OnInit {
       this.familymemberForm.controls['firstname'].setValue(result.firstName);
       this.familymemberForm.controls['fatherhusbandname'].setValue(result.fatherHusbandName);
       this.familymemberForm.controls['relationid'].setValue(result.relationID);
-      this.familymemberForm.controls['birthdate'].setValue(result.birthdate);
+      this.familymemberForm.controls['age'].setValue(result.age);
       this.familymemberForm.controls['maritalstatus'].setValue(result.maritalStatus);
       this.familymemberForm.controls['gender'].setValue(result.gender);     
       this.familymemberForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");      

@@ -13,7 +13,7 @@ GO
 	[Surname] Nvarchar(max) NOT NULL,
 	[RelationID] int NULL,
 	[Village] Nvarchar(max) NOT NULL,
-	[Birthdate] datetime NULL,	
+	[Age] int NULL,	
 	[Mobile] int NOT NULL,	
 	[Active] bit default 1,
 	[AttendingProgram] bit default 0,

@@ -29,9 +29,6 @@ export class FamilyMemberService {
 
   //CREATE
   public createfamilyMember(familymember: FamilyMember): Observable<FamilyMember[]> {
-
-    
-    debugger;
     var result = this.http.post<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/AddFamilyMember`, familymember);  
     return result;
   }

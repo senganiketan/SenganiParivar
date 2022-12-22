@@ -11,7 +11,7 @@ GO
 	[FatherHusbandName] Nvarchar(max) NOT NULL,
 	[RelationID] int NULL,
 	[Gender] Nvarchar(max) NOT NULL,
-	[Birthdate] datetime NULL,
+	[Age] int NULL,
 	[MaritalStatus] Nvarchar(max)  NULL,
 	[Education] Nvarchar(max)  NULL,
 	[Business] Nvarchar(max)  NULL,

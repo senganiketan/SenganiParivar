@@ -4,8 +4,8 @@ export class FamilyMember {
   firstName = "";
   fatherHusbandName = "";
   relationID?: number;  
-  gender="";
-  birthdate?: Date;
+  gender = "";
+  age?: number;
   maritalStatus="";
   education = "";
   business = "";

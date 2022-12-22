@@ -14,6 +14,9 @@
           <table>
             <tr>            
               <td class="tbl1">
+                <!--<mat-form-field class="example-full-width" appearance="fill">                
+                  <input id="familyid" matInput type="text" hidden [formControl]="familyid">
+                </mat-form-field>-->
                 <mat-form-field class="example-full-width" appearance="fill">
                   <mat-label>First name</mat-label>
                   <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
@@ -33,10 +36,8 @@
               </td>
               <td class="tbl1">
                 <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Birthdate</mat-label>
-                  <input matInput [matDatepicker]="picker" placeholder="DOB(MM/DD/YYYY)" [formControl]="birthdate">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-label>Age</mat-label>
+                  <input id="Age" type="number" matInput maxlength="3" placeholder="Age" [formControl]="age">
                 </mat-form-field>
               </td>
               <td class="tbl1">
@@ -143,9 +144,9 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.gender }} </mat-cell>
               </ng-container>
-              <ng-container matColumnDef="birthdate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Birthdate</mat-header-cell>
-                <mat-cell *matCellDef="let familymember"> {{familymember.birthdate | date:'dd-MM-yyyy'}} </mat-cell>
+              <ng-container matColumnDef="age">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.age}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="maritalStatus">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Maritalstatus</mat-header-cell>
