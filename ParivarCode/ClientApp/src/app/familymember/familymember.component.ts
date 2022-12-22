@@ -39,7 +39,7 @@ export class FamilyMemberComponent implements OnInit {
   isFeMale = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['select', 'firstName', 'fatherHusbandName', 'relationID',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
+  displayedColumns: string[] = ['select', 'firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator ;
   @ViewChild(MatSort) sort !: MatSort ;
 
@@ -142,8 +142,8 @@ export class FamilyMemberComponent implements OnInit {
         this.SavedSuccessful(2);
         this.loadAllFamily();
         this.familyMemberIdUpdate = null;
-        this.familymemberForm.reset();
-        this.familymemberForm.controls['familyid'].setValue(this.familyID);
+        this.resetForm();
+        
       });
     }
 
@@ -191,7 +191,7 @@ export class FamilyMemberComponent implements OnInit {
           this.SavedSuccessful(1);
           this.loadAllFamily();
           this.familyMemberIdUpdate = null;
-          this.familymemberForm.reset();          
+          this.resetForm();        
         },
         error: (err) => {
           console.log(err);
@@ -209,7 +209,7 @@ export class FamilyMemberComponent implements OnInit {
             this.SavedSuccessful(0);
             this.loadAllFamily();
             this.familyMemberIdUpdate = null;
-            this.familymemberForm.reset();
+            this.resetForm();
           },
           error: (err) => {
             console.log(err);
@@ -241,14 +241,12 @@ export class FamilyMemberComponent implements OnInit {
   }
 
 
-  //resetForm() {
-  //  this.familyForm.reset();
-  //  this.massage = null;
-  //  this.dataSaved = false;
-  //  this.isMale = true;
-  //  this.isFeMale = false;
-  //  this.loadAllFamily();
-  //}
+  resetForm() {
+    this.familymemberForm.reset();
+    this.familymemberForm.controls['familyid'].setValue(this.familyID);
+    this.familymemberForm.controls['gender'].setValue('male');
+    
+  }
 
   SavedSuccessful(isUpdate: number) {
     if (isUpdate == 0) {
