@@ -21,15 +21,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
-//import { AppRoutingModule } from './app-routing.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-//import { NgMarqueeModule } from 'ng-marquee';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -37,6 +33,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { FamilyComponent } from './family/family.component';
 import { FamilyMemberComponent } from './familymember/familymember.component';
+import { DaughterDetailComponent } from './daughterdetail/daughterdetail.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +43,7 @@ import { FamilyMemberComponent } from './familymember/familymember.component';
     LoginComponent,
     FamilyComponent,
     FamilyMemberComponent,
+    DaughterDetailComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -79,6 +77,7 @@ import { FamilyMemberComponent } from './familymember/familymember.component';
       { path: 'login-data', component: LoginComponent },
       { path: 'family', component: FamilyComponent },
       { path: 'familymember', component: FamilyMemberComponent },
+      { path: 'daughterdetail', component: DaughterDetailComponent },
     ]),   
   ],
   providers: [],
