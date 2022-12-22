@@ -26,15 +26,11 @@
                 </mat-form-field>
               </td>
               <td class="tbl1">
-                <mat-form-field appearance="fill">
-                  <mat-label>Relation</mat-label>
-                  <mat-select formControlName="relationid" matTooltip="Select Relation" autocomplete="off">
-                    <mat-option *ngFor="let Relation of (allRelations | async)" [value]="Relation.relationID">
-                      {{Relation.relationName}}
-                    </mat-option>
-                  </mat-select>
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Mobile</mat-label>
+                  <input id="Mobile" type="tel" matInput maxlength="10" min="10" placeholder="Mobile" [formControl]="mobile">
                 </mat-form-field>
-               </td>
+              </td>
               <td class="tbl1">
                 <mat-form-field class="example-full-width" appearance="fill">
                   <mat-label>Birthdate</mat-label>
@@ -43,24 +39,32 @@
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
               </td>
-            </tr>
-            <tr>
               <td class="tbl1">
                 <!--<label id="example-radio-group-label" class="example-full-width">Marital Status</label>-->
-                <span>Marital Status</span>&nbsp;
+                <span>Marital Status</span>
                 <mat-radio-group aria-label="maritalstatus" [formControl]="maritalstatus">
                   <mat-radio-button value="Single">Single</mat-radio-button>
                   <mat-radio-button value="Married">Married</mat-radio-button>
                   <mat-radio-button value="Other">Other</mat-radio-button>
                 </mat-radio-group>
-                <br />
+              </td>
+            </tr>
+            <tr>
+              <td class="tbl1">
                 <!--<label id="example-radio-group-label" class="example-full-width">Gender</label>-->
                 <span>Gender</span>&nbsp;
                 <mat-radio-group aria-label="Gender" [formControl]="gender">
                   <mat-radio-button value="male">Male</mat-radio-button>
                   <mat-radio-button value="female">Female</mat-radio-button>
                 </mat-radio-group>
-              </td>            
+              </td>
+              <td class="tbl1">
+                <span>Attending Program</span>&nbsp;
+                <mat-radio-group aria-label="AttendingProgram" [formControl]="attendingProgram">
+                  <mat-radio-button value="1">Yes</mat-radio-button>
+                  <mat-radio-button value="0">No</mat-radio-button>
+                </mat-radio-group>
+              </td>
               <td class="tbl1">
                 <mat-form-field class="example-full-width" appearance="fill">
                   <mat-label>Education</mat-label>
@@ -73,11 +77,15 @@
                   <input id="Business" matInput type="text" placeholder="Business" [formControl]="business">
                 </mat-form-field>
               </td>
-              <td class="tbl1">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Mobile</mat-label>
-                  <input id="Mobile" type="tel" matInput maxlength="10" min="10" placeholder="Mobile" [formControl]="mobile">
-                </mat-form-field>              
+              <td class="tbl1">              
+                <mat-form-field appearance="fill">
+                  <mat-label>Relation</mat-label>
+                  <mat-select formControlName="relationid" matTooltip="Select Relation" autocomplete="off">
+                    <mat-option *ngFor="let Relation of (allRelations | async)" [value]="Relation.relationID">
+                      {{Relation.relationName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </td>
             </tr>
             <tr>

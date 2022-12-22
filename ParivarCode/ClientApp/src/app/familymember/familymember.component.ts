@@ -12,6 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 
+
 @Component({
   selector: 'app-familymember',
   templateUrl: './familymember.component.html'
@@ -76,9 +77,9 @@ export class FamilyMemberComponent implements OnInit {
     return this.familymemberForm.get('mobile');
   }
 
-  //get attendingprogram(): any {
-  //  return this.familymemberForm.get('attendingprogram');
-  //}
+  get attendingProgram(): any {
+    return this.familymemberForm.get('attendingProgram');
+  }
 
   get modifiedbyid(): any {
     return "9876789878"; // We need to assign login page mobile number here.
@@ -107,7 +108,7 @@ export class FamilyMemberComponent implements OnInit {
       education: new FormControl(''),
       business: new FormControl(''),
       mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
-      //  attendingprogram: new FormControl(''),     
+      attendingProgram: new FormControl('1'),     
     });
     this.FillRelationDDL();
 
@@ -171,14 +172,13 @@ export class FamilyMemberComponent implements OnInit {
   onSubmitfamilyMemberForm(familymember: any) {
     this.dataSaved = false;      
     console.log(this.familymemberForm.status);
-    if (this.familymemberForm.valid) {
+    if (this.familymemberForm.valid) {   
       this.CreateUpdateFamily(familymember);
     }   
   }
 
-  CreateUpdateFamily(familymember: FamilyMember) {   
-
-    familymember.modifiedByID = this.modifiedbyid;
+  CreateUpdateFamily(familymember: FamilyMember){      
+      familymember.attendingProgram = this.familymemberForm.attendingProgram == "0" ? false : true;
 
     if (this.familyMemberIdUpdate == null) {     
       this.familymemberservice.createfamilyMember(familymember)
@@ -228,12 +228,12 @@ export class FamilyMemberComponent implements OnInit {
       this.familymemberForm.controls['relationid'].setValue(result.relationID);
       this.familymemberForm.controls['birthdate'].setValue(result.birthdate);
       this.familymemberForm.controls['maritalstatus'].setValue(result.maritalStatus);
-      this.familymemberForm.controls['gender'].setValue(result.gender);
+      this.familymemberForm.controls['gender'].setValue(result.gender);     
+      this.familymemberForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");      
       this.familymemberForm.controls['education'].setValue(result.education);
       this.familymemberForm.controls['business'].setValue(result.business);
       this.familymemberForm.controls['mobile'].setValue(result.mobile);
-      this.familymemberForm.controls['modifiedbyid'].setValue(result.modifiedByID);
-      
+          
     });
   }
 
