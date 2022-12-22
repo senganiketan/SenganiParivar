@@ -53,7 +53,7 @@ export class LoginComponent {
 
       // If user OTP is matched with third party then check entered mobile number used in any of the family? If yes then redirect in that family list page other wise shw create family page.
 
-      this.router.navigate(['family-create']);
+      this.router.navigate(['family']);
       if (this.otp.value = "1111") {
         //if ()
        
