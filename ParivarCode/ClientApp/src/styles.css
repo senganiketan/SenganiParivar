@@ -17,3 +17,17 @@ code {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container-light {
+  background-color: #f1efe9;
+}
+
+.mat-toolbar.mat-accent {
+  background: #d1e8e2 !important;
+  color: #0D4F50 !important;
+}
+
+.mat-header-cell {
+  color: #0D4F50 !important;
+  background-color: #F0fbfb;
+}
