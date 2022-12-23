@@ -12,7 +12,7 @@ export class FamilyMember {
   mobile?: bigint;
   attendingProgram?: boolean;
   active?: boolean;
-  modifiedByID?: bigint;
+  modifiedbyid?: bigint;
   modifiedDate?: Date;
   relationName = "";
 }

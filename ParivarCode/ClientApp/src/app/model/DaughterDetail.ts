@@ -8,11 +8,11 @@ export class DaughterDetail {
   relationID?: number;
   village = "";
   age?: number;
-  mobile?: number;
+  mobile?: bigint;
   active?: boolean;
   attendingProgram?: boolean;
   giftRecieved?: boolean;
-  modifiedByID?: bigint;
+  modifiedbyid?: bigint;
   modifiedDate?: Date;
   RelationName = "";
 }

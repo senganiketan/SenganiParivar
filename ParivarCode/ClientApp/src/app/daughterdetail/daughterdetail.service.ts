@@ -28,8 +28,7 @@ export class DaughterDetailService {
   }
 
   //CREATE
-  public createdaughterdetail(daughterdetail: DaughterDetail): Observable<DaughterDetail[]> {
-    debugger;
+  public createdaughterdetail(daughterdetail: DaughterDetail): Observable<DaughterDetail[]> {    
     var result = this.http.post<DaughterDetail[]>(`${environment.apiUrl}/DaughterDetail/AddDaughterDetail`, daughterdetail);  
     return result;
   }

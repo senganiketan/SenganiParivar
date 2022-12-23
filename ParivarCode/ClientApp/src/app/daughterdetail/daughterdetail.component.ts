@@ -98,12 +98,13 @@ export class DaughterDetailComponent implements OnInit {
       husbandname: new FormControl('', [Validators.required]),
       fatherInLawName: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
-      relationid: new FormControl('2'),
+      relationid: new FormControl('', [Validators.required]),
       village: new FormControl(''),
       age: new FormControl(''),
       mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
       giftRecieved: new FormControl(''),
-      attendingProgram: new FormControl('1'),    
+      attendingProgram: new FormControl('1'),
+      modifiedbyid: new FormControl(this.modifiedbyid)
     });
     this.FillRelationDDL();
   }
@@ -171,10 +172,11 @@ export class DaughterDetailComponent implements OnInit {
     }   
   }
 
-  CreateUpdateDaughterDetail(daughterdetail: DaughterDetail) {
+  CreateUpdateDaughterDetail(daughterdetail: DaughterDetail) {   
+    daughterdetail.attendingProgram = this.daughterdetailForm.controls['attendingProgram'].value == "0" ? false : true;   
+    daughterdetail.giftRecieved = this.daughterdetailForm.controls['giftRecieved'].value == "0" ? false : true; 
+    daughterdetail.modifiedbyid = this.modifiedbyid;
     debugger;
-    daughterdetail.attendingProgram = this.daughterdetailForm.attendingProgram == "0" ? false : true;
-    daughterdetail.giftRecieved = this.daughterdetailForm.giftrecieved == "0" ? false : true;  
     if (this.daughterDetailIdUpdate == null) {
       this.daughterdetailservice.createdaughterdetail(daughterdetail)
       .subscribe({
@@ -212,18 +214,17 @@ export class DaughterDetailComponent implements OnInit {
   }
 
   loadDaughterDetailToEdit(daughterdetailid: number) {
-    this.daughterdetailservice.getdaughterdetailbydaughterid(daughterdetailid).subscribe(result => {    
-
+    this.daughterdetailservice.getdaughterdetailbydaughterid(daughterdetailid).subscribe(result => {     
       this.massage = null;
       this.dataSaved = false;
       this.daughterDetailIdUpdate = result.daughterDetailID;    
       this.daughterdetailForm.controls['familyid'].setValue(result.familyID);
       this.daughterdetailForm.controls['firstname'].setValue(result.firstName);
       this.daughterdetailForm.controls['husbandname'].setValue(result.husbandName);
-      this.daughterdetailForm.controls['fatherInLawName'].setValue(result.fatherInLawName);
+      this.daughterdetailForm.controls['fatherInLawName'].setValue(result.fatherInLawName); 
       this.daughterdetailForm.controls['age'].setValue(result.age);
       this.daughterdetailForm.controls['relationid'].setValue(result.relationID);
-      this.daughterdetailForm.controls['surName'].setValue(result.surname);        
+      this.daughterdetailForm.controls['surname'].setValue(result.surname);        
       this.daughterdetailForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");
       this.daughterdetailForm.controls['giftRecieved'].setValue(result.giftRecieved == true ? "1" : "0");
       this.daughterdetailForm.controls['mobile'].setValue(result.mobile);
@@ -234,8 +235,7 @@ export class DaughterDetailComponent implements OnInit {
 
   resetForm() {
     this.daughterdetailForm.reset();
-    this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
-    this.daughterdetailForm.controls['gender'].setValue('male');
+    this.daughterdetailForm.controls['familyid'].setValue(this.familyID);  
     
   }
 

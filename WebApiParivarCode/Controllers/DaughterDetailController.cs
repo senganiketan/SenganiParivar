@@ -37,16 +37,17 @@ namespace WebApiParivarCode.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Something Went Wrong");
             }
-            return Ok("Added Successfully");
+            return Ok(await _daughterDetailRepository.GetDaughterDetails(result.FamilyID));
         }
+
 
         [HttpPut]
         [Route("UpdateDaughterDetail")]
         public async Task<IActionResult> Put(DaughterDetail objDaughterDetail)
-        {
-            await _daughterDetailRepository.UpdateDaughterDetail(objDaughterDetail);
-            return Ok("Updated Successfully");
+        {            
+            return Ok(await _daughterDetailRepository.UpdateDaughterDetail(objDaughterDetail));
         }
+       
 
         [HttpDelete]
         [Route("DeleteDaughterDetail")]

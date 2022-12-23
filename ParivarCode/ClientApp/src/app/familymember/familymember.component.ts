@@ -101,14 +101,15 @@ export class FamilyMemberComponent implements OnInit {
       familyid: new FormControl(this.familyID),
       firstname: new FormControl('', [Validators.required]),
       fatherhusbandname: new FormControl('', [Validators.required]),
-      relationid: new FormControl('2'),
+      relationid: new FormControl('', [Validators.required]),
       gender: new FormControl('male'),
       age: new FormControl(''),
       maritalstatus: new FormControl('Single'),
       education: new FormControl(''),
       business: new FormControl(''),
       mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
-      attendingProgram: new FormControl('1'),     
+      attendingProgram: new FormControl('1'),
+      modifiedbyid: new FormControl(this.modifiedbyid)
     });
     this.FillRelationDDL();
   }
@@ -167,6 +168,7 @@ export class FamilyMemberComponent implements OnInit {
  
 
   onSubmitfamilyMemberForm(familymember: any) {
+    debugger;
     this.dataSaved = false;      
     console.log(this.familymemberForm.status);
     if (this.familymemberForm.valid) {   
@@ -175,7 +177,8 @@ export class FamilyMemberComponent implements OnInit {
   }
 
   CreateUpdateFamily(familymember: FamilyMember) {
-    familymember.attendingProgram = this.familymemberForm.controls['attendingProgram'].value == "0" ? false : true;  
+    familymember.attendingProgram = this.familymemberForm.controls['attendingProgram'].value == "0" ? false : true;
+    familymember.modifiedbyid = this.modifiedbyid;
     if (this.familyMemberIdUpdate == null) {     
       this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
