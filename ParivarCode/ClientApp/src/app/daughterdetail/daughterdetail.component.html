@@ -1,7 +1,7 @@
 
 <div class="container">
   <mat-card class="mat-elevation-z8">
-    
+
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
       <div align="center" style="text-align: right;">
         Add Daughter Details
@@ -9,184 +9,157 @@
     </mat-toolbar>
     <br><br>
 
-    <mat-card-content>    
-        <form  [formGroup]="daughterdetailForm" (ngSubmit)="onSubmitdaughterDetailForm(daughterdetailForm.value)">
-          <table>
-            <tr>            
-              <td class="tbl1">              
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>First name</mat-label>
-                  <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
-                </mat-form-field>
-              </td>
-              <td class="tbl1">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Husband Name</mat-label>
-                  <input id="husband name" matInput type="text" placeholder="husbandname" [formControl]="husbandname">
-                </mat-form-field>
-              </td>
-              <td class="tbl1">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>FatherInLawName</mat-label>
-                  <input id="fatherInLawName" type="text" matInput placeholder="fatherInLawName" [formControl]="fatherInLawName">
-                </mat-form-field>
-              </td>
-              <td class="tbl1">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Age</mat-label>
-                  <input id="Age" type="number" matInput maxlength="3" placeholder="Age" [formControl]="age">
-                </mat-form-field>
-              </td>
-              <td class="tbl1">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Surname</mat-label>
-                  <input id="surName" type="text" matInput placeholder="Surname" [formControl]="surname">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td class="tbl1">
-                <!--<label id="example-radio-group-label" class="example-full-width">Gender</label>-->
-                <span>GiftRecieved</span>&nbsp;
-                <mat-radio-group aria-label="giftRecieved" [formControl]="giftRecieved">
-                  <mat-radio-button value="1">Yes</mat-radio-button>
-                  <mat-radio-button value="0">No</mat-radio-button>
-                </mat-radio-group>
-              </td>
-              <td class="tbl1">
-                <span>Attending Program</span>&nbsp;
-                <mat-radio-group aria-label="AttendingProgram" [formControl]="attendingProgram">
-                  <mat-radio-button value="1">Yes</mat-radio-button>
-                  <mat-radio-button value="0">No</mat-radio-button>
-                </mat-radio-group>
-              </td>
-              <td class="tbl1">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Mobile</mat-label>
-                  <input id="Mobile" type="tel" matInput maxlength="10" min="10" placeholder="Mobile" [formControl]="mobile">
-                </mat-form-field>
-              </td>
-              <td class="tbl1">
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <mat-label>Village</mat-label>
-                  <input id="Village" matInput type="text" placeholder="Village" [formControl]="village">
-                </mat-form-field>
-              </td>
-              <td class="tbl1">              
-                <mat-form-field appearance="fill">
-                  <mat-label>Relation</mat-label>
-                  <mat-select formControlName="relationid" matTooltip="Select Relation" autocomplete="off">
-                    <mat-option *ngFor="let Relation of (allRelations | async)" [value]="Relation.relationID">
-                      {{Relation.relationName}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td class="content-center">
-                <button type="submit" mat-raised-button>submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" mat-raised-button>clear</button>
-              </td>
-              <td>
-                <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
-                  {{massage}}
-                </p>
-              </td>
-              <td></td>
-              <td></td>
-            </tr>
-          </table>
-          <br><br>
-
-          <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field>
-
+    <mat-card-content>
+      <form [formGroup]="daughterdetailForm" (ngSubmit)="onSubmitdaughterDetailForm(daughterdetailForm.value)">
+        <div class="example-container">
           <div>
-            <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
-
-              <ng-container matColumnDef="select">
-                <mat-header-cell *matHeaderCellDef>
-                  <mat-checkbox (change)="$event ? masterToggle() : null"
-                                [checked]="selection.hasValue() && isAllSelected()"
-                                [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"></mat-checkbox>
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.firstName}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="husbandName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>husbandName</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.husbandName}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="relationID">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>RelationID</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationID}} </mat-cell>
-              </ng-container>           
-              <ng-container matColumnDef="fatherInLawName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>fatherInLawName</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName }} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="age">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.age}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="surname">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>surname</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.surname}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="village">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>village</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.village}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="giftRecieved">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>giftRecieved</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.giftRecieved}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="mobile">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.mobile}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="attendingProgram">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Attendingprogram</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="modifiedByID">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Modifiedbyid</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.modifiedByID}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="modifiedDate">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Modifieddate</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.modifiedDate | date:'dd-MM-yyyy'}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="relationName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Relationname</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationName}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="Edit">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail">
-                  <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" type="button" mat-raised-button color="accent" matTooltip="Edit" (click)="loadDaughterDetailToEdit(daughterdetail.daughterDetailID)"><mat-icon>edit</mat-icon></button>
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="Delete">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteDaughter(daughterdetail.daughterDetailID)"><mat-icon>delete_forever</mat-icon></button></mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>First name</mat-label>
+              <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Husband Name</mat-label>
+              <input id="husband name" matInput type="text" placeholder="husbandname" [formControl]="husbandname">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>FatherInLawName</mat-label>
+              <input id="fatherInLawName" type="text" matInput placeholder="fatherInLawName" [formControl]="fatherInLawName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Surname</mat-label>
+              <input id="surName" type="text" matInput placeholder="Surname" [formControl]="surname">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Age</mat-label>
+              <input id="Age" type="number" matInput maxlength="3" placeholder="Age" [formControl]="age">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Mobile</mat-label>
+              <input id="Mobile" type="tel" matInput maxlength="10" min="10" placeholder="Mobile" [formControl]="mobile">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Village</mat-label>
+              <input id="Village" matInput type="text" placeholder="Village" [formControl]="village">
+            </mat-form-field>
+            <label>Attending Program</label>&nbsp;
+            <mat-radio-group aria-label="AttendingProgram" [formControl]="attendingProgram">
+              <mat-radio-button value="1">Yes</mat-radio-button>
+              <mat-radio-button value="0">No</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field appearance="fill">
+              <mat-label>Relation</mat-label>
+              <mat-select formControlName="relationid" matTooltip="Select Relation" autocomplete="off">
+                <mat-option *ngFor="let Relation of (allRelations | async)" [value]="Relation.relationID">
+                  {{Relation.relationName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <label>GiftRecieved</label>&nbsp;
+            <mat-radio-group aria-label="giftRecieved" [formControl]="giftRecieved">
+              <mat-radio-button value="1">Yes</mat-radio-button>
+              <mat-radio-button value="0">No</mat-radio-button>
+            </mat-radio-group>
           </div>
-        </form>
-</mat-card-content>
+          <div class="btn-right">
+            <button type="submit" mat-raised-button>submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" mat-raised-button>clear</button>
+          </div>
+          <div>
+            <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
+              {{massage}}
+            </p>
+          </div>
+        </div>
+        <br><br>
+
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+
+        <div>
+          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+
+            <ng-container matColumnDef="select">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"></mat-checkbox>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="firstName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.firstName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="husbandName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>husbandName</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.husbandName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="relationID">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>RelationID</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationID}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="fatherInLawName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>fatherInLawName</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="age">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.age}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="surname">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>surname</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.surname}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="village">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>village</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.village}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="giftRecieved">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>giftRecieved</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.giftRecieved}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="mobile">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.mobile}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="attendingProgram">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Attendingprogram</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="modifiedByID">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Modifiedbyid</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.modifiedByID}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="modifiedDate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Modifieddate</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.modifiedDate | date:'dd-MM-yyyy'}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="relationName">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Relationname</mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationName}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Edit">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Edit </mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail">
+                <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" type="button" mat-raised-button color="accent" matTooltip="Edit" (click)="loadDaughterDetailToEdit(daughterdetail.daughterDetailID)"><mat-icon>edit</mat-icon></button>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Delete">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+              <mat-cell *matCellDef="let daughterdetail"> <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteDaughter(daughterdetail.daughterDetailID)"><mat-icon>delete_forever</mat-icon></button></mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </table>
+          <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
+      </form>
+    </mat-card-content>
   </mat-card>
 </div>
 
