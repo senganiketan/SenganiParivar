@@ -34,7 +34,7 @@ export class FamilyMemberService {
   }
 
   public getrelation(): Observable<Relation[]> {
-    return this.http.get<Relation[]>(`${environment.apiUrl}/Relation/GetRelation?id=1`);
+    return this.http.get<Relation[]>(`${environment.apiUrl}/Relation/GetRelation?UseTypeID=1`);
   }
 
   //UPDATE

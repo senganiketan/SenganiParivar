@@ -20,7 +20,7 @@ namespace WebApiParivarCode.Repository
         }
         public async Task<IEnumerable<Relation>> GetRelationByUseType(int UseTypeID)
         {
-            return await _context.Relations.Where(x => Convert.ToBoolean(x.UseType)).Select(x => new Relation
+            return await _context.Relations.Where(x => x.UseType==UseTypeID).Select(x => new Relation
             {
                 RelationID = x.RelationID,
                 RelationName = x.RelationName,

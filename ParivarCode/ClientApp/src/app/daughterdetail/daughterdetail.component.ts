@@ -33,7 +33,7 @@ export class DaughterDetailComponent implements OnInit {
  
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['select', 'firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
+  displayedColumns: string[] = ['select', 'firstName', 'fatherInLawName','husbandName', 'relationName',  'age', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator ;
   @ViewChild(MatSort) sort !: MatSort ;
 
@@ -67,9 +67,7 @@ export class DaughterDetailComponent implements OnInit {
   get village(): any {
     return this.daughterdetailForm.get('village');
   }
-  get business(): any {
-    return this.daughterdetailForm.get('business');
-  }
+
   get mobile(): any {
     return this.daughterdetailForm.get('mobile');
   }
@@ -77,8 +75,8 @@ export class DaughterDetailComponent implements OnInit {
   get attendingProgram(): any {
     return this.daughterdetailForm.get('attendingProgram');
   }
-  get giftrecieved(): any {
-    return this.daughterdetailForm.get('giftrecieved');
+  get giftRecieved(): any {
+    return this.daughterdetailForm.get('giftRecieved');
   }
 
   get modifiedbyid(): any {
@@ -97,7 +95,7 @@ export class DaughterDetailComponent implements OnInit {
     this.daughterdetailForm = new FormGroup({
       familyid: new FormControl(this.familyID),
       firstname: new FormControl('', [Validators.required]),
-      husbandName: new FormControl('', [Validators.required]),
+      husbandname: new FormControl('', [Validators.required]),
       fatherInLawName: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
       relationid: new FormControl('2'),
@@ -173,8 +171,10 @@ export class DaughterDetailComponent implements OnInit {
     }   
   }
 
-  CreateUpdateDaughterDetail(daughterdetail: DaughterDetail){      
-    daughterdetail.attendingProgram = this.daughterdetailForm.attendingProgram == "0" ? false : true;  
+  CreateUpdateDaughterDetail(daughterdetail: DaughterDetail) {
+    debugger;
+    daughterdetail.attendingProgram = this.daughterdetailForm.attendingProgram == "0" ? false : true;
+    daughterdetail.giftRecieved = this.daughterdetailForm.giftrecieved == "0" ? false : true;  
     if (this.daughterDetailIdUpdate == null) {
       this.daughterdetailservice.createdaughterdetail(daughterdetail)
       .subscribe({
@@ -225,7 +225,7 @@ export class DaughterDetailComponent implements OnInit {
       this.daughterdetailForm.controls['relationid'].setValue(result.relationID);
       this.daughterdetailForm.controls['surName'].setValue(result.surname);        
       this.daughterdetailForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");
-      this.daughterdetailForm.controls['giftrecieved'].setValue(result.giftRecieved == true ? "1" : "0");
+      this.daughterdetailForm.controls['giftRecieved'].setValue(result.giftRecieved == true ? "1" : "0");
       this.daughterdetailForm.controls['mobile'].setValue(result.mobile);
       this.daughterdetailForm.controls['village'].setValue(result.village);
     });

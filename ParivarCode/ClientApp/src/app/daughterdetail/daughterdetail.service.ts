@@ -29,12 +29,13 @@ export class DaughterDetailService {
 
   //CREATE
   public createdaughterdetail(daughterdetail: DaughterDetail): Observable<DaughterDetail[]> {
+    debugger;
     var result = this.http.post<DaughterDetail[]>(`${environment.apiUrl}/DaughterDetail/AddDaughterDetail`, daughterdetail);  
     return result;
   }
 
   public getrelation(): Observable<Relation[]> {
-    return this.http.get<Relation[]>(`${environment.apiUrl}/Relation/GetRelation?id=2`);
+    return this.http.get<Relation[]>(`${environment.apiUrl}/Relation/GetRelation?UseTypeID=2`);
   }
 
   //UPDATE
