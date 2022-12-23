@@ -31,3 +31,44 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #0D4F50 !important;
   background-color: #F0fbfb;
 }
+
+.btn-right {
+  float: right;
+  padding-right:5px;
+}
+
+.example-container mat-form-field {
+  width: 250px;
+  margin-right: 20px;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+  .example-container form > * {
+    margin: 12px 0;
+  }
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+.example-form-fields {
+  display: flex;
+  align-items: flex-start;
+}
+
+table {
+  width: 100%;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+.example-form-fields {
+  display: flex;
+  align-items: flex-start;
+}
+
