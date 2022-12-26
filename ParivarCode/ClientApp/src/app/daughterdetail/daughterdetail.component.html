@@ -53,7 +53,7 @@
                   {{Relation.relationName}}
                 </mat-option>
               </mat-select>
-            </mat-form-field >
+            </mat-form-field>
             <div hidden>
               <label>GiftRecieved</label>&nbsp;
               <mat-radio-group aria-label="giftRecieved" [formControl]="giftRecieved">
@@ -81,17 +81,6 @@
         <div>
           <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
 
-            <ng-container matColumnDef="select">
-              <mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null"
-                              [checked]="selection.hasValue() && isAllSelected()"
-                              [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
-              </mat-header-cell>
-              <mat-cell *matCellDef="let row">
-                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"></mat-checkbox>
-              </mat-cell>
-            </ng-container>
             <ng-container matColumnDef="firstName">
               <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.firstName}} </mat-cell>
@@ -152,8 +141,11 @@
             </ng-container>
             <ng-container matColumnDef="Delete">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
-              <mat-cell *matCellDef="let daughterdetail"> <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteDaughter(daughterdetail.daughterDetailID)"><mat-icon>delete_forever</mat-icon>
-                   </button></mat-cell>
+              <mat-cell *matCellDef="let daughterdetail">
+                <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteDaughter(daughterdetail.daughterDetailID)">
+                  <mat-icon>delete_forever</mat-icon>
+                </button>
+              </mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
