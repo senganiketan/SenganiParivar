@@ -252,7 +252,13 @@ export class DaughterDetailComponent implements OnInit {
     }
   }
 
-  
+  ClearForm() {
+    this.daughterdetailForm.reset();
+    this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
+    this.daughterdetailForm.controls['giftRecieved'].setValue('0');
+    this.daughterdetailForm.controls['attendingProgram'].setValue('1');    
+  }
+
 }
 
   

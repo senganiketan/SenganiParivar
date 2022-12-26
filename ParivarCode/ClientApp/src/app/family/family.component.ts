@@ -113,7 +113,7 @@ export class FamilyComponent implements OnInit {
   isAllSelected() {
     const numRows = !!this.dataSource && this.dataSource.data.length;
   }
- 
+
 
   deleteFamily(familyid: any) {
     if (confirm("Are you sure you want to delete this ?")) {
@@ -170,8 +170,9 @@ export class FamilyComponent implements OnInit {
     });
   }
 
-
-
+  ClearForm() {
+    this.familyForm.reset();
+  }
 
 
   onSubmitfamilyForm(family: any) {

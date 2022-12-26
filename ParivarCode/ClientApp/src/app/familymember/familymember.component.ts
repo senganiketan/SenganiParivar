@@ -259,8 +259,14 @@ export class FamilyMemberComponent implements OnInit {
       });
     }
   }
-
-  
+    
+  ClearForm() {
+    this.familymemberForm.reset();
+    this.familymemberForm.controls['familyid'].setValue(this.familyID);
+    this.familymemberForm.controls['gender'].setValue('male');
+    this.familymemberForm.controls['attendingProgram'].setValue('1');
+    this.familymemberForm.controls['maritalstatus'].setValue('Single');
+  }
 }
 
   
