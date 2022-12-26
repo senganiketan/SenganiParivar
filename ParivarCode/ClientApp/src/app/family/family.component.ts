@@ -36,7 +36,7 @@ export class FamilyComponent implements OnInit {
   isDisabled = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['select', 'OriginalVillage', 'OriginalDistrict', 'PostalAddressName', 'CurrentAddress', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['OriginalVillage', 'OriginalDistrict', 'PostalAddressName', 'CurrentAddress', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
@@ -110,22 +110,9 @@ export class FamilyComponent implements OnInit {
   }
 
   isAllSelected() {
-    const numSelected = this.selection.selected.length;
     const numRows = !!this.dataSource && this.dataSource.data.length;
-    return numSelected === numRows;
   }
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(r => this.selection.select(r));
-  }
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row: Family): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${Number(row.familyID) + 1}`;
-  }
-
+ 
 
   deleteFamily(familyid: any) {
     if (confirm("Are you sure you want to delete this ?")) {

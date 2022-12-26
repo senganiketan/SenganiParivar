@@ -98,18 +98,6 @@
 
         <div>
           <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
-
-            <ng-container matColumnDef="select">
-              <mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null"
-                              [checked]="selection.hasValue() && isAllSelected()"
-                              [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
-              </mat-header-cell>
-              <mat-cell *matCellDef="let row">
-                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)"></mat-checkbox>
-              </mat-cell>
-            </ng-container>
             <ng-container matColumnDef="FamilyID">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Family ID</mat-header-cell>
               <mat-cell *matCellDef="let family"> {{family.familyID}} </mat-cell>
