@@ -102,7 +102,7 @@ export class DaughterDetailComponent implements OnInit {
       village: new FormControl(''),
       age: new FormControl(''),
       mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
-      giftRecieved: new FormControl(''),
+      giftRecieved: new FormControl('0'),
       attendingProgram: new FormControl('1'),
       modifiedbyid: new FormControl(this.modifiedbyid)
     });
@@ -176,7 +176,8 @@ export class DaughterDetailComponent implements OnInit {
     daughterdetail.attendingProgram = this.daughterdetailForm.controls['attendingProgram'].value == "0" ? false : true;   
     daughterdetail.giftRecieved = this.daughterdetailForm.controls['giftRecieved'].value == "0" ? false : true; 
     daughterdetail.modifiedbyid = this.modifiedbyid;
-    debugger;
+    daughterdetail.age = this.daughterdetailForm.controls['age'].value == "" ? null : this.daughterdetailForm.controls['age'].value;
+    
     if (this.daughterDetailIdUpdate == null) {
       this.daughterdetailservice.createdaughterdetail(daughterdetail)
       .subscribe({
@@ -235,8 +236,9 @@ export class DaughterDetailComponent implements OnInit {
 
   resetForm() {
     this.daughterdetailForm.reset();
-    this.daughterdetailForm.controls['familyid'].setValue(this.familyID);  
-    
+    this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
+    this.daughterdetailForm.controls['giftRecieved'].setValue('0');
+    this.daughterdetailForm.controls['attendingProgram'].setValue('1');       
   }
 
   SavedSuccessful(isUpdate: number) {

@@ -23,7 +23,7 @@
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>FatherInLawName</mat-label>
-              <input id="fatherInLawName" type="text" matInput placeholder="fatherInLawName" [formControl]="fatherInLawName">
+              <input id="fatherInLawName" type="text" matInput placeholder="FatherInLawName" [formControl]="fatherInLawName">
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Surname</mat-label>
@@ -53,12 +53,14 @@
                   {{Relation.relationName}}
                 </mat-option>
               </mat-select>
-            </mat-form-field>
-            <label>GiftRecieved</label>&nbsp;
-            <mat-radio-group aria-label="giftRecieved" [formControl]="giftRecieved">
-              <mat-radio-button value="1">Yes</mat-radio-button>
-              <mat-radio-button value="0">No</mat-radio-button>
-            </mat-radio-group>
+            </mat-form-field >
+            <div hidden>
+              <label>GiftRecieved</label>&nbsp;
+              <mat-radio-group aria-label="giftRecieved" [formControl]="giftRecieved">
+                <mat-radio-button value="1">Yes</mat-radio-button>
+                <mat-radio-button value="0">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
           </div>
           <div class="btn-right">
             <button type="submit" mat-raised-button>submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -95,7 +97,7 @@
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.firstName}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="husbandName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>husbandName</mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>HusbandName</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.husbandName}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="relationID">
@@ -103,7 +105,7 @@
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationID}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="fatherInLawName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>fatherInLawName</mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>FatherInLawName</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName }} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="age">
@@ -111,15 +113,15 @@
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.age}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="surname">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>surname</mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Surname</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.surname}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="village">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>village</mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Village</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.village}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="giftRecieved">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>giftRecieved</mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>GiftRecieved</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.giftRecieved}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="mobile">
@@ -127,7 +129,7 @@
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.mobile}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="attendingProgram">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Attendingprogram</mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>AttendingProgram</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="modifiedByID">
@@ -139,7 +141,7 @@
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.modifiedDate | date:'dd-MM-yyyy'}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="relationName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Relationname</mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>RelationName</mat-header-cell>
               <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationName}} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="Edit">
@@ -150,7 +152,8 @@
             </ng-container>
             <ng-container matColumnDef="Delete">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
-              <mat-cell *matCellDef="let daughterdetail"> <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteDaughter(daughterdetail.daughterDetailID)"><mat-icon>delete_forever</mat-icon></button></mat-cell>
+              <mat-cell *matCellDef="let daughterdetail"> <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteDaughter(daughterdetail.daughterDetailID)"><mat-icon>delete_forever</mat-icon>
+                   </button></mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
