@@ -80,8 +80,8 @@
             <mat-checkbox id="residentialfacility" [formControl]="residentialfacility">Residential Facility</mat-checkbox>
           </div>
           <div class="btn-right">
-            <button type="submit" mat-raised-button>submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" mat-raised-button>clear</button>
+            <button  type="submit" mat-raised-button [disabled]="isDisabled">submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button  type="button" mat-raised-button [disabled]="isDisabled">clear</button>
           </div>
           <div>
             <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">

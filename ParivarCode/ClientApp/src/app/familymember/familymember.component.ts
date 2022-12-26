@@ -167,8 +167,7 @@ export class FamilyMemberComponent implements OnInit {
   }
  
 
-  onSubmitfamilyMemberForm(familymember: any) {
-    debugger;
+  onSubmitfamilyMemberForm(familymember: any) {  
     this.dataSaved = false;      
     console.log(this.familymemberForm.status);
     if (this.familymemberForm.valid) {   
@@ -179,6 +178,9 @@ export class FamilyMemberComponent implements OnInit {
   CreateUpdateFamily(familymember: FamilyMember) {
     familymember.attendingProgram = this.familymemberForm.controls['attendingProgram'].value == "0" ? false : true;
     familymember.modifiedbyid = this.modifiedbyid;
+    familymember.age = this.familymemberForm.controls['age'].value == "" ? null : this.familymemberForm.controls['age'].value;
+
+
     if (this.familyMemberIdUpdate == null) {     
       this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
@@ -241,6 +243,9 @@ export class FamilyMemberComponent implements OnInit {
     this.familymemberForm.reset();
     this.familymemberForm.controls['familyid'].setValue(this.familyID);
     this.familymemberForm.controls['gender'].setValue('male');
+    this.familymemberForm.controls['attendingProgram'].setValue('1');
+    this.familymemberForm.controls['maritalstatus'].setValue('Single');
+
     
   }
 

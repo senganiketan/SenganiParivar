@@ -8,7 +8,7 @@ export class Family {
   currentDistrict = "";
   currentState = "";
   currentPincode?: number;
-  residentialFacility?: boolean;
+  residentialfacility?: boolean;
   active?: boolean;
   modifiedByID?: bigint;
   modifiedDate?: Date;

@@ -11,7 +11,7 @@ namespace WebApiParivarCode.Model
         public string? FatherHusbandName { get; set; }
         public int RelationID { get; set; }
         public string? Gender { get; set; }
-        public int Age { get; set; }
+        public int ?Age { get; set; }
         public string? MaritalStatus { get; set; }
         public string? Education { get; set; }
         public string? Business { get; set; }
@@ -29,7 +29,7 @@ namespace WebApiParivarCode.Model
         public string? FatherHusbandName { get; set; }
         public int RelationID { get; set; }
         public string? Gender { get; set; }
-        public int Age { get; set; }
+        public int ?Age { get; set; }
         public string? MaritalStatus { get; set; }
         public string? Education { get; set; }
         public string? Business { get; set; }
