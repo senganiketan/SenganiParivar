@@ -73,4 +73,13 @@ table {
 }
 
 
+.example-container-table {
+  display: flex;
+  flex-direction: column;
+  overflow:auto;
+  white-space:nowrap;
+}
 
+  .example-container-table .mat-elevation-z8 {
+      min-width:800px;
+  }
