@@ -101,7 +101,7 @@ export class DaughterDetailComponent implements OnInit {
       relationid: new FormControl('', [Validators.required]),
       village: new FormControl(''),
       age: new FormControl(''),
-      mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
+      mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]),
       giftRecieved: new FormControl('0'),
       attendingProgram: new FormControl('1'),
       modifiedbyid: new FormControl(this.modifiedbyid)
@@ -164,6 +164,7 @@ export class DaughterDetailComponent implements OnInit {
     daughterdetail.giftRecieved = this.daughterdetailForm.controls['giftRecieved'].value == "0" ? false : true; 
     daughterdetail.modifiedbyid = this.modifiedbyid;
     daughterdetail.age = this.daughterdetailForm.controls['age'].value == "" ? null : this.daughterdetailForm.controls['age'].value;
+    daughterdetail.mobile = this.daughterdetailForm.controls['mobile'].value == "" ? null : this.daughterdetailForm.controls['mobile'].value;
     
     if (this.daughterDetailIdUpdate == null) {
       this.daughterdetailservice.createdaughterdetail(daughterdetail)
@@ -214,7 +215,7 @@ export class DaughterDetailComponent implements OnInit {
       this.daughterdetailForm.controls['relationid'].setValue(result.relationID);
       this.daughterdetailForm.controls['surname'].setValue(result.surname);        
       this.daughterdetailForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");
-      this.daughterdetailForm.controls['giftRecieved'].setValue(result.giftRecieved == true ? "1" : "0");
+      this.daughterdetailForm.controls['giftRecieved'].setValue(result.giftRecieved == true ? "1" : "0");    
       this.daughterdetailForm.controls['mobile'].setValue(result.mobile);
       this.daughterdetailForm.controls['village'].setValue(result.village);
     });
