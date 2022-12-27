@@ -40,7 +40,8 @@ export class FamilyMemberComponent implements OnInit {
   isDaughterDetailbtnDisabled = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
+  displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName', 'maritalStatus', 'mobile', 'attendingProgram', 'Edit', 'Delete'];
+  //displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator ;
   @ViewChild(MatSort) sort !: MatSort ;
 
