@@ -94,7 +94,7 @@ export class FamilyComponent implements OnInit {
       currentaddress: new FormControl('', [Validators.required]),
       currentvillage: new FormControl('', [Validators.required]),
       currentdistrict: new FormControl('', [Validators.required]),
-      currentstate: new FormControl('gujarat', [Validators.required]),
+      currentstate: new FormControl('Gujarat', [Validators.required]),
       currentpincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
       postaladdressname: new FormControl('', [Validators.required]),
       residentialfacility: new FormControl(''),     
