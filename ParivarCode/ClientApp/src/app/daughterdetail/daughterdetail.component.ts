@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component,  OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DaughterDetailService } from './daughterdetail.service';
 import { DaughterDetail } from '../model/DaughterDetail';

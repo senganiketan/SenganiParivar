@@ -3,7 +3,6 @@ import { UntypedFormBuilder, FormGroup, FormControl, Validators } from '@angular
 import { FamilyService } from './family.service';
 import { Family } from '../model/Family';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { MatTableDataSource, } from '@angular/material/table';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,13 +25,7 @@ export class FamilyComponent implements OnInit {
   dataSource !: MatTableDataSource<Family>;
   selection = new SelectionModel<Family>(true, []);
   familyIdUpdate = null as any;
-  massage = null;
-  //CountryId = null;
-  //StateId = null;
-  //CityId = null;
-  //SelectedDate = null;
-  //isMale = true;
-  //isFeMale = false;
+  massage = null; 
   isDisabled = false;
   isAddMemmbersbtnDisabled=false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -128,21 +121,6 @@ export class FamilyComponent implements OnInit {
 
   }
 
-
-  //DeleteData() {
-  //  
-  //  const numSelected = this.selection.selected;
-  //  if (numSelected.length > 0) {
-  //    if (confirm("Are you sure to delete items ")) {
-  //      this.employeeService.deleteData(numSelected).subscribe(result => {
-  //        this.SavedSuccessful(2);
-  //        this.loadAllEmployees();
-  //      })
-  //    }
-  //  } else {
-  //    alert("Select at least one row");
-  //  }
-  //}
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

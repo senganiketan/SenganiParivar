@@ -124,7 +124,7 @@
               </ng-container>
               <ng-container matColumnDef="attendingProgram">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Attending Program</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram}} </mat-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram ==0? 'No' : 'Yes'}} </mat-cell>                
               </ng-container>
               <ng-container matColumnDef="modifiedByID">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Modifiedbyid</mat-header-cell>

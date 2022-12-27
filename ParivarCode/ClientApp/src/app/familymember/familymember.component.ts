@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component,  OnInit,  ViewChild } from '@angular/core';
 import { UntypedFormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FamilyMemberService } from './familymember.service';
 import { FamilyMember } from '../model/FamilyMember';
@@ -146,6 +146,7 @@ export class FamilyMemberComponent implements OnInit {
 
   loadAllFamily() {
     this.familymemberservice.getfamilymembers(this.familyID).subscribe(data => {
+      
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
