@@ -107,7 +107,7 @@ export class FamilyMemberComponent implements OnInit {
       maritalstatus: new FormControl('Single'),
       education: new FormControl(''),
       business: new FormControl(''),
-      mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required]),
+      mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]),
       attendingProgram: new FormControl('1'),
       modifiedbyid: new FormControl(this.modifiedbyid)
     });
@@ -166,6 +166,7 @@ export class FamilyMemberComponent implements OnInit {
     familymember.attendingProgram = this.familymemberForm.controls['attendingProgram'].value == "0" ? false : true;
     familymember.modifiedbyid = this.modifiedbyid;
     familymember.age = this.familymemberForm.controls['age'].value == "" ? null : this.familymemberForm.controls['age'].value;
+    familymember.mobile = this.familymemberForm.controls['mobile'].value == "" ? null : this.familymemberForm.controls['mobile'].value;
 
 
     if (this.familyMemberIdUpdate == null) {     

@@ -15,7 +15,7 @@ namespace WebApiParivarCode.Model
         public string? MaritalStatus { get; set; }
         public string? Education { get; set; }
         public string? Business { get; set; }
-        public Int64 Mobile { get; set; }
+        public Int64? Mobile { get; set; }
         public bool AttendingProgram { get; set; }
         public bool Active { get; set; }
         public Int64 ModifiedByID { get; set; }
@@ -33,7 +33,7 @@ namespace WebApiParivarCode.Model
         public string? MaritalStatus { get; set; }
         public string? Education { get; set; }
         public string? Business { get; set; }
-        public Int64 Mobile { get; set; }
+        public Int64? Mobile { get; set; }
         public bool AttendingProgram { get; set; }
         public bool Active { get; set; }
         public Int64 ModifiedByID { get; set; }

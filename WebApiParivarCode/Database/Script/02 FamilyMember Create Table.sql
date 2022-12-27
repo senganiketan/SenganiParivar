@@ -15,7 +15,7 @@ GO
 	[MaritalStatus] Nvarchar(max)  NULL,
 	[Education] Nvarchar(max)  NULL,
 	[Business] Nvarchar(max)  NULL,
-	[Mobile] numeric(10, 0) NOT NULL,	
+	[Mobile] numeric(10, 0) NULL,	
 	[AttendingProgram] bit default 0,
 	[Active] bit default 1,
     [ModifiedByID] numeric(10, 0)  NULL,
