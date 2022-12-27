@@ -104,9 +104,7 @@ export class FamilyComponent implements OnInit {
       currentstate: new FormControl('gujarat', [Validators.required]),
       currentpincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
       postaladdressname: new FormControl('', [Validators.required]),
-      residentialfacility: new FormControl(''),
-      //modifiedbyid: new FormControl(this.modifiedbyid), 
-      //modifiedDate: new FormControl(this.modifiedDate)
+      residentialfacility: new FormControl(''),     
     });
 
   }
@@ -159,10 +157,12 @@ export class FamilyComponent implements OnInit {
       if (data.length > 0) {
         this.familyForm.disable();
         this.isDisabled = true;
+        this.isAddMemmbersbtnDisabled = false;
       }
       else {
         this.familyForm.enable();
         this.isDisabled = false;
+        this.isAddMemmbersbtnDisabled = true;
       }
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

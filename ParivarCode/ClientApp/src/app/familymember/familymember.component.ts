@@ -98,14 +98,7 @@ export class FamilyMemberComponent implements OnInit {
     this.loadAllFamily();    
   }
 
-  numberOnly(event: { which: any; keyCode: any; }): boolean {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
-    return true;
-
-  }
+ 
 
   ngOnInit() {
     this.familymemberForm = new FormGroup({
@@ -278,6 +271,15 @@ export class FamilyMemberComponent implements OnInit {
     this.familymemberForm.controls['gender'].setValue('male');
     this.familymemberForm.controls['attendingProgram'].setValue('1');
     this.familymemberForm.controls['maritalstatus'].setValue('Single');
+  }
+
+  numberOnly(event: { which: any; keyCode: any; }): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
   }
 }
 
