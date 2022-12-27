@@ -34,6 +34,7 @@ export class FamilyComponent implements OnInit {
   //isMale = true;
   //isFeMale = false;
   isDisabled = false;
+  isAddMemmbersbtnDisabled=false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   displayedColumns: string[] = ['PostalAddressName', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit', 'Delete'];

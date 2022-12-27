@@ -37,6 +37,7 @@ export class FamilyMemberComponent implements OnInit {
   SelectedDate = null;
   isMale = true;
   isFeMale = false;
+  isDaughterDetailbtnDisabled = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];

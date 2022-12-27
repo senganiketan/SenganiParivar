@@ -4,7 +4,7 @@
 
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
       <div align="center" style="text-align: right;">
-        Add Family Detail
+        (1) Add Family Detail
       </div>
     </mat-toolbar>
     <br><br>
@@ -80,8 +80,9 @@
             <mat-checkbox id="residentialfacility" [formControl]="residentialfacility">Residential Facility</mat-checkbox>
           </div>
           <div class="btn-right">
-            <button type="submit" mat-raised-button [disabled]="isDisabled">submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" mat-raised-button [disabled]="isDisabled" (click)='ClearForm()'>clear</button>
+            <button type="submit" mat-raised-button [disabled]="isDisabled">submit</button>&nbsp;&nbsp;
+            <button type="button" mat-raised-button [disabled]="isDisabled" (click)='ClearForm()'>clear</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" mat-raised-button [disabled]="isAddMemmbersbtnDisabled" routerLink="/familymember">AddMembers</button>
           </div>
           <div>
             <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">

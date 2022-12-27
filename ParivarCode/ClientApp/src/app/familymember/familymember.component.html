@@ -3,8 +3,11 @@
   <mat-card class="mat-elevation-z8">
 
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+      <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Back" routerLink="/family">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
       <div align="center" style="text-align: right;">
-        Add Members
+        (2) Add Members
       </div>
     </mat-toolbar>
     <br><br>
@@ -63,8 +66,9 @@
             </mat-radio-group>
           </div>
           <div class="btn-right">
-            <button type="submit" mat-raised-button>submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" mat-raised-button (click)='ClearForm()'>clear</button>
+            <button type="submit" mat-raised-button>submit</button>&nbsp;&nbsp;
+            <button type="button" mat-raised-button (click)='ClearForm()'>clear</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" mat-raised-button [disabled]="isDaughterDetailbtnDisabled" routerLink="/daughterdetail">AddDaughterDetails</button>
           </div>
           <div>
             <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
