@@ -16,7 +16,7 @@ namespace WebApiParivarCode.Model
         public int RelationID { get; set; }
         public string? Village { get; set; }
         public int? Age { get; set; }
-        public Int64? Mobile { get; set; }
+        public decimal? Mobile { get; set; }
         public bool Active { get; set; }
         public bool AttendingProgram { get; set; }
         public bool GiftRecieved { get; set; }
@@ -36,7 +36,7 @@ namespace WebApiParivarCode.Model
         public int RelationID { get; set; }
         public string? Village { get; set; }
         public int? Age { get; set; }
-        public Int64? Mobile { get; set; }
+        public decimal? Mobile { get; set; }
         public bool Active { get; set; }
         public bool AttendingProgram { get; set; }
         public bool GiftRecieved { get; set; }

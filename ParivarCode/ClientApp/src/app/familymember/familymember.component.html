@@ -26,7 +26,7 @@
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Mobile</mat-label>
-              <input id="Mobile" type="tel" matInput maxlength="10" min="10" placeholder="Mobile" [formControl]="mobile">
+              <input id="Mobile" type="tel" matInput maxlength="10" min="10"  placeholder="Mobile" (keypress)="numberOnly($event)" [formControl]="mobile">
             </mat-form-field>
             <label>Gender</label>&nbsp;
             <mat-radio-group aria-label="Gender" [formControl]="gender">

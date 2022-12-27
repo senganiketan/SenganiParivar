@@ -260,6 +260,15 @@ export class DaughterDetailComponent implements OnInit {
     this.daughterdetailForm.controls['attendingProgram'].setValue('1');    
   }
 
+  numberOnly(event: { which: any; keyCode: any; }): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
+
 }
 
   
