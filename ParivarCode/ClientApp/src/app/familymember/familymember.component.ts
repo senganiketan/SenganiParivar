@@ -109,7 +109,7 @@ export class FamilyMemberComponent implements OnInit {
       maritalstatus: new FormControl('Single'),
       education: new FormControl(''),
       business: new FormControl(''),
-      mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]),
+      mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]),
       attendingProgram: new FormControl('1'),
       modifiedbyid: new FormControl(this.modifiedbyid)
     });
