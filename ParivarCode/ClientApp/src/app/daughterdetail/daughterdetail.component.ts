@@ -33,7 +33,8 @@ export class DaughterDetailComponent implements OnInit {
  
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['firstName', 'fatherInLawName','husbandName', 'relationName',  'age', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
+  displayedColumns: string[] = ['firstName',  'husbandName', 'relationName', 'age', 'mobile', 'attendingProgram', 'Edit', 'Delete'];
+  //displayedColumns: string[] = ['firstName', 'fatherInLawName','husbandName', 'relationName',  'age', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator ;
   @ViewChild(MatSort) sort !: MatSort ;
 
