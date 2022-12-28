@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
+import { SessionStorageService } from '../service/sessionstorage.service';
 
 @Component({
   selector: 'app-family',
@@ -70,7 +71,7 @@ export class FamilyComponent implements OnInit {
   }
 
   get modifiedbyid(): any {
-    return "9876789878"; // We need to assign login page mobile number here.
+    return sessionStorage.getItem("session-mobile"); // We need to assign login page mobile number here.
   }
 
   get modifiedDate(): any {
@@ -80,14 +81,13 @@ export class FamilyComponent implements OnInit {
 
 
 
-  constructor(private formbulider: UntypedFormBuilder, private familyservice: FamilyService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
+  constructor(private formbulider: UntypedFormBuilder, private familyservice: FamilyService, private sessionstorage: SessionStorageService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
     this.loadAllFamily();
   }
 
   ngOnInit() {
-
-
+    
     this.familyForm = new FormGroup({
       originalvillage: new FormControl('', [Validators.required]),
       originaldistrict: new FormControl('', [Validators.required]),
@@ -132,7 +132,8 @@ export class FamilyComponent implements OnInit {
 
   loadAllFamily() {
     this.familyservice.getfamily().subscribe(data => {
-      if (data.length > 0) {
+      if (data.length > 0) {        
+        this.sessionstorage.saveData("session-familyId", data[0].familyID);  
         this.familyForm.disable();
         this.isDisabled = true;
         this.isAddMemmbersbtnDisabled = false;
@@ -171,7 +172,6 @@ export class FamilyComponent implements OnInit {
     family.residentialfacility = this.residentialfacility.value == "" ? null : this.residentialfacility.value;
 
     if (this.familyIdUpdate == null) {
-
 
       this.familyservice.createfamily(family)
         .subscribe({

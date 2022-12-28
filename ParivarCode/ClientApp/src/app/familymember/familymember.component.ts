@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
+import { SessionStorageService } from '../service/sessionstorage.service';
 
 
 @Component({
@@ -87,14 +88,13 @@ export class FamilyMemberComponent implements OnInit {
   }
 
   get modifiedbyid(): any {
-    return "9876789878"; // We need to assign login page mobile number here.
+    return sessionStorage.getItem("session-mobile"); // We need to assign login page mobile number here.
   }
 
 
-  constructor(private formbulider: UntypedFormBuilder, private familymemberservice: FamilyMemberService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
+  constructor(private formbulider: UntypedFormBuilder, private familymemberservice: FamilyMemberService, private sessionstorage: SessionStorageService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
-    this.familyID = 1;  //this.loadAllFamily(this.familyid);// We need to set familyid from previous page 
-   
+    this.familyID = Number(sessionStorage.getItem("session-familyId"));  //this.loadAllFamily(this.familyid);// We need to set familyid from previous page 
     this.loadAllFamily();    
   }
 
