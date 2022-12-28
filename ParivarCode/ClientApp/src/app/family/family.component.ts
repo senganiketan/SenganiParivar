@@ -30,7 +30,7 @@ export class FamilyComponent implements OnInit {
   isAddMemmbersbtnDisabled=false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  displayedColumns: string[] = ['PostalAddressName', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['PostalAddressName', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit'];
   /*displayedColumns: string[] = ['OriginalVillage', 'OriginalDistrict', 'PostalAddressName', 'CurrentAddress', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit', 'Delete'];*/
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -107,6 +107,7 @@ export class FamilyComponent implements OnInit {
   }
 
 
+  //Not in use because it is used in delete button
   deleteFamily(familyid: any) {
     if (confirm("Are you sure you want to delete this ?")) {
       this.familyservice.deletefamily(familyid).subscribe(() => {
@@ -118,7 +119,6 @@ export class FamilyComponent implements OnInit {
 
       });
     }
-
   }
 
 

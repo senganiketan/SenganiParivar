@@ -146,7 +146,16 @@ export class FamilyMemberComponent implements OnInit {
 
   loadAllFamily() {
     this.familymemberservice.getfamilymembers(this.familyID).subscribe(data => {
-      
+      if (data.length < 1) {
+        this.familymemberForm.controls['mobile'].setValue(this.modifiedbyid);
+        this.familymemberForm.controls['relationid'].setValue(1);
+        this.familymemberForm.controls['mobile'].disable();
+        this.familymemberForm.controls['relationid'].disable();
+      }
+      else {
+        this.familymemberForm.controls['mobile'].enable();
+        this.familymemberForm.controls['relationid'].enable();
+      }
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -172,8 +181,9 @@ export class FamilyMemberComponent implements OnInit {
     familymember.modifiedbyid = this.modifiedbyid;
     familymember.age = this.familymemberForm.controls['age'].value == "" ? null : this.familymemberForm.controls['age'].value;
     familymember.mobile = this.familymemberForm.controls['mobile'].value == "" ? null : this.familymemberForm.controls['mobile'].value;
+    familymember.relationID = this.familymemberForm.controls['relationid'].value;
 
-
+   
     if (this.familyMemberIdUpdate == null) {     
       this.familymemberservice.createfamilyMember(familymember)
       .subscribe({
