@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../service/sessionstorage.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent {
   ngOnInit(): void {
   }
 
-  constructor(private router: Router, private sessionstorage: SessionStorageService) { }
+  constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice : LoginService) { }
 
   mobileForm = new FormGroup({
     mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required])
@@ -42,6 +43,11 @@ export class LoginComponent {
     if (this.mobileForm.valid) {
       this.otphide = false;
       this.btnmobilehide = true;
+
+      console.log("-------------------------------------------------");
+      console.log(this.loginservice.generateOTP(this.mobile.value));
+      console.log("-------------------------------------------------");
+
       console.log(this.mobile.value);
       console.log(this.mobileForm.status);
     }
