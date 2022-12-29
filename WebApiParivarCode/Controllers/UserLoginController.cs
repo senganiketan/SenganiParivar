@@ -20,7 +20,7 @@ namespace WebApiParivarCode.Controllers
 
         [HttpGet]
         [Route("GetUserLoginByMobile")]
-        public async Task<IActionResult> GetUserLoginByMobile(int Mobile)
+        public async Task<IActionResult> GetUserLoginByMobile(decimal Mobile)
         {
             return Ok(await _userLoginRepository.SelectUserByMobile(Mobile));
         }
