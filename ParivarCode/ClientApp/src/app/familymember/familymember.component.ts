@@ -237,6 +237,11 @@ export class FamilyMemberComponent implements OnInit {
       this.familymemberForm.controls['education'].setValue(result.education);
       this.familymemberForm.controls['business'].setValue(result.business);
       this.familymemberForm.controls['mobile'].setValue(result.mobile);
+
+      if (result.relationID == 1) {
+        this.familymemberForm.controls['mobile'].disable();
+        this.familymemberForm.controls['relationid'].disable();
+      }
           
     });
   }
