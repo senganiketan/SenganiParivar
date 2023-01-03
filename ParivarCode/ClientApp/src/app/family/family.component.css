@@ -36,8 +36,8 @@ mat-header-cell {
 .mat-column-PostalAddressName {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 25% !important;
-  width: 25% !important;
+  flex: 0 0 28% !important;
+  width: 28% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -49,8 +49,8 @@ mat-header-cell {
 .mat-column-CurrentDistrict {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 15% !important;
-  width: 15% !important;
+  flex: 0 0 18% !important;
+  width: 18% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -62,8 +62,8 @@ mat-header-cell {
 .mat-column-CurrentVillage {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 15% !important;
-  width: 15% !important;
+  flex: 0 0 16% !important;
+  width: 16% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -75,8 +75,8 @@ mat-header-cell {
 .mat-column-CurrentState {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 15% !important;
-  width: 15% !important;
+  flex: 0 0 16% !important;
+  width: 16% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
@@ -88,8 +88,8 @@ mat-header-cell {
 .mat-column-CurrentPincode {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 15% !important;
-  width: 15% !important;
+  flex: 0 0 16% !important;
+  width: 16% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
