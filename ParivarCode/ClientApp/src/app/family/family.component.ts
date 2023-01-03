@@ -20,6 +20,7 @@ import { SessionStorageService } from '../service/sessionstorage.service';
 
 export class FamilyComponent implements OnInit {
 
+
   family: Family[] = [];
   dataSaved = false;
   familyForm: any;
