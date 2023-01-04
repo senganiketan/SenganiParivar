@@ -5,7 +5,7 @@ namespace WebApiParivarCode.Repository
 {
     public interface IUserLoginRepository
     {
-        Task<IEnumerable<UserLogin>> SelectUserByMobile(decimal? Mobile);
+        Task<UserLogin> SelectUserByMobile(decimal? Mobile);
         Task<UserLogin> InsertUserLogin(UserLogin objuserlogin);
         Task<UserLogin> UpdateUserLogin(UserLogin objuserlogin);
 
@@ -18,7 +18,7 @@ namespace WebApiParivarCode.Repository
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<IEnumerable<UserLogin>> SelectUserByMobile(decimal? Mobile)
+        public async Task<UserLogin> SelectUserByMobile(decimal? Mobile)
         {
             return await _context.UserLogins.Where(x => x.Mobile == Mobile).Select(x => new UserLogin
             {
@@ -28,11 +28,12 @@ namespace WebApiParivarCode.Repository
                 ModifiedDate=Convert.ToDateTime(x.ModifiedDate),
                 IsLoginSuccess=x.IsLoginSuccess,
                 LoginAttemp=x.LoginAttemp
-                 }).ToListAsync();
+                 }).FirstOrDefaultAsync() ?? new UserLogin();
         }
 
         public async Task<UserLogin> InsertUserLogin(UserLogin objuserlogin)
-        {                             
+        {
+            objuserlogin.ModifiedDate = DateTime.Now;                          
             _context.UserLogins.Add(objuserlogin);
             await _context.SaveChangesAsync();
 
@@ -40,7 +41,8 @@ namespace WebApiParivarCode.Repository
         }
 
         public async Task<UserLogin> UpdateUserLogin(UserLogin objuserlogin)
-        {           
+        {
+            objuserlogin.ModifiedDate = DateTime.Now;
             _context.Entry(objuserlogin).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserLogin } from '../model/UserLogin';
 import { SessionStorageService } from '../service/sessionstorage.service';
 import { LoginService } from './login.service';
 
@@ -12,9 +13,10 @@ import { LoginService } from './login.service';
 })
 
 export class LoginComponent {
-
+   
   otphide = true;
-  btnmobilehide = false;
+  btnmobilehide = false; 
+  userlogin: UserLogin = new UserLogin;
 
   ngOnInit(): void {
   }
@@ -42,12 +44,51 @@ export class LoginComponent {
   onSubmitmobileForm() {
     if (this.mobileForm.valid) {
       this.otphide = false;
-      this.btnmobilehide = true;
+      this.btnmobilehide = true;    
 
-      console.log("-------------------------------------------------");
-      console.log(this.loginservice.generateOTP(this.mobile.value));
-      console.log("-------------------------------------------------");
+      debugger;
+      var returnotp = this.loginservice.generateOTP();
+      console.log(returnotp);
+      this.userlogin.otp = returnotp;
+ 
 
+      this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
+      
+        this.userlogin.otp = this.loginservice.generateOTP();
+        this.userlogin.mobile = this.mobile.value;
+        this.userlogin.isLoginSuccess = false;
+        this.userlogin.loginAttemp = 0;
+        
+        if (result.mobile == null || result.mobile < 0) {      
+          this.loginservice.AddUserLogin(this.userlogin)
+            .subscribe({
+              next: (any) => {
+                console.log("inserted records Successfully");
+              },
+              error: (err) => {
+                console.log(err);
+              }
+            }
+            );
+        }
+        else {
+          debugger;
+          this.userlogin.loginAttemp = result.loginAttemp;
+          this.userlogin.userLoginID = result.userLoginID;
+          this.loginservice.updateUserLogin(this.userlogin)
+            .subscribe({
+              next: (any) => {
+                console.log("updated records Successfully");
+              },
+              error: (err) => {
+                console.log(err);
+              }
+            }
+            );
+        }
+      });
+
+     
       console.log(this.mobile.value);
       console.log(this.mobileForm.status);
     }
