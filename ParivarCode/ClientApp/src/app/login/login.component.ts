@@ -44,17 +44,11 @@ export class LoginComponent {
   onSubmitmobileForm() {
     if (this.mobileForm.valid) {
       this.otphide = false;
-      this.btnmobilehide = true;    
-
-      debugger;
-      var returnotp = this.loginservice.generateOTP();
-      console.log(returnotp);
-      this.userlogin.otp = returnotp;
- 
-
-      this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
+      this.btnmobilehide = true;
       
-        this.userlogin.otp = this.loginservice.generateOTP();
+      this.userlogin.otp = this.loginservice.generateOTP();
+      //CALL SMS SERVICE
+      this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
         this.userlogin.mobile = this.mobile.value;
         this.userlogin.isLoginSuccess = false;
         this.userlogin.loginAttemp = 0;
@@ -72,7 +66,6 @@ export class LoginComponent {
             );
         }
         else {
-          debugger;
           this.userlogin.loginAttemp = result.loginAttemp;
           this.userlogin.userLoginID = result.userLoginID;
           this.loginservice.updateUserLogin(this.userlogin)
@@ -88,7 +81,7 @@ export class LoginComponent {
         }
       });
 
-     
+      console.log(this.userlogin.otp);
       console.log(this.mobile.value);
       console.log(this.mobileForm.status);
     }
@@ -96,22 +89,14 @@ export class LoginComponent {
   onSubmitotpform() {
     if (this.otpForm.valid) {
       console.log("OTP : " + this.otp.value);
-      // To DO : We need to validate OTP by calling third party api and redirect below code accordingly.
 
-
-      // If user OTP is matched with third party then check entered mobile number used in any of the family? If yes then redirect in that family list page other wise shw create family page.
-
-      this.router.navigate(['family']);
-      if (this.otp.value = "1111") {
+      if (this.userlogin.otp == this.otp.value) {
         sessionStorage.setItem("session-mobile", this.mobile.value);
-        //if ()
-       
-       
-
-       // this.router.navigate(['family-create']);
+        this.router.navigate(['family']);
       }
-     
-
+      else {
+        console.log("OTP is Invalid");
+      }
     }
   }
 }
