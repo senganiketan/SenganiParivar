@@ -7,6 +7,7 @@ namespace WebApiParivarCode.Repository
     {
         Task<IEnumerable<Family>> GetFamily();
         Task<Family?> GetFamilyByID(int ID);
+        Task<IEnumerable<Family>> GetFamilyByMobile(decimal Mobile);
         Task<Family> InsertFamily(Family objFamily);
         Task<Family> UpdateFamily(Family objFamily);
         bool DeleteFamily(int ID);
@@ -61,6 +62,25 @@ namespace WebApiParivarCode.Repository
             return result;
         }
 
+        public async Task<IEnumerable<Family>> GetFamilyByMobile(decimal Mobile)
+        {  
+            var result = await _context.Families.Where(x => x.ModifiedByID == Mobile && x.Active== true).Select(x => new Family
+            {
+                FamilyID = x.FamilyID,
+                OriginalVillage = x.OriginalVillage,
+                OriginalDistrict = x.OriginalDistrict,
+                PostalAddressName = x.PostalAddressName,
+                CurrentAddress = x.CurrentAddress,
+                CurrentVillage = x.CurrentVillage,
+                CurrentDistrict = x.CurrentDistrict,
+                CurrentState = x.CurrentState,
+                CurrentPincode = x.CurrentPincode,
+                ResidentialFacility = x.ResidentialFacility,
+                ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
+            }).ToListAsync();
+            return result;
+        }
         public async Task<Family> InsertFamily(Family objFamily)
         {
 

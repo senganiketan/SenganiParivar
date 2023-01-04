@@ -132,7 +132,8 @@ export class FamilyComponent implements OnInit {
   }
 
   loadAllFamily() {
-    this.familyservice.getfamily().subscribe(data => {
+    let mobile = Number(this.sessionstorage.getData("session-mobile"));
+    this.familyservice.getfamilyByMobile(mobile).subscribe(data => {
       if (data.length > 0) {        
         this.sessionstorage.saveData("session-familyId", data[0].familyID);  
         this.familyForm.disable();

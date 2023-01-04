@@ -22,7 +22,9 @@ export class FamilyService {
   public getfamilyByFamilyID(familyid: number): Observable<Family> {       
     return this.http.get<Family>(`${environment.apiUrl}/Family/GetFamilyByID/` + familyid);
   }
-
+  public getfamilyByMobile(mobilenumber: number): Observable<Family[]> {
+    return this.http.get<Family[]>(`${environment.apiUrl}/Family/GetFamilyByMobile/` + mobilenumber);
+  }
   public createfamily(family: Family) {       
     return this.http.post(`${environment.apiUrl}/Family/AddFamily`, family);
   }

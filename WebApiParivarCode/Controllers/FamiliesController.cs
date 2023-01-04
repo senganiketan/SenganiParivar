@@ -34,6 +34,13 @@ namespace WebApiParivarCode.Controllers
             return Ok(await _familyRepository.GetFamilyByID(Id));
         }
 
+        [HttpGet]
+        [Route("GetFamilyByMobile/{MobileNo}")]
+        public async Task<IActionResult> GetFamilyByMobile(decimal MobileNo)
+        {
+            return Ok(await _familyRepository.GetFamilyByMobile(MobileNo));
+        }
+
         [HttpPost]
         [Route("AddFamily")]
         public async Task<IActionResult> Post(Family objFamily)
