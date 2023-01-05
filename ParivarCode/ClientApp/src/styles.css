@@ -83,3 +83,15 @@ table {
   .example-container-table .mat-elevation-z8 {
       min-width:800px;
   }
+.my-snack-bar {
+  background-color: #448226;
+  color: white;
+}
+.my-snack-bar-error {
+  background-color: red;
+  color: white;
+}
+
+.btn-left {
+  margin-right: 15px !important;
+}

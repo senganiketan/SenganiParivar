@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserLogin } from '../model/UserLogin';
 import { SessionStorageService } from '../service/sessionstorage.service';
 import { LoginService } from './login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent {
   
   
 
-  constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice : LoginService) { }
+  constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice: LoginService, private _snackBar: MatSnackBar) { }
 
   mobileForm = new FormGroup({
     mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required])
@@ -49,6 +50,13 @@ export class LoginComponent {
       this.mobileForm.controls.mobile.disable();
       this.otphide = false;
       this.btnmobilehide = true;
+
+      this._snackBar.open('OTP sent Successfully', '', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3500,
+        panelClass: ['my-snack-bar']
+      });
       
       this.userlogin.otp = this.loginservice.generateOTP();
       //CALL SMS SERVICE
@@ -99,6 +107,13 @@ export class LoginComponent {
         this.router.navigate(['family']);
       }
       else {
+
+        this._snackBar.open('OTP is Invalid', '', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 3500,
+          panelClass: ['my-snack-bar-error']
+        });
         console.log("OTP is Invalid");
       }
     }
