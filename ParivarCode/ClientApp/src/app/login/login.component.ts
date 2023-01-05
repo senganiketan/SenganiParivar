@@ -62,34 +62,16 @@ export class LoginComponent {
       //CALL SMS SERVICE
       this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
         this.userlogin.mobile = this.mobile.value;
-        this.userlogin.isLoginSuccess = false;
-        this.userlogin.loginAttemp = 0;
-        
-        if (result.mobile == null || result.mobile < 0) {      
-          this.loginservice.AddUserLogin(this.userlogin)
-            .subscribe({
-              next: (any) => {
-                console.log("inserted records Successfully");
-              },
-              error: (err) => {
-                console.log(err);
-              }
-            }
-            );
+        if (result.mobile == null || result.mobile < 0) {
+          this.userlogin.isLoginSuccess = false;
+          this.userlogin.loginAttemp = 0;
+          this.AddUserLogin();
         }
         else {
+          this.userlogin.isLoginSuccess = false;
           this.userlogin.loginAttemp = result.loginAttemp;
           this.userlogin.userLoginID = result.userLoginID;
-          this.loginservice.updateUserLogin(this.userlogin)
-            .subscribe({
-              next: (any) => {
-                console.log("updated records Successfully");
-              },
-              error: (err) => {
-                console.log(err);
-              }
-            }
-            );
+          this.UpdateUserLogin();
         }
       });
 
@@ -104,6 +86,13 @@ export class LoginComponent {
 
       if (this.userlogin.otp == this.otp.value) {
         sessionStorage.setItem("session-mobile", this.mobile.value);
+        this.userlogin.isLoginSuccess = true;
+        this.userlogin.loginAttemp += 1;
+        this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
+          this.userlogin.userLoginID = result.userLoginID;
+          this.UpdateUserLogin();
+        });
+
         this.router.navigate(['family']);
       }
       else {
@@ -117,6 +106,34 @@ export class LoginComponent {
         console.log("OTP is Invalid");
       }
     }
+  }
+
+  AddUserLogin() {
+    this.loginservice.AddUserLogin(this.userlogin)
+      .subscribe({
+        next: (any) => {
+
+          console.log("inserted records Successfully");
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      }
+      );
+
+  }
+
+  UpdateUserLogin() {
+    this.loginservice.updateUserLogin(this.userlogin)
+      .subscribe({
+        next: (any) => {
+          console.log("updated records Successfully");
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      }
+      );
   }
 }
 

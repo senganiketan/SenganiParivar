@@ -28,11 +28,7 @@ export class LoginService {
     return result;
   }
 
-  //// This is for authenticating user with username password.
-  //authenticateUser(mobileNumber: string = "Will", otpGenerated: number = 1234): boolean {
-  //  let isValid: boolean = false;
-  //  return isValid;
-  //}
+
  
   generateOTP(): number {
     var otp;
