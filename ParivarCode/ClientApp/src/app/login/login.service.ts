@@ -36,7 +36,14 @@ export class LoginService {
  
   generateOTP(): number {
     var otp;
-    otp = Math.trunc(Math.random() * 10000);
+    
+    var randomNumber = Math.random();
+    
+    if (randomNumber < 0.1) {
+      randomNumber = randomNumber * 10;
+    }
+    otp = Math.trunc(randomNumber * 10000);
+    
     return otp;
   }
 

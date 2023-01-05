@@ -19,7 +19,10 @@ export class LoginComponent {
   userlogin: UserLogin = new UserLogin;
 
   ngOnInit(): void {
+    this.mobileForm.reset();
   }
+  
+  
 
   constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice : LoginService) { }
 
@@ -43,6 +46,7 @@ export class LoginComponent {
 
   onSubmitmobileForm() {
     if (this.mobileForm.valid) {
+      this.mobileForm.controls.mobile.disable();
       this.otphide = false;
       this.btnmobilehide = true;
       
