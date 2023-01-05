@@ -28,8 +28,8 @@ export class DaughterDetailService {
     return this.http.get<DaughterDetail>(`${environment.apiUrl}/DaughterDetail/GetDaughterDetailByID/` + daughterdetailid);
   }
 
-  public getfamilymemberbyidmobile(FamilyID?: number ): Observable<FamilyMember> {
-    return this.http.get<FamilyMember>(`${environment.apiUrl}/FamilyMember/GetFamilyMemberByIdMobile/` + FamilyID);
+  public getfamilymemberbyidmobile(mobile: number, FamilyID?: number): Observable<FamilyMember> {
+    return this.http.get<FamilyMember>(`${environment.apiUrl}/FamilyMember/GetFamilyMemberByIdMobile/` + FamilyID + '/' + mobile);
   }
 
   //CREATE

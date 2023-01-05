@@ -56,10 +56,10 @@ namespace WebApiParivarCode.Controllers
         }
 
         [HttpGet]
-        [Route("GetFamilyMemberByIdMobile/{Id}")]
-        public async Task<IActionResult> GetFamilyMemberByIdMobile(int Id)
+        [Route("GetFamilyMemberByIdMobile/{Id}/{mobile}")]
+        public async Task<IActionResult> GetFamilyMemberByIdMobile(int Id, decimal mobile)
         {
-            return Ok(await _familyMemberRepository.GetFamilyMemberByIdMobile(Id));
+            return Ok(await _familyMemberRepository.GetFamilyMemberByIdMobile(Id, mobile));
         }
 
     }

@@ -13,7 +13,7 @@ namespace WebApiParivarCode.Repository
         Task<FamilyMember> InsertFamilyMember(FamilyMember objFamilyMember);
         Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember);
         bool DeleteFamilyMember(int ID);
-        Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID);
+        Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID, decimal mobile);
     }
 
     public class FamilyMemberRepository : IFamilyMemberRepository
@@ -151,12 +151,12 @@ namespace WebApiParivarCode.Repository
             return result;
         }
 
-        public async Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID)
+        public async Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID, decimal mobile)
         {
             FamilyMember familyMemberobj = new FamilyMember();
 
             familyMemberobj = await _context.FamilyMembers
-                                        .Where(x => x.FamilyID == familyID && x.RelationID == 1)
+                                        .Where(x => x.FamilyID == familyID && x.RelationID == 1 && x.Mobile == mobile)
                                         .OrderBy(x=> x.FamilyMemberID)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,

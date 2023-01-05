@@ -133,7 +133,7 @@ export class DaughterDetailComponent implements OnInit {
   /** Selects all rows if they are not all selected; otherwise clear selection. */
 
   loadMainFamilyMemberDetails() {
-    this.daughterdetailservice.getfamilymemberbyidmobile(this.familyID).subscribe(result => {
+    this.daughterdetailservice.getfamilymemberbyidmobile(this.sessionmobile,this.familyID).subscribe(result => {
       //  this.familymembername = result.daughterDetailID;
       this.daughterdetailForm.controls['familymembername'].setValue(result.firstName);
 
