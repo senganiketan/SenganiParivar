@@ -55,5 +55,12 @@ namespace WebApiParivarCode.Controllers
             return new JsonResult("Deleted Successfully");
         }
 
+        [HttpGet]
+        [Route("GetFamilyMemberByIdMobile/{Id}")]
+        public async Task<IActionResult> GetFamilyMemberByIdMobile(int Id)
+        {
+            return Ok(await _familyMemberRepository.GetFamilyMemberByIdMobile(Id));
+        }
+
     }
 }

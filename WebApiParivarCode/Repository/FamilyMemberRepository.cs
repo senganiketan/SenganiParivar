@@ -13,6 +13,7 @@ namespace WebApiParivarCode.Repository
         Task<FamilyMember> InsertFamilyMember(FamilyMember objFamilyMember);
         Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember);
         bool DeleteFamilyMember(int ID);
+        Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID);
     }
 
     public class FamilyMemberRepository : IFamilyMemberRepository
@@ -148,6 +149,38 @@ namespace WebApiParivarCode.Repository
                 result = false;
             }
             return result;
+        }
+
+        public async Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID)
+        {
+            FamilyMember familyMemberobj = new FamilyMember();
+
+            familyMemberobj = await _context.FamilyMembers
+                                        .Where(x => x.FamilyID == familyID && x.RelationID == 1)
+                                        .OrderBy(x=> x.FamilyMemberID)
+                                        .Join(_context.Relations,
+                                                x => x.RelationID,
+                                                y => y.RelationID,
+                                                (x, y) => new FamilyMember
+                                                {
+                                                    FamilyMemberID = x.FamilyMemberID,
+                                                    FirstName = x.FirstName,
+                                                    FatherHusbandName = x.FatherHusbandName,
+                                                    Gender = x.Gender,
+                                                    Age = x.Age,
+                                                    MaritalStatus = x.MaritalStatus,
+                                                    Education = x.Education,
+                                                    Business = x.Business,
+                                                    Mobile = x.Mobile == null ? null : x.Mobile,
+                                                    FamilyID = x.FamilyID,
+                                                    AttendingProgram = x.AttendingProgram,
+                                                    RelationID = x.RelationID,
+                                                    ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
+                                                }
+                                        ).FirstOrDefaultAsync() ?? new FamilyMember();
+            return familyMemberobj;
+
         }
     }
 }

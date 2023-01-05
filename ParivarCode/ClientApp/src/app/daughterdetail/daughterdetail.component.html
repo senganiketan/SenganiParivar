@@ -18,6 +18,12 @@
         <div class="example-container">
           <div>
             <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Member Name</mat-label>
+              <input id="familymembername" matInput type="text" placeholder="vinod" [formControl]="familymembername">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>First name</mat-label>
               <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
             </mat-form-field>

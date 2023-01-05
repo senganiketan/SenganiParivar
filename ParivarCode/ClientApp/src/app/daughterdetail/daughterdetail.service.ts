@@ -1,9 +1,10 @@
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { DaughterDetail } from '../model/DaughterDetail'
 import { Relation } from '../model/Relation';
+import { FamilyMember } from '../model/FamilyMember';
 
 @Injectable({
   providedIn: 'root'
@@ -12,24 +13,28 @@ import { Relation } from '../model/Relation';
 
 export class DaughterDetailService {
 
- 
-  
+
+
   constructor(private http: HttpClient) {
   }
 
   //SELECT
 
-  public getdaughterdetails(FamilyID?: number): Observable<DaughterDetail[]> {   
+  public getdaughterdetails(FamilyID?: number): Observable<DaughterDetail[]> {
     return this.http.get<DaughterDetail[]>(`${environment.apiUrl}/DaughterDetail/GetDaughterDetail?FamilyID=` + FamilyID);
   }
 
-  public getdaughterdetailbydaughterid(daughterdetailid: number): Observable<DaughterDetail> {       
+  public getdaughterdetailbydaughterid(daughterdetailid: number): Observable<DaughterDetail> {
     return this.http.get<DaughterDetail>(`${environment.apiUrl}/DaughterDetail/GetDaughterDetailByID/` + daughterdetailid);
   }
 
+  public getfamilymemberbyidmobile(FamilyID?: number ): Observable<FamilyMember> {
+    return this.http.get<FamilyMember>(`${environment.apiUrl}/FamilyMember/GetFamilyMemberByIdMobile/` + FamilyID);
+  }
+
   //CREATE
-  public createdaughterdetail(daughterdetail: DaughterDetail): Observable<DaughterDetail[]> {    
-    var result = this.http.post<DaughterDetail[]>(`${environment.apiUrl}/DaughterDetail/AddDaughterDetail`, daughterdetail);  
+  public createdaughterdetail(daughterdetail: DaughterDetail): Observable<DaughterDetail[]> {
+    var result = this.http.post<DaughterDetail[]>(`${environment.apiUrl}/DaughterDetail/AddDaughterDetail`, daughterdetail);
     return result;
   }
 
@@ -38,15 +43,16 @@ export class DaughterDetailService {
   }
 
   //UPDATE
-  public updatedaughterdetail(daughterdetail: DaughterDetail): Observable<DaughterDetail> {  
+  public updatedaughterdetail(daughterdetail: DaughterDetail): Observable<DaughterDetail> {
     var result = this.http.put<DaughterDetail>(`${environment.apiUrl}/DaughterDetail/UpdateDaughterDetail`, daughterdetail);
     return result;
   }
 
   //DELETE
   public deletedaughterdetail(daughterdetailid?: number): Observable<any> {
-    var result = this.http.delete<any>(`${environment.apiUrl}/DaughterDetail/DeleteDaughterDetail/?DaughterDetailID=` + daughterdetailid);    
+    var result = this.http.delete<any>(`${environment.apiUrl}/DaughterDetail/DeleteDaughterDetail/?DaughterDetailID=` + daughterdetailid);
     return result;
   }
- 
+
+
 }
