@@ -1,4 +1,4 @@
-import { Component,  OnInit,  ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { FamilyMemberService } from './familymember.service';
 import { FamilyMember } from '../model/FamilyMember';
@@ -43,14 +43,14 @@ export class FamilyMemberComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName', 'maritalStatus', 'mobile', 'attendingProgram', 'Edit', 'Delete'];
   //displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
-  @ViewChild(MatPaginator) paginator !: MatPaginator ;
-  @ViewChild(MatSort) sort !: MatSort ;
+  @ViewChild(MatPaginator) paginator !: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
 
 
   get familyid(): any {
     return this.familymemberForm.get('familyid');
   }
- 
+
   get firstname(): any {
     return this.familymemberForm.get('firstname');
   }
@@ -95,10 +95,10 @@ export class FamilyMemberComponent implements OnInit {
   constructor(private formbulider: UntypedFormBuilder, private familymemberservice: FamilyMemberService, private sessionstorage: SessionStorageService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
     this.familyID = Number(sessionStorage.getItem("session-familyId"));  //this.loadAllFamily(this.familyid);// We need to set familyid from previous page 
-    this.loadAllFamily();    
+    this.loadAllFamily();
   }
 
- 
+
 
   ngOnInit() {
     this.familymemberForm = new FormGroup({
@@ -117,7 +117,7 @@ export class FamilyMemberComponent implements OnInit {
     });
     this.FillRelationDDL();
   }
-  
+
   isAllSelected() {
     const numRows = !!this.dataSource && this.dataSource.data.length;
   }
@@ -131,7 +131,7 @@ export class FamilyMemberComponent implements OnInit {
         this.loadAllFamily();
         this.familyMemberIdUpdate = null;
         this.resetForm();
-        
+
       });
     }
   }
@@ -166,14 +166,14 @@ export class FamilyMemberComponent implements OnInit {
   FillRelationDDL() {
     this.allRelations = this.familymemberservice.getrelation();
   }
- 
 
-  onSubmitfamilyMemberForm(familymember: any) {  
-    this.dataSaved = false;      
+
+  onSubmitfamilyMemberForm(familymember: any) {
+    this.dataSaved = false;
     console.log(this.familymemberForm.status);
-    if (this.familymemberForm.valid) {   
+    if (this.familymemberForm.valid) {
       this.CreateUpdateFamily(familymember);
-    }   
+    }
   }
 
   CreateUpdateFamily(familymember: FamilyMember) {
@@ -183,26 +183,26 @@ export class FamilyMemberComponent implements OnInit {
     familymember.mobile = this.familymemberForm.controls['mobile'].value == "" ? null : this.familymemberForm.controls['mobile'].value;
     familymember.relationID = this.familymemberForm.controls['relationid'].value;
 
-   
-    if (this.familyMemberIdUpdate == null) {     
+
+    if (this.familyMemberIdUpdate == null) {
       this.familymemberservice.createfamilyMember(familymember)
-      .subscribe({
-        next: (any) => {         
-          this.dataSaved = true;
-          this.SavedSuccessful(1);
-          this.loadAllFamily();
-          this.familyMemberIdUpdate = null;
-          this.resetForm();        
-        },
-        error: (err) => {
-          console.log(err);
+        .subscribe({
+          next: (any) => {
+            this.dataSaved = true;
+            this.SavedSuccessful(1);
+            this.loadAllFamily();
+            this.familyMemberIdUpdate = null;
+            this.resetForm();
+          },
+          error: (err) => {
+            console.log(err);
+          }
         }
-      }       
-      );
+        );
     }
     else {
-      familymember.familyMemberID = this.familyMemberIdUpdate;     
-      
+      familymember.familyMemberID = this.familyMemberIdUpdate;
+
       this.familymemberservice.updatefamilyMember(familymember)
         .subscribe({
           next: (any) => {
@@ -220,20 +220,20 @@ export class FamilyMemberComponent implements OnInit {
     }
   }
 
-  loadFamilyToEdit(familymemberid: number) {   
-    this.familymemberservice.getfamilyMemberByMemberID(familymemberid).subscribe(result => {    
+  loadFamilyToEdit(familymemberid: number) {
+    this.familymemberservice.getfamilyMemberByMemberID(familymemberid).subscribe(result => {
 
       this.massage = null;
       this.dataSaved = false;
-      this.familyMemberIdUpdate = result.familyMemberID;    
+      this.familyMemberIdUpdate = result.familyMemberID;
       this.familymemberForm.controls['familyid'].setValue(result.familyID);
       this.familymemberForm.controls['firstname'].setValue(result.firstName);
       this.familymemberForm.controls['fatherhusbandname'].setValue(result.fatherHusbandName);
       this.familymemberForm.controls['relationid'].setValue(result.relationID);
       this.familymemberForm.controls['age'].setValue(result.age);
       this.familymemberForm.controls['maritalstatus'].setValue(result.maritalStatus);
-      this.familymemberForm.controls['gender'].setValue(result.gender);     
-      this.familymemberForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");      
+      this.familymemberForm.controls['gender'].setValue(result.gender);
+      this.familymemberForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");
       this.familymemberForm.controls['education'].setValue(result.education);
       this.familymemberForm.controls['business'].setValue(result.business);
       this.familymemberForm.controls['mobile'].setValue(result.mobile);
@@ -242,7 +242,7 @@ export class FamilyMemberComponent implements OnInit {
         this.familymemberForm.controls['mobile'].disable();
         this.familymemberForm.controls['relationid'].disable();
       }
-          
+
     });
   }
 
@@ -254,33 +254,36 @@ export class FamilyMemberComponent implements OnInit {
     this.familymemberForm.controls['attendingProgram'].setValue('1');
     this.familymemberForm.controls['maritalstatus'].setValue('Single');
 
-    
+
   }
 
   SavedSuccessful(isUpdate: number) {
     if (isUpdate == 0) {
-      this._snackBar.open('Record Updated Successfully!', 'Close', {
+      this._snackBar.open('Record Updated Successfully!', '', {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
     else if (isUpdate == 1) {
-      this._snackBar.open('Record Saved Successfully!', 'Close', {
+      this._snackBar.open('Record Saved Successfully!', '', {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
     else if (isUpdate == 2) {
-      this._snackBar.open('Record Deleted Successfully!', 'Close', {
+      this._snackBar.open('Record Deleted Successfully!', '', {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
   }
-    
+
   ClearForm() {
     this.familymemberForm.reset();
     this.familymemberForm.controls['familyid'].setValue(this.familyID);
@@ -295,8 +298,7 @@ export class FamilyMemberComponent implements OnInit {
       return false;
     }
     return true;
-
   }
 }
 
-  
+

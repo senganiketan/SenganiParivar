@@ -31,7 +31,7 @@ export class FamilyComponent implements OnInit {
   isDisabled = false;
   isAddMemmbersbtnDisabled=false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   displayedColumns: string[] = ['PostalAddressName', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit'];
   /*displayedColumns: string[] = ['OriginalVillage', 'OriginalDistrict', 'PostalAddressName', 'CurrentAddress', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit', 'Delete'];*/
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -240,24 +240,27 @@ export class FamilyComponent implements OnInit {
 
   SavedSuccessful(isUpdate: number) {
     if (isUpdate == 0) {
-      this._snackBar.open('Record Updated Successfully!', 'Close', {
+      this._snackBar.open('Record Updated Successfully!', '', {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
     else if (isUpdate == 1) {
-      this._snackBar.open('Record Saved Successfully!', 'Close', {
+      this._snackBar.open('Record Saved Successfully!', '', {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
     else if (isUpdate == 2) {
-      this._snackBar.open('Record Deleted Successfully!', 'Close', {
+      this._snackBar.open('Record Deleted Successfully!', '', {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
   }
