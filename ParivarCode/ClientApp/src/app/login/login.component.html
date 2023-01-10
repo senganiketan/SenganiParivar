@@ -6,10 +6,10 @@
     <form class="example-form" name="form" [formGroup]="mobileForm" (ngSubmit)="onSubmitmobileForm()"> 
 
       <p>
-        <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Mobile</mat-label>
           <span matPrefix>+91 &nbsp;</span>
-          <input id="mobile" type="tel" matInput maxlength="10" min="10" placeholder="9425974949" (keypress)="numberOnly($event)" [formControl]="mobile">
+          <input id="mobile" type="tel" matInput maxlength="10" min="10" placeholder="9425974949" [formControl]="mobile">
           <mat-icon matSuffix>phone</mat-icon>
         </mat-form-field>
       </p>
@@ -24,7 +24,7 @@
       <p>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>OTP</mat-label>
-          <input type="text" matInput maxlength="4" min="4" placeholder="3455" (keypress)="numberOnly($event)" [formControl]="otp">
+          <input type="text" matInput maxlength="4" min="4" placeholder="3455" [formControl]="otp">
         </mat-form-field>
       </p>
 
