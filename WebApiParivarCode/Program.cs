@@ -24,12 +24,13 @@ builder.Services.AddScoped<IRelationRepository, RelationRepository>();
 builder.Services.AddScoped<IUserLoginRepository, UserLoginRepository>();
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors("FamilyOrigins");
 app.UseHttpsRedirection();
