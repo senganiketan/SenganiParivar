@@ -95,3 +95,11 @@ table {
 .btn-left {
   margin-right: 15px !important;
 }
+
+.footer-brg {
+  background-color: #44817b;
+  color: #fff;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+}
