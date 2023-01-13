@@ -12,13 +12,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddCors(options => options.AddPolicy(name: "FamilyOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
-//builder.Services.AddCors(options => options.AddPolicy(name: "FamilyOrigins",
-//    policy =>
-//    {
-//       // policy.WithOrigins("http://webapi.hirjidada.com", "https://webapi.hirjidada.com").AllowAnyMethod().AllowAnyHeader();
-//        policy.WithOrigins("http://webapi.hirjidada.com", "https://webapi.hirjidada.com").AllowAnyMethod().AllowAnyHeader();
-//    }));
-
 
 builder.Services.AddScoped<IFamilyRepository, FamilyRepository>();
 builder.Services.AddScoped<IFamilyMemberRepository, FamilyMemberRepository>();
