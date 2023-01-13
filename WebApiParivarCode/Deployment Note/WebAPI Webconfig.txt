@@ -1,0 +1,31 @@
+
+
+
+Deployment Note for API
+
+1. Change the Database connection in app.json
+1. Rebuild the project
+2. Publish (C:\VSProjects\SenganiParivar\WebApiParivarCode\obj\Release\net6.0\win-x64\PubTmp\Out)
+3. Recyle app pool
+4. Check changes deployed or not.
+--------------------------------------------------------------
+
+
+WebAPI Web.config settings. ﻿
+
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <location path="." inheritInChildApplications="false">
+    <system.webServer>
+	<modules>
+    <remove name="WebDAVModule" />
+    </modules>  
+      <handlers>
+	    <remove name="WebDAV" />
+        <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
+      </handlers>
+      <aspNetCore processPath=".\WebApiParivarCode.exe" stdoutLogEnabled="false" stdoutLogFile=".\logs\stdout" hostingModel="inprocess" />
+    </system.webServer>
+  </location>
+</configuration>
+<!--ProjectGuid: 97fc6011-19ca-4c79-9ae1-d7818bd18858-->
