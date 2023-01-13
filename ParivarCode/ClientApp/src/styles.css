@@ -20,6 +20,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container-light {
   background-color: #f1efe9;
+  min-height:600px;
 }
 
 .mat-toolbar.mat-accent {
@@ -97,9 +98,19 @@ table {
 }
 
 .footer-brg {
-  background-color: #44817b;
+  background-color: #116466;
   color: #fff;
   font-size: 14px;
   height: 40px;
   line-height: 40px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  opacity:50%;
 }
+
+.mat-paginator-outer-container {
+padding-bottom:50px !important;
+}
+
