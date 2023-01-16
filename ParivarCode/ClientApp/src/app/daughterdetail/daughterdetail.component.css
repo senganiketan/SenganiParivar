@@ -143,3 +143,6 @@ mat-header-cell {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+.font-orange {
+  color: #e65100;
+}

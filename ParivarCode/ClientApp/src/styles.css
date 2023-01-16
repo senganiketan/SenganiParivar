@@ -115,3 +115,7 @@ table {
 .mrg-btm-50 {
 margin-bottom:50px;
 }
+
+.mat-form-field {
+    line-height:1.50 !important;
+}
