@@ -19,18 +19,18 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .container-light {
-  background-color: #f1efe9;
-  min-height:600px;
+  background-color: #ffffff;
+  min-height:550px;
 }
 
 .mat-toolbar.mat-accent {
-  background: #d1e8e2 !important;
-  color: #0D4F50 !important;
+  background: #455b88 !important;
+  color: #FFFFFF !important;
 }
 
 .mat-header-cell {
-  color: #0D4F50 !important;
-  background-color: #F0fbfb;
+  color: #d65d15 !important;
+  background-color: #fef1ee;
 }
 
 .btn-right {
@@ -98,19 +98,20 @@ table {
 }
 
 .footer-brg {
-  background-color: #116466;
+  background-color: #455b88;
   color: #fff;
   font-size: 14px;
   height: 40px;
   line-height: 40px;
-  position: fixed;
-  left: 0;
-  bottom: 0;
   width: 100%;
-  opacity:50%;
+  opacity: 80%;
 }
 
-.mat-paginator-outer-container {
-padding-bottom:50px !important;
+.btn-orange {
+  background-color: #f36f21;
+  color: #fff;
 }
 
+.mrg-btm-50 {
+margin-bottom:50px;
+}

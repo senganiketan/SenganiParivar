@@ -81,9 +81,9 @@
             <mat-checkbox id="residentialfacility" [formControl]="residentialfacility">Residential Facility</mat-checkbox>
           </div>
           <div class="btn-right">
-            <button type="submit" mat-raised-button [disabled]="isDisabled">submit</button>&nbsp;&nbsp;
-            <button type="button" mat-raised-button [disabled]="isDisabled" (click)='ClearForm()'>clear</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" mat-raised-button [disabled]="isAddMemmbersbtnDisabled" routerLink="/familymember">AddMembers</button>
+            <button type="submit" class="btn-orange" mat-raised-button [disabled]="isDisabled">submit</button>&nbsp;&nbsp;
+            <button type="button" class="btn-orange" mat-raised-button [disabled]="isDisabled" (click)='ClearForm()'>clear</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn-orange" mat-raised-button [disabled]="isAddMemmbersbtnDisabled" routerLink="/familymember">AddMembers</button>
           </div>
           <div>
             <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">

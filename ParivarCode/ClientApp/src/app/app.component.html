@@ -1,18 +1,15 @@
 <body>
-  <div class="container-light">
-    <app-nav-menu></app-nav-menu>
-    <div class="container ">
-      <router-outlet></router-outlet>
+  <div>
+    <div class="container-light">
+      <app-nav-menu></app-nav-menu>
+      <div class="container mrg-btm-50">
+        <router-outlet></router-outlet>
+      </div>
     </div>
+    <footer class="bg-dark text-center text-white">
+      <div class="text-center footer-brg">
+        © 2023 RWorld Computer. All rights reserved.
+      </div>
+    </footer>
   </div>
-  <!-- Footer -->
-  <footer class="bg-dark text-center text-white">
-    <!-- Grid container -->
-    <!-- Copyright -->
-    <div class="text-center footer-brg">
-      © 2023 RWorld Computer. All rights reserved.
-    </div>
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
 </body>
