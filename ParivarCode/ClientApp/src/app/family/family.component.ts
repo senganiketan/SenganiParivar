@@ -67,8 +67,8 @@ export class FamilyComponent implements OnInit {
     return this.familyForm.get('postaladdressname');
   }
 
-  get residentialfacility(): any {
-    return this.familyForm.get('residentialfacility');
+  get residentialFacility(): any {
+    return this.familyForm.get('residentialFacility');
   }
 
   get modifiedbyid(): any {
@@ -98,7 +98,7 @@ export class FamilyComponent implements OnInit {
       currentstate: new FormControl('Gujarat', [Validators.required]),
       currentpincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
       postaladdressname: new FormControl('', [Validators.required]),
-      residentialfacility: new FormControl(''),     
+      residentialFacility: new FormControl(''),     
     });
 
   }
@@ -160,7 +160,7 @@ export class FamilyComponent implements OnInit {
   onSubmitfamilyForm(family: any) {
     this.dataSaved = false;
     console.log(this.currentpincode.value);
-    console.log(this.residentialfacility.value);
+    console.log(this.residentialFacility.value);
     console.log(this.familyForm.status);
 
     if (this.familyForm.valid) {
@@ -171,8 +171,8 @@ export class FamilyComponent implements OnInit {
   CreateUpdateFamily(family: Family) {
     family.modifiedByID = this.modifiedbyid;
     family.modifiedDate = this.modifiedDate;
-    family.residentialfacility = this.residentialfacility.value == "" ? null : this.residentialfacility.value;
-
+    family.residentialFacility = this.residentialFacility.value == 1 ? true : false;
+   
     if (this.familyIdUpdate == null) {
 
       this.familyservice.createfamily(family)
@@ -222,8 +222,8 @@ export class FamilyComponent implements OnInit {
       this.familyForm.controls['currentstate'].setValue(result.currentState);
       this.familyForm.controls['currentpincode'].setValue(result.currentPincode);
       this.familyForm.controls['originalvillage'].setValue(result.originalVillage);
-      this.familyForm.controls['originaldistrict'].setValue(result.originalDistrict);
-      this.familyForm.controls['residentialfacility'].setValue(result.residentialfacility);
+      this.familyForm.controls['originaldistrict'].setValue(result.originalDistrict);  
+      this.familyForm.controls['residentialFacility'].setValue(result.residentialFacility);
       this.familyForm.enable();
       this.isDisabled = false;
 
