@@ -10,7 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConStr"))
 );
 
-builder.Services.AddCors(options => options.AddPolicy(name: "FamilyOrigins", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+builder.Services.AddCors(options => options.AddPolicy(name: "FamilyOrigins", builder => builder.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials()));
 
 
 builder.Services.AddScoped<IFamilyRepository, FamilyRepository>();

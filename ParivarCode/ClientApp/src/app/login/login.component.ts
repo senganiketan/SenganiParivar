@@ -5,6 +5,8 @@ import { UserLogin } from '../model/UserLogin';
 import { SessionStorageService } from '../service/sessionstorage.service';
 import { LoginService } from './login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppComponent } from '../app.component';
+
 
 @Component({
   selector: 'app-login',
@@ -18,14 +20,19 @@ export class LoginComponent {
   otphide = true;
   btnmobilehide = false; 
   userlogin: UserLogin = new UserLogin;
+  /*isLoggedIn = false;*/
 
   ngOnInit(): void {
     this.mobileForm.reset();
+
+    //if (this.sessionstorage.isLoggedIn()) {
+    //  this.isLoggedIn = true;
+    //}
   }
   
   
 
-  constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice: LoginService, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice: LoginService, private _snackBar: MatSnackBar, private appcomponent: AppComponent ) { }
 
   mobileForm = new FormGroup({
     mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required])
@@ -93,7 +100,11 @@ export class LoginComponent {
           this.UpdateUserLogin();
         });
 
+        //this.isLoggedIn = true;
+        this.appcomponent.isLoggedIn = true;
+
         this.router.navigate(['family']);
+       
       }
       else {
 

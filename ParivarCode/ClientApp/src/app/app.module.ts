@@ -28,17 +28,19 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+//import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { FamilyComponent } from './family/family.component';
 import { FamilyMemberComponent } from './familymember/familymember.component';
 import { DaughterDetailComponent } from './daughterdetail/daughterdetail.component';
 
+import { httpInterceptorProviders } from './service/http.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
+    //NavMenuComponent,
     HomeComponent,
     LoginComponent,
     FamilyComponent,
@@ -80,7 +82,7 @@ import { DaughterDetailComponent } from './daughterdetail/daughterdetail.compone
       { path: 'daughterdetail', component: DaughterDetailComponent },
     ]),   
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

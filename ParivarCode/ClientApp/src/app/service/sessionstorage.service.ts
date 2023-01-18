@@ -20,4 +20,13 @@ export class SessionStorageService {
   public clearData() {
     sessionStorage.clear();
   }
+
+  public isLoggedIn(): boolean {
+    const user = this.getData("session-mobile");
+    if (user) {
+      return true;
+    }
+
+    return false;
+  }
 }

@@ -3,8 +3,8 @@
   <mat-card class="mat-elevation-z8 ">
 
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
-      <div align="center" style="text-align: right;">
-        Add Family Detail<!--(પત્રવ્યવહાર માટે સરનામુ)-->
+      <div align="center" style="text-align: right;" mat-raised-button matTooltip="પત્રવ્યવહાર માટે" > 
+        Add Family Detail (પત્રવ્યવહાર માટે સરનામુ)
       </div>
     </mat-toolbar>
     <br><br>
@@ -15,8 +15,7 @@
           <div>
             <mat-form-field appearance="fill">
               <mat-label>Name for Postal Address</mat-label>
-              <input id="postaladdressname" matInput type="text" placeholder="Postal Address Name" [formControl]="postaladdressname" mat-raised-button/>
-                      <!--matTooltip="પત્રવ્યવહાર માટે નામ"-->  
+              <input id="postaladdressname" matInput type="text" placeholder="Postal Address Name" [formControl]="postaladdressname" mat-raised-button matTooltip="પત્રવ્યવહાર માટે નામ" />           
             </mat-form-field>
             <mat-form-field appearance="fill">
               <mat-label>CurrentAddress</mat-label>
@@ -107,22 +106,22 @@
               </ng-container>
 
               <!--<ng-container matColumnDef="OriginalVillage">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Original Village </mat-header-cell>
-      <mat-cell *matCellDef="let family"> {{family.originalVillage}} </mat-cell>
-    </ng-container>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Original Village </mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.originalVillage}} </mat-cell>
+              </ng-container>
 
-    <ng-container matColumnDef="OriginalDistrict">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Original District</mat-header-cell>
-      <mat-cell *matCellDef="let family"> {{family.originalDistrict}} </mat-cell>
-    </ng-container>-->
+              <ng-container matColumnDef="OriginalDistrict">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Original District</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.originalDistrict}} </mat-cell>
+              </ng-container>-->
               <ng-container matColumnDef="PostalAddressName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Postal Address Name</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.postalAddressName}} </mat-cell>
               </ng-container>
               <!--<ng-container matColumnDef="CurrentAddress">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Current Address</mat-header-cell>
-      <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
-    </ng-container>-->
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Current Address</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
+              </ng-container>-->
               <ng-container matColumnDef="CurrentVillage">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Current Village</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentVillage}} </mat-cell>
