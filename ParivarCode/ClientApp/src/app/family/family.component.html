@@ -14,7 +14,7 @@
         <div class="example-container">
           <div>
             <mat-card class="example-card">
-              <mat-card-header>
+              <mat-card-header class="mat-card-custom-header">
                 <mat-card-title-group>
                   <!--<mat-card-title>પત્રવ્યવહાર માટે સરનામું</mat-card-title>-->
                   <mat-card-subtitle>પત્રવ્યવહાર માટે</mat-card-subtitle>
@@ -31,11 +31,11 @@
                 </mat-form-field>
               </mat-card-content>
             </mat-card>
-            <br />
+
             <mat-card class="example-card">
-              <mat-card-header>
+              <mat-card-header class="mat-card-custom-header">
                 <mat-card-title-group>
-                  <mat-card-title>હાલ વતન</mat-card-title>
+                  <mat-card-subtitle>હાલ વતન</mat-card-subtitle>
                 </mat-card-title-group>
               </mat-card-header>
               <mat-card-content>
@@ -87,12 +87,12 @@
                 </mat-form-field>
               </mat-card-content>
             </mat-card>
-            <br />
+
 
             <mat-card class="example-card">
-              <mat-card-header>
+              <mat-card-header class="mat-card-custom-header">
                 <mat-card-title-group>
-                  <mat-card-title>મૂળ વતન</mat-card-title>
+                  <mat-card-subtitle>મૂળ વતન</mat-card-subtitle>
                 </mat-card-title-group>
               </mat-card-header>
               <mat-card-content>
@@ -107,11 +107,11 @@
                 </mat-form-field>
               </mat-card-content>
             </mat-card>
-            <br />
+
             <mat-card class="example-card">
-              <mat-card-header>
+              <mat-card-header class="mat-card-custom-header">
                 <mat-card-title-group>
-                  <mat-card-title>રહેવાની વ્યવસ્થા</mat-card-title>
+                  <mat-card-subtitle>રહેવાની વ્યવસ્થા</mat-card-subtitle>
                 </mat-card-title-group>
               </mat-card-header>
               <mat-card-content>
@@ -163,6 +163,7 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Current Address</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
               </ng-container>-->
+
               <ng-container matColumnDef="CurrentVillage">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Current Village</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentVillage}} </mat-cell>
@@ -176,8 +177,8 @@
                 <mat-cell *matCellDef="let family"> {{family.currentState}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="CurrentPincode">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Current Pincode</mat-header-cell>
-                <mat-cell *matCellDef="let family"> {{family.currentPincode}} </mat-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Original Village</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.originalVillage}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="Edit">
                 <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>

@@ -150,4 +150,29 @@ html {
   color: #fff;
 }
 
+.mat-card {
+margin-bottom:10px;
+}
+
+.mat-card-subtitle {
+  color: #d65d15 !important;
+}
+
+.mat-card-header-text {
+margin:0px !important;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  border: solid 1px #e1e1e1;
+  box-shadow: 0px 2px 1px -1px rgb(225 225 225 / 20%), 0px 1px 1px 0px rgb(225 225 225 / 14%), 0px 1px 3px 0px rgb(225 225 225 / 12%);
+}
+
+.mat-card-custom-header {
+  background-color: #fff2ea;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  line-height: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
 

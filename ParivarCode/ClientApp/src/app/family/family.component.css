@@ -85,7 +85,7 @@ mat-header-cell {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
-.mat-column-CurrentPincode {
+.mat-column-OriginalVillage {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 16% !important;
