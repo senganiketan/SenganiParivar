@@ -153,7 +153,7 @@
               </ng-container>
               <ng-container matColumnDef="Delete">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
-                <mat-cell *matCellDef="let familymember"> <button mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteFamily(familymember.familyMemberID)"><mat-icon>delete_forever</mat-icon></button></mat-cell>
+                <mat-cell *matCellDef="let familymember"> <button *ngIf="showDelete" mat-icon-button aria-label="Example icon button with a delete icon" type="button" mat-raised-button color="accent" matTooltip="Delete" (click)="deleteFamily(familymember.familyMemberID)"><mat-icon>delete_forever</mat-icon></button></mat-cell>
               </ng-container>
 
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

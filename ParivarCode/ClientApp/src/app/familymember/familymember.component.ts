@@ -27,6 +27,7 @@ export class FamilyMemberComponent implements OnInit {
   familymemberForm: any;
   allRelations!: Observable<Relation[]>;
   dataSaved = false;
+  showDelete = true;
   dataSource !: MatTableDataSource<FamilyMember>;
   selection = new SelectionModel<FamilyMember>(true, []);
   familyMemberIdUpdate = null as any;
@@ -146,6 +147,7 @@ export class FamilyMemberComponent implements OnInit {
 
   loadAllFamily() {
     this.familymemberservice.getfamilymembers(this.familyID).subscribe(data => {
+      if (data.length == 1) { this.showDelete = false; } else { this.showDelete = true; } 
       if (data.length < 1) {
         this.familymemberForm.controls['mobile'].setValue(this.modifiedbyid);
         this.familymemberForm.controls['relationid'].setValue(1);
@@ -159,12 +161,15 @@ export class FamilyMemberComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
+      
     });
   }
 
 
   FillRelationDDL() {
     this.allRelations = this.familymemberservice.getrelation();
+    
   }
 
 

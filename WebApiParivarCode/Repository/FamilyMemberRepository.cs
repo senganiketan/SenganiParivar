@@ -156,7 +156,7 @@ namespace WebApiParivarCode.Repository
             FamilyMember familyMemberobj = new FamilyMember();
 
             familyMemberobj = await _context.FamilyMembers
-                                        .Where(x => x.FamilyID == familyID && x.RelationID == 1 && x.Mobile == mobile && x.Active == true)
+                                        .Where(x => x.FamilyID == familyID && x.RelationID == 1 && x.ModifiedByID == mobile && x.Active == true)
                                         .OrderBy(x=> x.FamilyMemberID)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
