@@ -3,7 +3,7 @@
   <mat-card class="mat-elevation-z8 ">
 
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
-      <div align="center" style="text-align: right;" mat-raised-button matTooltip="પત્રવ્યવહાર માટે">
+      <div align="center" style="text-align: right;" mat-raised-button matTooltip="પત્રવ્યવહાર માટે ઘરનુ અથવા વ્યવસાય નુ સરનામું">
         Family location (પત્રવ્યવહાર માટે સરનામું)
       </div>
     </mat-toolbar>
@@ -17,7 +17,7 @@
               <mat-card-header class="mat-card-custom-header">
                 <mat-card-title-group>
                   <!--<mat-card-title>પત્રવ્યવહાર માટે સરનામું</mat-card-title>-->
-                  <mat-card-subtitle>પત્રવ્યવહાર માટે</mat-card-subtitle>
+                  <mat-card-subtitle>પત્રવ્યવહાર માટે વિગત</mat-card-subtitle>
                 </mat-card-title-group>
               </mat-card-header>
               <mat-card-content>
@@ -26,7 +26,7 @@
                   <input id="postaladdressname" matInput type="text" placeholder="Postal Address Name" [formControl]="postaladdressname" mat-raised-button matTooltip="પત્રવ્યવહાર માટે નામ" />
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>CurrentAddress</mat-label>
+                  <mat-label>Current Address</mat-label>
                   <textarea id="CurrentAddress" matInput type="text" placeholder="CurrentAddress" [formControl]="currentaddress"></textarea>
                 </mat-form-field>
               </mat-card-content>
@@ -40,11 +40,11 @@
               </mat-card-header>
               <mat-card-content>
                 <mat-form-field appearance="fill">
-                  <mat-label>CurrentVillage</mat-label>
+                  <mat-label>Current Village</mat-label>
                   <input id="CurrentVillage" matInput type="text" placeholder="CurrentVillage" [formControl]="currentvillage">
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>CurrentDistrict</mat-label>
+                  <mat-label>Current District</mat-label>
                   <input id="CurrentDistrict" matInput type="text" placeholder="CurrentDistrict" [formControl]="currentdistrict">
                 </mat-form-field>
                 <mat-form-field appearance="fill">
@@ -82,7 +82,7 @@
                   </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>CurrentPincode</mat-label>
+                  <mat-label>Current Pincode</mat-label>
                   <input id="CurrentPincode" matInput minLength="5" maxLength="6" placeholder="CurrentPincode" [formControl]="currentpincode">
                 </mat-form-field>
               </mat-card-content>
@@ -98,11 +98,11 @@
               <mat-card-content>
                 <br />
                 <mat-form-field appearance="fill">
-                  <mat-label>OriginalVillage</mat-label>
+                  <mat-label>Original Village</mat-label>
                   <input id="OriginalVillage" matInput type="text" placeholder="OriginalVillage" [formControl]="originalvillage">
                 </mat-form-field>
                 <mat-form-field appearance="fill">
-                  <mat-label>OriginalDistrict</mat-label>
+                  <mat-label>Original District</mat-label>
                   <input id="OriginalDistrict" matInput type="text" placeholder="OriginalDistrict" [formControl]="originaldistrict">
                 </mat-form-field>
               </mat-card-content>

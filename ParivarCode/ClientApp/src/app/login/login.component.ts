@@ -20,14 +20,9 @@ export class LoginComponent {
   otphide = true;
   btnmobilehide = false; 
   userlogin: UserLogin = new UserLogin;
-  /*isLoggedIn = false;*/
 
   ngOnInit(): void {
-    this.mobileForm.reset();
-
-    //if (this.sessionstorage.isLoggedIn()) {
-    //  this.isLoggedIn = true;
-    //}
+    this.mobileForm.reset();   
   }
   
   
@@ -56,31 +51,46 @@ export class LoginComponent {
     if (this.mobileForm.valid) {
       this.mobileForm.controls.mobile.disable();
       this.otphide = false;
-      this.btnmobilehide = true;
-
-      this._snackBar.open('OTP sent Successfully', '', {
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        duration: 3500,
-        panelClass: ['my-snack-bar']
-      });
+      this.btnmobilehide = true;   
       
       this.userlogin.otp = this.loginservice.generateOTP();
-      //CALL SMS SERVICE
-      this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
-        this.userlogin.mobile = this.mobile.value;
-        if (result.mobile == null || result.mobile < 0) {
-          this.userlogin.isLoginSuccess = false;
-          this.userlogin.loginAttemp = 0;
-          this.AddUserLogin();
-        }
-        else {
-          this.userlogin.isLoginSuccess = false;
-          this.userlogin.loginAttemp = result.loginAttemp;
-          this.userlogin.userLoginID = result.userLoginID;
-          this.UpdateUserLogin();
-        }
-      });
+      
+
+      // Webconfig settings to allow sms
+      if (this.loginservice.SendSMS(this.mobile.value, this.userlogin.otp) == true) {
+        //CALL SMS SERVICE OVER
+        this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
+          this.userlogin.mobile = this.mobile.value;
+          if (result.mobile == null || result.mobile < 0) {
+            this.userlogin.isLoginSuccess = false;
+            this.userlogin.loginAttemp = 0;
+            this.AddUserLogin();
+          }
+          else {
+            this.userlogin.isLoginSuccess = false;
+            this.userlogin.loginAttemp = result.loginAttemp;
+            this.userlogin.userLoginID = result.userLoginID;
+            this.UpdateUserLogin();
+          }
+        });
+
+        this._snackBar.open('OTP sent Successfully', '', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 4000,
+          panelClass: ['my-snack-bar']
+        });
+      }
+      else {
+        this._snackBar.open('OTP is not sent. Please try again', '', {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 6000,
+          panelClass: ['my-snack-bar-error']
+        });
+      }
+
+    
 
       console.log(this.userlogin.otp);
       console.log(this.mobile.value);
@@ -111,7 +121,7 @@ export class LoginComponent {
         this._snackBar.open('OTP is Invalid', '', {
           horizontalPosition: 'center',
           verticalPosition: 'top',
-          duration: 3500,
+          duration: 5000,
           panelClass: ['my-snack-bar-error']
         });
         console.log("OTP is Invalid");

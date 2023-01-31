@@ -4,12 +4,13 @@ import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { UserLogin } from '../model/UserLogin';
 
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoginService {   
-
+   
   constructor(private http: HttpClient) {
   }
 
@@ -28,6 +29,35 @@ export class LoginService {
     return result;
   }
 
+
+
+
+  public SendSMS(mobile: number, otp: number): boolean {    
+
+    var mobilenumber = "91" + mobile;
+    var smsbody = otp + " OTP is login to Shree Hirjidada Website - RworldComp";
+    var APIResult = false;
+    
+    const headers = {
+      'Authorization': 'Basic dklvaXFqYW13T1J0V3EwWXM3THc6VFBNcnJocXhBZ3huRFlNQmE4eHRCRDdDc0JWOERmNG1wakVjVkJrRg==',
+      'Content-Type': 'application/json',     
+    };
+    const body = {
+      Text: smsbody,
+      Number: mobilenumber,
+      SenderId: 'HIRJID',
+      DRNotifyUrl: 'http://www.hirjidada.com/notifyurl',
+      DRNotifyHttpMethod: 'POST',
+      Tool: 'API'
+    }
+   
+    var result = this.http.post<any>(`https://restapi.smscountry.com/v0.1/Accounts/vIoiqjamwORtWq0Ys7Lw/SMSes/`, body, { headers }).subscribe(data => {     
+      APIResult = (data.Success.toLowerCase() == 'true');
+      console.log("Success : " + data.Success);
+      console.log("APIResult : " + APIResult);      
+    });   
+    return APIResult;   
+  }
 
  
   generateOTP(): number {

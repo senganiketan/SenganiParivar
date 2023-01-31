@@ -82,7 +82,8 @@ import { httpInterceptorProviders } from './service/http.interceptor';
       { path: 'daughterdetail', component: DaughterDetailComponent },
     ]),   
   ],
-  providers: [httpInterceptorProviders],
+  providers: [],
+  // providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
