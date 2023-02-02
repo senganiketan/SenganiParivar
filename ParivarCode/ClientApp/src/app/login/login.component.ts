@@ -7,6 +7,7 @@ import { LoginService } from './login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppComponent } from '../app.component';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -17,16 +18,16 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class LoginComponent {
-   
+
   otphide = true;
-  btnmobilehide = false; 
+  btnmobilehide = false;
   userlogin: UserLogin = new UserLogin;
   ngOnInit(): void {
-    this.mobileForm.reset();   
+    this.mobileForm.reset();
   }
-  
 
-  constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice: LoginService, private _snackBar: MatSnackBar, private appcomponent: AppComponent, private http: HttpClient ) { }
+
+  constructor(private router: Router, private sessionstorage: SessionStorageService, private loginservice: LoginService, private _snackBar: MatSnackBar, private appcomponent: AppComponent, private http: HttpClient) { }
 
   mobileForm = new FormGroup({
     mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.required])
@@ -46,19 +47,19 @@ export class LoginComponent {
   }
 
 
-   onSubmitmobileForm() {
+  onSubmitmobileForm() {
     if (this.mobileForm.valid) {
       this.mobileForm.controls.mobile.disable();
       this.otphide = false;
-      this.btnmobilehide = true;   
-      
-      this.userlogin.otp = this.loginservice.generateOTP();    
+      this.btnmobilehide = true;
+
+      this.userlogin.otp = this.loginservice.generateOTP();
 
       var mobilenumber = "91" + this.mobile.value;
-      var smsbody = this.userlogin.otp + " OTP is login to Shree Hirjidada Website - RworldComp";     
+      var smsbody = this.userlogin.otp + " OTP is login to Shree Hirjidada Website - RworldComp";
 
       const headers = {
-        'Authorization': 'Basic dklvaXFqYW13T1J0V3EwWXM3THc6VFBNcnJocXhBZ3huRFlNQmE4eHRCRDdDc0JWOERmNG1wakVjVkJrRg==',       
+        'Authorization': 'Basic dklvaXFqYW13T1J0V3EwWXM3THc6VFBNcnJocXhBZ3huRFlNQmE4eHRCRDdDc0JWOERmNG1wakVjVkJrRg==',
         'Content-Type': 'application/json',
       };
       const body = {
@@ -70,55 +71,49 @@ export class LoginComponent {
         Tool: 'API'
       }
 
-      this.http.post<any>(`https://restapi.smscountry.com/v0.1/Accounts/vIoiqjamwORtWq0Ys7Lw/SMSes/`, body, { headers }).subscribe({
-        next: (data) => {
-
-          console.log("this.smsresponse.Success : " + data.Success);
-          if (data.Success == "True") {            
-            this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
-              this.userlogin.mobile = this.mobile.value;
-              if (result.mobile == null || result.mobile < 0) {
-                this.userlogin.isLoginSuccess = false;
-                this.userlogin.loginAttemp = 0;
-                this.AddUserLogin();
-              }
-              else {
-                this.userlogin.isLoginSuccess = false;
-                this.userlogin.loginAttemp = result.loginAttemp;
-                this.userlogin.userLoginID = result.userLoginID;
-                this.UpdateUserLogin();
-              }
-            });
-
-            this._snackBar.open('OTP sent Successfully', '', {
-              horizontalPosition: 'center',
-              verticalPosition: 'top',
-              duration: 4000,
-              panelClass: ['my-snack-bar']
-            });
+      if (environment.production == true) {
+        this.http.post<any>(`https://restapi.smscountry.com/v0.1/Accounts/vIoiqjamwORtWq0Ys7Lw/SMSes/`, body, { headers }).subscribe({
+          next: (data) => {
+            if (data.Success == "True") {
+              this.InsertLoginDetails();
+            }
+            else {
+              this.SnackBarOTPNotSent();
+            }
+          },
+          error: (err) => {
+            this.SnackBarOTPNotSent();
+            console.log(err);
           }
-          else {
-            this._snackBar.open('OTP is not sent. Please try again', '', {
-              horizontalPosition: 'center',
-              verticalPosition: 'top',
-              duration: 6000,
-              panelClass: ['my-snack-bar-error']
-            });
-          }
-        },
-        error: (err) => {
-          this._snackBar.open('OTP is not sent. Please try again', '', {
-            horizontalPosition: 'center',
-            verticalPosition: 'top',
-            duration: 6000,
-            panelClass: ['my-snack-bar-error']
-          });
-          console.log(err);
-        }
+        });
       }
-      );
+      else {
+        console.log("this.userlogin.otp : " + this.userlogin.otp);
+        this.InsertLoginDetails();
+      }
     }
   }
+
+
+  InsertLoginDetails() {
+    this.loginservice.getUserLoginByMobile(this.mobile.value).subscribe(result => {
+      this.userlogin.mobile = this.mobile.value;
+      if (result.mobile == null || result.mobile < 0) {
+        this.userlogin.isLoginSuccess = false;
+        this.userlogin.loginAttemp = 0;
+        this.AddUserLogin();
+      }
+      else {
+        this.userlogin.isLoginSuccess = false;
+        this.userlogin.loginAttemp = result.loginAttemp;
+        this.userlogin.userLoginID = result.userLoginID;
+        this.UpdateUserLogin();
+      }
+    });
+
+    this.SnackBarOTPSentSuccessfully();
+  }
+
   onSubmitotpform() {
     if (this.otpForm.valid) {
       console.log("OTP : " + this.otp.value);
@@ -173,6 +168,24 @@ export class LoginComponent {
       }
       );
   }
+
+  SnackBarOTPSentSuccessfully() {
+    this._snackBar.open('OTP sent Successfully', '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 6000,
+      panelClass: ['my-snack-bar']
+    });
+  }
+  SnackBarOTPNotSent() {
+    this._snackBar.open('OTP is not sent. Please try again', '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 6000,
+      panelClass: ['my-snack-bar-error']
+    });
+  }
+
+
+
 }
-
-
