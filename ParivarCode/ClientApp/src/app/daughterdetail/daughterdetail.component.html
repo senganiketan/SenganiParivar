@@ -8,7 +8,7 @@
 
       </button>
       <div align="center" style="text-align: right; padding-left: 15px;">
-        Add Daughter Details
+        Add પરણીત દિકરીયો
       </div>
     </mat-toolbar>
     <br><br>
@@ -19,21 +19,21 @@
           <div>
             <mat-form-field class="example-full-width " appearance="fill">
               <mat-label class="font-orange"> વડીલ નુ નામ</mat-label>
-              <input id="familymembername" class="font-orange" matInput type="text" placeholder="vinod" [formControl]="familymembername">
+              <input id="familymembername" class="font-orange" matInput type="text" [formControl]="familymembername">
             </mat-form-field>
           </div>
           <div>
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>First name</mat-label>
-              <input id="firstname" matInput type="text" placeholder="vinod" [formControl]="firstname">
+              <input id="firstname" matInput type="text" placeholder="GangaBen" [formControl]="firstname">
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Husband Name</mat-label>
-              <input id="husband name" matInput type="text" placeholder="husbandname" [formControl]="husbandname">
+              <input id="husband name" matInput type="text" placeholder="Husband Name" [formControl]="husbandname">
             </mat-form-field>
-            <mat-form-field class="example-full-width" appearance="fill">
+            <mat-form-field class="example-full-width" appearance="fill"  >
               <mat-label>FatherInLawName</mat-label>
-              <input id="fatherInLawName" type="text" matInput placeholder="FatherInLawName" [formControl]="fatherInLawName">
+              <input id="fatherInLawName" type="text" matInput placeholder="FatherInLawName" [formControl]="fatherInLawName" matTooltip="સસરાનું નામ">
             </mat-form-field>
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Surname</mat-label>
@@ -53,14 +53,14 @@
             </mat-form-field>          
             <mat-form-field appearance="fill">
               <mat-label>Attending Program</mat-label>
-              <mat-select [formControl]="attendingProgram">
+              <mat-select [formControl]="attendingProgram" matTooltip="મહોત્સવમાં હાજરી આપવાના છે?">
                 <mat-option value="1">Yes</mat-option>
                 <mat-option value="0">No</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" >
               <mat-label>Relation</mat-label>
-              <mat-select formControlName="relationid" matTooltip="Select Relation" autocomplete="off">
+              <mat-select formControlName="relationid" autocomplete="off" matTooltip="વડીલ સાથે સંબંધ">
                 <mat-option *ngFor="let Relation of (allRelations | async)" [value]="Relation.relationID">
                   {{Relation.relationName}}
                 </mat-option>

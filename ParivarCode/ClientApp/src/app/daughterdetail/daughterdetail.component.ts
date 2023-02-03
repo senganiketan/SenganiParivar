@@ -273,7 +273,9 @@ export class DaughterDetailComponent implements OnInit {
   }
 
   ClearForm() {
+    var vadilname = this.daughterdetailForm.controls['familymembername'].value;   
     this.daughterdetailForm.reset();
+    this.daughterdetailForm.controls['familymembername'].setValue(vadilname);
     this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
     this.daughterdetailForm.controls['giftRecieved'].setValue('0');
     this.daughterdetailForm.controls['attendingProgram'].setValue('1');
