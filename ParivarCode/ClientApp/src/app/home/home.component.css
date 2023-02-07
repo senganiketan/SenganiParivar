@@ -7,20 +7,20 @@
 
 .box-light-orange {
   margin: 5px;
-  float: left;
+  /*float: left;*/
   padding: 20px;
   background-color: #fef1ee;
-  width: 31%;
+  /*width: 31%;*/
   height: 400px;
   color: #98290f;
 }
 
 .box-light-blue {
   margin: 5px;
-  float: left;
+  /*float: left;*/
   padding: 20px;
   background-color: #f1feff;
-  width: 31%;
+  /*width: 31%;*/
   height: 400px;
   color: #126d74;
 }
@@ -28,10 +28,10 @@
 
 .box-light-olive {
   margin: 5px;
-  float: left;
+  /*float: left;*/
   padding: 20px;
   background-color: #f3f3e3;
-  width: 31%;
+ /* width: 31%;*/
   height: 400px;
   color: #66660e;
 }

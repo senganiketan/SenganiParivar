@@ -3,127 +3,155 @@
   <mat-card class="mat-elevation-z8 ">
 
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
-      <div align="center" style="text-align: right;" mat-raised-button matTooltip="પત્રવ્યવહાર માટે ઘરનુ અથવા વ્યવસાય નુ સરનામું">
-        Family location (પત્રવ્યવહાર માટે સરનામું)
+      <div align="center" class="row text-left" mat-raised-button matTooltip="પત્રવ્યવહાર માટે ઘરનુ અથવા વ્યવસાય નુ સરનામું">
+        <div class="col-lg-5 col-md-12 col-sm-12">Family location</div>
+        <div class="col-lg-6 col-md-12 col-sm-12"> (પત્રવ્યવહાર માટે સરનામું)</div>
       </div>
     </mat-toolbar>
-    <br><br>
-
+    <br />
     <mat-card-content>
       <form [formGroup]="familyForm" (ngSubmit)="onSubmitfamilyForm(familyForm.value)">
         <div class="example-container">
-          <div>
-            <mat-card class="example-card">
-              <mat-card-header class="mat-card-custom-header">
-                <mat-card-title-group>
-                  <!--<mat-card-title>પત્રવ્યવહાર માટે સરનામું</mat-card-title>-->
-                  <mat-card-subtitle>પત્રવ્યવહાર માટે વિગત</mat-card-subtitle>
-                </mat-card-title-group>
-              </mat-card-header>
-              <mat-card-content>
-                <mat-form-field appearance="fill">
-                  <mat-label>Name for Postal Address</mat-label>
-                  <input id="postaladdressname" matInput type="text" placeholder="Postal Address Name" [formControl]="postaladdressname" mat-raised-button matTooltip="પત્રવ્યવહાર માટે નામ" />
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Current Address</mat-label>
-                  <textarea id="CurrentAddress" matInput type="text" placeholder="CurrentAddress" [formControl]="currentaddress"></textarea>
-                </mat-form-field>
-              </mat-card-content>
-            </mat-card>
+          <mat-card class="example-card custom-padding-10">
+            <mat-card-header class="mat-card-custom-header">
+              <mat-card-title-group>
+                <!--<mat-card-title>પત્રવ્યવહાર માટે સરનામું</mat-card-title>-->
+                <mat-card-subtitle>પત્રવ્યવહાર માટે વિગત</mat-card-subtitle>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Name for Postal Address</mat-label>
+                    <input id="postaladdressname" matInput type="text" placeholder="Postal Address Name" [formControl]="postaladdressname" mat-raised-button matTooltip="પત્રવ્યવહાર માટે નામ" />
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Current Address</mat-label>
+                    <textarea id="CurrentAddress" matInput type="text" placeholder="CurrentAddress" [formControl]="currentaddress"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
 
-            <mat-card class="example-card">
-              <mat-card-header class="mat-card-custom-header">
-                <mat-card-title-group>
-                  <mat-card-subtitle>હાલ વતન</mat-card-subtitle>
-                </mat-card-title-group>
-              </mat-card-header>
-              <mat-card-content>
-                <mat-form-field appearance="fill">
-                  <mat-label>Current Village</mat-label>
-                  <input id="CurrentVillage" matInput type="text" placeholder="CurrentVillage" [formControl]="currentvillage">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Current District</mat-label>
-                  <input id="CurrentDistrict" matInput type="text" placeholder="CurrentDistrict" [formControl]="currentdistrict">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Current State</mat-label>
-                  <mat-select [formControl]="currentstate">
-                    <mat-option value="Andhra Pradesh">Andhra Pradesh</mat-option>
-                    <mat-option value="Arunachal Pradesh">Arunachal Pradesh</mat-option>
-                    <mat-option value="Assam">Assam</mat-option>
-                    <mat-option value="Bihar">Bihar</mat-option>
-                    <mat-option value="Chhattisgarh">Chhattisgarh</mat-option>
-                    <mat-option value="Goa">Goa</mat-option>
-                    <mat-option value="Gujarat">Gujarat</mat-option>
-                    <mat-option value="Haryana">Haryana</mat-option>
-                    <mat-option value="Himachal Pradesh">Himachal Pradesh</mat-option>
-                    <mat-option value="Jharkhand">Jharkhand</mat-option>
-                    <mat-option value="Karnataka">Karnataka</mat-option>
-                    <mat-option value="Kerala">Kerala</mat-option>
-                    <mat-option value="Madhya Pradesh">Madhya Pradesh</mat-option>
-                    <mat-option value="Maharashtra">Maharashtra</mat-option>
-                    <mat-option value="Manipur">Manipur</mat-option>
-                    <mat-option value="Meghalaya">Meghalaya</mat-option>
-                    <mat-option value="Mizoram">Mizoram</mat-option>
-                    <mat-option value="Nagaland">Nagaland</mat-option>
-                    <mat-option value="Odisha">Odisha</mat-option>
-                    <mat-option value="Punjab">Punjab</mat-option>
-                    <mat-option value="Rajasthan">Rajasthan</mat-option>
-                    <mat-option value="Sikkim">Sikkim</mat-option>
-                    <mat-option value="Tamil Nadu">Tamil Nadu</mat-option>
-                    <mat-option value="Telangana">Telangana</mat-option>
-                    <mat-option value="Tripura">Tripura</mat-option>
-                    <mat-option value="Uttar Pradesh">Uttar Pradesh</mat-option>
-                    <mat-option value="Uttarakhand">Uttarakhand</mat-option>
-                    <mat-option value="West Bengal">West Bengal</mat-option>
-                    <mat-option value="Other">Other</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Current Pincode</mat-label>
-                  <input id="CurrentPincode" matInput minLength="5" maxLength="6" placeholder="CurrentPincode" [formControl]="currentpincode">
-                </mat-form-field>
-              </mat-card-content>
-            </mat-card>
+          <mat-card class="example-card custom-padding-10">
+            <mat-card-header class="mat-card-custom-header">
+              <mat-card-title-group>
+                <mat-card-subtitle>હાલ વતન</mat-card-subtitle>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Current Village</mat-label>
+                    <input id="CurrentVillage" matInput type="text" placeholder="CurrentVillage" [formControl]="currentvillage">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Current District</mat-label>
+                    <input id="CurrentDistrict" matInput type="text" placeholder="CurrentDistrict" [formControl]="currentdistrict">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Current State</mat-label>
+                    <mat-select [formControl]="currentstate">
+                      <mat-option value="Andhra Pradesh">Andhra Pradesh</mat-option>
+                      <mat-option value="Arunachal Pradesh">Arunachal Pradesh</mat-option>
+                      <mat-option value="Assam">Assam</mat-option>
+                      <mat-option value="Bihar">Bihar</mat-option>
+                      <mat-option value="Chhattisgarh">Chhattisgarh</mat-option>
+                      <mat-option value="Goa">Goa</mat-option>
+                      <mat-option value="Gujarat">Gujarat</mat-option>
+                      <mat-option value="Haryana">Haryana</mat-option>
+                      <mat-option value="Himachal Pradesh">Himachal Pradesh</mat-option>
+                      <mat-option value="Jharkhand">Jharkhand</mat-option>
+                      <mat-option value="Karnataka">Karnataka</mat-option>
+                      <mat-option value="Kerala">Kerala</mat-option>
+                      <mat-option value="Madhya Pradesh">Madhya Pradesh</mat-option>
+                      <mat-option value="Maharashtra">Maharashtra</mat-option>
+                      <mat-option value="Manipur">Manipur</mat-option>
+                      <mat-option value="Meghalaya">Meghalaya</mat-option>
+                      <mat-option value="Mizoram">Mizoram</mat-option>
+                      <mat-option value="Nagaland">Nagaland</mat-option>
+                      <mat-option value="Odisha">Odisha</mat-option>
+                      <mat-option value="Punjab">Punjab</mat-option>
+                      <mat-option value="Rajasthan">Rajasthan</mat-option>
+                      <mat-option value="Sikkim">Sikkim</mat-option>
+                      <mat-option value="Tamil Nadu">Tamil Nadu</mat-option>
+                      <mat-option value="Telangana">Telangana</mat-option>
+                      <mat-option value="Tripura">Tripura</mat-option>
+                      <mat-option value="Uttar Pradesh">Uttar Pradesh</mat-option>
+                      <mat-option value="Uttarakhand">Uttarakhand</mat-option>
+                      <mat-option value="West Bengal">West Bengal</mat-option>
+                      <mat-option value="Other">Other</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Current Pincode</mat-label>
+                    <input id="CurrentPincode" matInput minLength="5" maxLength="6" placeholder="CurrentPincode" [formControl]="currentpincode">
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <mat-card class="example-card custom-padding-10">
+            <mat-card-header class="mat-card-custom-header">
+              <mat-card-title-group>
+                <mat-card-subtitle>મૂળ વતન</mat-card-subtitle>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Original Village</mat-label>
+                    <input id="OriginalVillage" matInput type="text" placeholder="OriginalVillage" [formControl]="originalvillage">
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Original District</mat-label>
+                    <input id="OriginalDistrict" matInput type="text" placeholder="OriginalDistrict" [formControl]="originaldistrict">
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
 
-
-            <mat-card class="example-card">
-              <mat-card-header class="mat-card-custom-header">
-                <mat-card-title-group>
-                  <mat-card-subtitle>મૂળ વતન</mat-card-subtitle>
-                </mat-card-title-group>
-              </mat-card-header>
-              <mat-card-content>
-                <br />
-                <mat-form-field appearance="fill">
-                  <mat-label>Original Village</mat-label>
-                  <input id="OriginalVillage" matInput type="text" placeholder="OriginalVillage" [formControl]="originalvillage">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Original District</mat-label>
-                  <input id="OriginalDistrict" matInput type="text" placeholder="OriginalDistrict" [formControl]="originaldistrict">
-                </mat-form-field>
-              </mat-card-content>
-            </mat-card>
-
-            <mat-card class="example-card">
-              <mat-card-header class="mat-card-custom-header">
-                <mat-card-title-group>
-                  <mat-card-subtitle>રહેવાની વ્યવસ્થા</mat-card-subtitle>
-                </mat-card-title-group>
-              </mat-card-header>
-              <mat-card-content>
-                <mat-checkbox id="residentialFacility" [formControl]="residentialFacility" mat-raised-button matTooltip="જો પસંદ કર્યુ હશે તો, જે તે કમિટિના સભ્યો તમને કોલ કરીને વાત કરશે.">Residential Facility</mat-checkbox>
-              </mat-card-content>
-            </mat-card>
-          </div>
-          <br />
+          <mat-card class="example-card custom-padding-10">
+            <mat-card-header class="mat-card-custom-header">
+              <mat-card-title-group>
+                <mat-card-subtitle>રહેવાની વ્યવસ્થા</mat-card-subtitle>
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <mat-checkbox id="residentialFacility" [formControl]="residentialFacility" mat-raised-button matTooltip="જો પસંદ કર્યુ હશે તો, જે તે કમિટિના સભ્યો તમને કોલ કરીને વાત કરશે.">Residential Facility</mat-checkbox>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
           <div class="btn-right">
-            <button type="submit" class="btn-orange" mat-raised-button [disabled]="isDisabled">submit</button>&nbsp;&nbsp;
-            <button type="button" class="btn-orange" mat-raised-button [disabled]="isDisabled" (click)='ClearForm()'>clear</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn-orange" mat-raised-button [disabled]="isAddMemmbersbtnDisabled" routerLink="/familymember" matTooltip="કુટુંબના સભ્યોની નોંધણી.">Add Members</button>
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-12 mrg-btm-5 mrg-top-5">
+                <button type="submit" class="btn-orange" mat-raised-button [disabled]="isDisabled">submit</button>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-12 mrg-btm-5 mrg-top-5">
+                <button type="button" class="btn-orange" mat-raised-button [disabled]="isDisabled" (click)='ClearForm()'>clear</button>
+              </div>
+              <div class="col-lg-6 col-md-4 col-sm-12 mrg-btm-5 mrg-top-5">
+                <button type="button" class="btn-orange" mat-raised-button [disabled]="isAddMemmbersbtnDisabled" routerLink="/familymember" matTooltip="કુટુંબના સભ્યોની નોંધણી.">Add Members</button>
+              </div>
+            </div>
           </div>
           <div>
             <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success" align="left">
@@ -163,7 +191,6 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Current Address</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
               </ng-container>-->
-
               <ng-container matColumnDef="CurrentVillage">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Current Village</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentVillage}} </mat-cell>
