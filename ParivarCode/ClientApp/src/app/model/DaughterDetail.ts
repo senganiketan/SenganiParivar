@@ -15,4 +15,6 @@ export class DaughterDetail {
   modifiedbyid?: bigint;
   modifiedDate?: Date;
   RelationName = "";
+  vadilNuName = "";
+  vadilNuCurrentVillage = "";
 }

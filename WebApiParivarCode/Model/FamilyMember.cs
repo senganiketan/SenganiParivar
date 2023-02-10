@@ -20,7 +20,7 @@ namespace WebApiParivarCode.Model
         public bool AttendingProgram { get; set; }
         public bool Active { get; set; }
         public Int64 ModifiedByID { get; set; }
-        public DateTime? ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }        
     }
     public class FamilyMemberList
     {
@@ -40,5 +40,7 @@ namespace WebApiParivarCode.Model
         public Int64 ModifiedByID { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string? RelationName { get; set; }
+        public string? OriginalVillage { get; set; }
+        public string? CurrentVillage { get; set; }
     }
 }

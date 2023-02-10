@@ -1,0 +1,109 @@
+<div class="container">
+  <mat-card class="mat-elevation-z8">
+    <mat-tab-group>
+      <mat-tab label="Family Details">
+        <div class="example-container-table">
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.firstName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="fatherHusbandName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Father/Husband Name</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.fatherHusbandName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="maritalStatus">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Marital status</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.maritalStatus}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="attendingProgram">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Attending program</mat-header-cell>
+                <mat-cell *matCellDef="let familymember">  {{familymember.attendingProgram ==0? 'No' : 'Yes'}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="relationName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Relation</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.relationName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="mobile">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.mobile}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="currentVillage">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Current Village</mat-header-cell>
+                <mat-cell *matCellDef="let familymember">  {{familymember.currentVillage}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="originalVillage">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Original Village</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.originalVillage}} </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Daughter Details">
+        <div class="example-container-table">
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSourcedaughter" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+              <ng-container matColumnDef="firstName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FirstName</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.firstName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="husbandName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>HusbandName</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.husbandName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="surname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Surname</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.surname}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="fatherInLawName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FatherInLawName</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="relationName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Relation</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="age">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.age}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="village">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Village</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.village}} </mat-cell>
+              </ng-container>
+              <!--<ng-container matColumnDef="giftRecieved">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>GiftRecieved</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.giftRecieved}} </mat-cell>
+              </ng-container>-->
+              <ng-container matColumnDef="mobile">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.mobile}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="attendingProgram">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>AP</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram ==0? 'No' : 'Yes'}} </mat-cell>
+              </ng-container>
+             <ng-container matColumnDef="vadilNuName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>VadilNuName</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail">  {{daughterdetail.vadilNuName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="vadilNuCurrentVillage">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>VadilCurrentVillage</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail">  {{daughterdetail.vadilNuCurrentVillage}} </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumnsdaughter"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumnsdaughter;"></mat-row>
+            </table>
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>
+

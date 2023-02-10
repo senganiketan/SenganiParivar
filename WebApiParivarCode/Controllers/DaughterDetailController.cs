@@ -22,6 +22,13 @@ namespace WebApiParivarCode.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllDaughterDetails")]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _daughterDetailRepository.GetAllDaughterDetails());
+        }
+
+        [HttpGet]
         [Route("GetDaughterDetailByID/{DaughterDetailID}")]
         public async Task<IActionResult> GetDaughterDetailById(int DaughterDetailID)
         {

@@ -26,8 +26,9 @@ import { MatTableModule } from '@angular/material/table';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 //import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -36,6 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { FamilyComponent } from './family/family.component';
 import { FamilyMemberComponent } from './familymember/familymember.component';
 import { DaughterDetailComponent } from './daughterdetail/daughterdetail.component';
+import { AllFamilyDetailsComponent } from './allfamilydetails/allfamilydetails.component';
 
 import { httpInterceptorProviders } from './service/http.interceptor';
 
@@ -48,6 +50,7 @@ import { httpInterceptorProviders } from './service/http.interceptor';
     FamilyComponent,
     FamilyMemberComponent,
     DaughterDetailComponent,
+    AllFamilyDetailsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -75,14 +78,15 @@ import { httpInterceptorProviders } from './service/http.interceptor';
     CdkTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    NgbModule,
-
+    MatTabsModule,
+    //NgbModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },    
       { path: 'login-data', component: LoginComponent },
       { path: 'family', component: FamilyComponent },
       { path: 'familymember', component: FamilyMemberComponent },
       { path: 'daughterdetail', component: DaughterDetailComponent },
+      { path: 'allfamilydetails', component: AllFamilyDetailsComponent }
     ]),   
   ],
   providers: [],

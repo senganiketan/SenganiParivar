@@ -45,5 +45,9 @@ namespace WebApiParivarCode.Model
 
         public string? RelationName { get; set; }
 
+        public string? VadilNuName { get; set; }
+
+        public string? VadilNuCurrentVillage { get; set; }
+
     }
 }

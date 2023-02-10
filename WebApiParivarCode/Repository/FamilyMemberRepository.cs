@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using System.Reflection;
+using System.Runtime.Intrinsics.X86;
 using WebApiParivarCode.Model;
 
 namespace WebApiParivarCode.Repository
@@ -14,6 +15,8 @@ namespace WebApiParivarCode.Repository
         Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember);
         bool DeleteFamilyMember(int ID);
         Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID, decimal mobile);
+
+        Task<IEnumerable<FamilyMemberList>> GetAllFamilyMembers();
     }
 
     public class FamilyMemberRepository : IFamilyMemberRepository
@@ -45,16 +48,52 @@ namespace WebApiParivarCode.Repository
                                                     Age = x.Age,
                                                     MaritalStatus = x.MaritalStatus,
                                                     Education = x.Education,
-                                                    Business = x.Business,                                                 
+                                                    Business = x.Business,
                                                     Mobile = x.Mobile == null ? null :x.Mobile,
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
-                                                    RelationName = y.RelationName,                                                    
-                                                    ModifiedByID= Convert.ToInt64(x.ModifiedByID),
-                                                    ModifiedDate= Convert.ToDateTime(x.ModifiedDate),
+                                                    RelationName = y.RelationName,
+                                                    ModifiedByID = Convert.ToInt64(x.ModifiedByID),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
                                                 }
                                         ).ToListAsync();
+
+            return familyMemberList;
+
+        }
+
+
+        public async Task<IEnumerable<FamilyMemberList>> GetAllFamilyMembers()
+        {
+            List<FamilyMemberList> familyMemberList = new List<FamilyMemberList>();
+
+
+            familyMemberList = await _context.FamilyMembers
+                                        .Where(x => x.Active == true)
+                                        .Join(_context.Relations,
+                                                x => x.RelationID,
+                                                y => y.RelationID,
+                                                (x, y) => new { x, y })
+                                        .Join(_context.Families,
+                                        fm => fm.x.FamilyID,
+                                        f => f.FamilyID,
+                                        (f, fm) => new { f, fm })
+                                        .Select(m => new FamilyMemberList
+                                        {
+                                            FamilyMemberID = m.f.x.FamilyMemberID,
+                                            FirstName = m.f.x.FirstName,
+                                            FatherHusbandName = m.f.x.FatherHusbandName,
+                                            Gender = m.f.x.Gender,
+                                            Age = m.f.x.Age,
+                                            Mobile = m.f.x.Mobile,
+                                            MaritalStatus = m.f.x.MaritalStatus,
+                                            FamilyID = m.f.x.FamilyID,
+                                            AttendingProgram = m.f.x.AttendingProgram,
+                                            RelationName = m.f.y.RelationName,
+                                            CurrentVillage = m.fm.CurrentVillage,
+                                            OriginalVillage = m.fm.OriginalVillage
+                                        }).ToListAsync();
 
             return familyMemberList;
 
@@ -87,7 +126,7 @@ namespace WebApiParivarCode.Repository
                                                     ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
                                                 }
                                         ).FirstOrDefaultAsync() ?? new FamilyMember();
-            return familyMemberobj;        
+            return familyMemberobj;
 
         }
 
@@ -113,7 +152,7 @@ namespace WebApiParivarCode.Repository
         public bool DeleteFamilyMember(int FamilyMemberID)
         {
             bool result = false;
-            var familyMember =   _context.FamilyMembers
+            var familyMember = _context.FamilyMembers
                                         .Where(x => x.FamilyMemberID == FamilyMemberID)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
@@ -131,7 +170,7 @@ namespace WebApiParivarCode.Repository
                                                     Mobile = x.Mobile == null ? null : x.Mobile,
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
-                                                    RelationID = x.RelationID,                                                   
+                                                    RelationID = x.RelationID,
                                                     ModifiedByID = Convert.ToInt64(x.ModifiedByID),
                                                     ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
                                                 }
@@ -139,7 +178,7 @@ namespace WebApiParivarCode.Repository
             if (familyMember != null)
             {
                 familyMember.Active = false;
-                familyMember.ModifiedDate = DateTime.Now;   
+                familyMember.ModifiedDate = DateTime.Now;
                 _context.Entry(familyMember).State = EntityState.Modified;
                 _context.SaveChanges();
                 result = true;
@@ -157,7 +196,7 @@ namespace WebApiParivarCode.Repository
 
             familyMemberobj = await _context.FamilyMembers
                                         .Where(x => x.FamilyID == familyID && x.RelationID == 1 && x.ModifiedByID == mobile && x.Active == true)
-                                        .OrderBy(x=> x.FamilyMemberID)
+                                        .OrderBy(x => x.FamilyMemberID)
                                         .Join(_context.Relations,
                                                 x => x.RelationID,
                                                 y => y.RelationID,

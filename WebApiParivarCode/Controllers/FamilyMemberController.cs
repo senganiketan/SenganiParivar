@@ -22,6 +22,13 @@ namespace WebApiParivarCode.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllFamilyMember")]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _familyMemberRepository.GetAllFamilyMembers());
+        }
+
+        [HttpGet]
         [Route("GetFamilyMemberByMemberID/{Id}")]
         public async Task<IActionResult> GetFamilyMemberByMemberId(int Id)
         {
