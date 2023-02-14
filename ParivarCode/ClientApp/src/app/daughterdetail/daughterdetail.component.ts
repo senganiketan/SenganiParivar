@@ -238,7 +238,7 @@ export class DaughterDetailComponent implements OnInit {
       this.daughterdetailForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");
       this.daughterdetailForm.controls['giftRecieved'].setValue(result.giftRecieved == true ? "1" : "0");
       this.daughterdetailForm.controls['mobile'].setValue(result.mobile);
-      this.daughterdetailForm.controls['village'].setValue(result.village);      
+      this.daughterdetailForm.controls['village'].setValue(result.village);     
       this.daughterdetailForm.controls['alive'].setValue(result.alive == 1 ? "1" : (result.alive == 2 ? "2" : "3"));
     });
   }

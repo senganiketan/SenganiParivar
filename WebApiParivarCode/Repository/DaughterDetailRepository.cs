@@ -128,6 +128,7 @@ namespace WebApiParivarCode.Repository
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
+                                                    Alive = x.Alive,
                                                     ModifiedByID = Convert.ToInt64(x.ModifiedByID),
                                                     ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
                                                 }
