@@ -17,6 +17,7 @@ GO
 	[Mobile] numeric(10, 0) NULL,	
 	[Active] bit default 1,
 	[AttendingProgram] bit default 0,
+	--[Alive] int default 3,
 	[GiftRecieved] bit default 0,
     [ModifiedByID] numeric(10, 0)  NULL,
 	[ModifiedDate] datetime NOT NULL default getdate(),
@@ -25,6 +26,7 @@ GO
 	CONSTRAINT FK_DaughterDetail_RelationID FOREIGN KEY (RelationID) REFERENCES Relation(RelationID)    
 	);
 GO
-
+ALTER TABLE dbo.DaughterDetail ADD Alive int default 3;
+update dbo.DaughterDetail set Alive=3
 
 

@@ -20,6 +20,7 @@ namespace WebApiParivarCode.Model
         public bool Active { get; set; }
         public bool AttendingProgram { get; set; }
         public bool GiftRecieved { get; set; }
+        public int? Alive { get; set; }     
         public Int64 ModifiedByID { get; set; }
         public DateTime ModifiedDate { get; set; }
 
@@ -44,6 +45,8 @@ namespace WebApiParivarCode.Model
         public DateTime ModifiedDate { get; set; }
 
         public string? RelationName { get; set; }
+        public int? Alive { get; set; }
+        public string? AliveName { get; set; }
 
         public string? VadilNuName { get; set; }
 

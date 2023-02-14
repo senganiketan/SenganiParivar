@@ -1,7 +1,4 @@
-﻿using Microsoft.CodeAnalysis.FlowAnalysis;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
-using System.Reflection;
+﻿using Microsoft.EntityFrameworkCore;
 using WebApiParivarCode.Model;
 
 namespace WebApiParivarCode.Repository
@@ -52,6 +49,8 @@ namespace WebApiParivarCode.Repository
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
                                                     RelationName = y.RelationName,
+                                                    Alive = x.Alive,
+                                                    AliveName = (x.Alive == 1 ? "દિકરી હયાત છે" : (x.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે")),
                                                     ModifiedByID = Convert.ToInt64(x.ModifiedByID),
                                                     ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
                                                 }
@@ -180,6 +179,7 @@ namespace WebApiParivarCode.Repository
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
+                                                    Alive = x.Alive,
                                                     ModifiedByID = Convert.ToInt64(x.ModifiedByID),
                                                     ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
                                                 }

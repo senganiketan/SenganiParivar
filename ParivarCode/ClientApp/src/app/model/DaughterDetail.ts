@@ -11,10 +11,12 @@ export class DaughterDetail {
   mobile?: bigint;
   active?: boolean;
   attendingProgram?: boolean;
+  alive?: number;
   giftRecieved?: boolean;
   modifiedbyid?: bigint;
   modifiedDate?: Date;
   RelationName = "";
+  aliveName = "";
   vadilNuName = "";
   vadilNuCurrentVillage = "";
 }
