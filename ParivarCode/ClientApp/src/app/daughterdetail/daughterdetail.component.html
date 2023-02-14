@@ -92,14 +92,17 @@
                 </mat-select>
               </mat-form-field>
             </div>
-            <mat-form-field appearance="fill">
-              <mat-label>હયાત છે?</mat-label>
-              <mat-select [formControl]="alive" matTooltip="હયાત છે?">
-                <mat-option value="1">દિકરી હયાત છે</mat-option>
-                <mat-option value="2">જમાઈ હયાત છે</mat-option>
-                <mat-option value="3">બન્ને હયાત છે</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+              <mat-form-field appearance="fill">
+                <mat-label>હયાત છે?</mat-label>
+                <mat-select [formControl]="alive" matTooltip="હયાત છે?">
+                  <mat-option value="1">દિકરી હયાત છે</mat-option>
+                  <mat-option value="2">જમાઈ હયાત છે</mat-option>
+                  <mat-option value="3">બન્ને હયાત છે</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
             <div class="col-lg-3 col-md-6 col-sm-12" hidden>
               <label>GiftRecieved</label>&nbsp;
               <mat-radio-group aria-label="giftRecieved" [formControl]="giftRecieved">
@@ -150,10 +153,11 @@
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationID}} </mat-cell>
               </ng-container>
               <!--<ng-container matColumnDef="fatherInLawName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>FatherInLawName</mat-header-cell>
-    <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName }} </mat-cell>
-  </ng-container>-->
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FatherInLawName</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName }} </mat-cell>
+              </ng-container>-->
               <ng-container matColumnDef="age">
+                lD
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.age}} </mat-cell>
               </ng-container>
