@@ -6,19 +6,19 @@
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
               <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FirstName</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.firstName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="fatherHusbandName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Father/Husband Name</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Father/HusbandName</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.fatherHusbandName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="maritalStatus">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Marital status</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>MaritalStatus</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.maritalStatus}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="attendingProgram">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Attending program</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>AttendingProgram</mat-header-cell>
                 <mat-cell *matCellDef="let familymember">  {{familymember.attendingProgram ==0? 'No' : 'Yes'}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="relationName">
@@ -30,11 +30,11 @@
                 <mat-cell *matCellDef="let familymember"> {{familymember.mobile}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="currentVillage">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Current Village</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>CurrentVillage</mat-header-cell>
                 <mat-cell *matCellDef="let familymember">  {{familymember.currentVillage}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="originalVillage">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Original Village</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>OriginalVillage</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.originalVillage}} </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -61,7 +61,7 @@
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.surname}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="fatherInLawName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>FatherInLawName</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FatherInLaw</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="relationName">
@@ -85,7 +85,7 @@
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.mobile}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="attendingProgram">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>AP</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>ProgramAttend</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram ==0? 'No' : 'Yes'}} </mat-cell>
               </ng-container>
              <ng-container matColumnDef="vadilNuName">
