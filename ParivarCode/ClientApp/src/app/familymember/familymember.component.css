@@ -149,6 +149,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+.font-orange {
+  color: #e65100;
+}
+
 
 /* Firefox */
 input[type=number] {

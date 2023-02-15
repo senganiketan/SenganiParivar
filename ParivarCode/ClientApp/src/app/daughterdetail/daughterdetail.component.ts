@@ -34,6 +34,7 @@ export class DaughterDetailComponent implements OnInit {
   sessionmobile: number;
 
 
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   displayedColumns: string[] = ['firstName', 'husbandName', 'relationName', 'age', 'mobile', 'alive', 'Edit', 'Delete'];//'attendingProgram',
@@ -94,6 +95,11 @@ export class DaughterDetailComponent implements OnInit {
     return this.daughterdetailForm.get('familymembername');
   }
 
+  get familyMainID(): any {
+    return this.daughterdetailForm.get('familyMainID');
+  }
+
+
   constructor(private formbulider: UntypedFormBuilder, private daughterdetailservice: DaughterDetailService, private sessionstorage: SessionStorageService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
     this.familyID = Number(sessionStorage.getItem("session-familyId"));  //this.loadAllFamily(this.familyid);// We need to set familyid from previous page
@@ -118,10 +124,12 @@ export class DaughterDetailComponent implements OnInit {
       attendingProgram: new FormControl('1'),
       modifiedbyid: new FormControl(this.modifiedbyid),
       familymembername: new FormControl(''),
+      familyMainID: new FormControl(''),
       alive: new FormControl('3', [Validators.required])
     });
     this.FillRelationDDL();
     this.loadMainFamilyMemberDetails();
+
   }
 
   loadAllDaughterDetails() {
@@ -134,13 +142,14 @@ export class DaughterDetailComponent implements OnInit {
   isAllSelected() {
     const numRows = !!this.dataSource && this.dataSource.data.length;
   }
-  
-  loadMainFamilyMemberDetails() {
-    this.daughterdetailservice.getfamilymemberbyidmobile(this.sessionmobile,this.familyID).subscribe(result => {     
-      this.daughterdetailForm.controls['familymembername'].setValue(result.firstName);
 
+  loadMainFamilyMemberDetails() {
+    this.daughterdetailservice.getfamilymemberbyidmobile(this.sessionmobile, this.familyID).subscribe(result => {
+      this.daughterdetailForm.controls['familymembername'].setValue(result.firstName);
+      this.daughterdetailForm.controls['familyMainID'].setValue(this.familyID);
     });
     this.daughterdetailForm.controls['familymembername'].disable();
+    this.daughterdetailForm.controls['familyMainID'].disable();
   }
 
   deleteDaughter(daughterDetailID: any) {
@@ -238,7 +247,7 @@ export class DaughterDetailComponent implements OnInit {
       this.daughterdetailForm.controls['attendingProgram'].setValue(result.attendingProgram == true ? "1" : "0");
       this.daughterdetailForm.controls['giftRecieved'].setValue(result.giftRecieved == true ? "1" : "0");
       this.daughterdetailForm.controls['mobile'].setValue(result.mobile);
-      this.daughterdetailForm.controls['village'].setValue(result.village);     
+      this.daughterdetailForm.controls['village'].setValue(result.village);
       this.daughterdetailForm.controls['alive'].setValue(result.alive == 1 ? "1" : (result.alive == 2 ? "2" : "3"));
     });
   }
@@ -247,10 +256,11 @@ export class DaughterDetailComponent implements OnInit {
   resetForm() {
     var vadilname = this.daughterdetailForm.controls['familymembername'].value;
     this.daughterdetailForm.reset();
-    this.daughterdetailForm.controls['familymembername'].setValue(vadilname);   
+    this.daughterdetailForm.controls['familymembername'].setValue(vadilname);
     this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
     this.daughterdetailForm.controls['giftRecieved'].setValue('0');
-    this.daughterdetailForm.controls['attendingProgram'].setValue('1'); 
+    this.daughterdetailForm.controls['attendingProgram'].setValue('1');
+    this.daughterdetailForm.controls['familyMainID'].setValue(this.familyID);
   }
 
   SavedSuccessful(isUpdate: number) {
@@ -278,12 +288,13 @@ export class DaughterDetailComponent implements OnInit {
   }
 
   ClearForm() {
-    var vadilname = this.daughterdetailForm.controls['familymembername'].value;   
+    var vadilname = this.daughterdetailForm.controls['familymembername'].value;
     this.daughterdetailForm.reset();
     this.daughterdetailForm.controls['familymembername'].setValue(vadilname);
+    this.daughterdetailForm.controls['familyMainID'].setValue(this.familyID);
     this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
     this.daughterdetailForm.controls['giftRecieved'].setValue('0');
-    this.daughterdetailForm.controls['attendingProgram'].setValue('1');    
+    this.daughterdetailForm.controls['attendingProgram'].setValue('1');
   }
 
   numberOnly(event: { which: any; keyCode: any; }): boolean {
