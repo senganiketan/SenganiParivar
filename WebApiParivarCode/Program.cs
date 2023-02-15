@@ -18,6 +18,7 @@ builder.Services.AddScoped<IFamilyMemberRepository, FamilyMemberRepository>();
 builder.Services.AddScoped<IDaughterDetailRepository, DaughterDetailRepository>();
 builder.Services.AddScoped<IRelationRepository, RelationRepository>();
 builder.Services.AddScoped<IUserLoginRepository, UserLoginRepository>();
+builder.Services.AddScoped<IOriginalVillageRepository, OriginalVillageRepository>();
 
 var app = builder.Build();
 //if (app.Environment.IsDevelopment())

@@ -10,6 +10,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel } from '@angular/cdk/collections';
 import { SessionStorageService } from '../service/sessionstorage.service';
+import { OriginalVillage } from '../model/OriginalVillage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-family',
@@ -26,6 +28,8 @@ export class FamilyComponent implements OnInit {
   familyForm: any;
   dataSource !: MatTableDataSource<Family>;
   selection = new SelectionModel<Family>(true, []);
+  allOriginalVillages!: Observable<OriginalVillage[]>;
+
   familyIdUpdate = null as any;
   massage = null; 
   isDisabled = false;
@@ -91,7 +95,7 @@ export class FamilyComponent implements OnInit {
     
     this.familyForm = new FormGroup({
       originalvillage: new FormControl('', [Validators.required]),
-      originaldistrict: new FormControl('', [Validators.required]),
+      originaldistrict: new FormControl('Kutch'),
       currentaddress: new FormControl('', [Validators.required]),
       currentvillage: new FormControl('', [Validators.required]),
       currentdistrict: new FormControl('', [Validators.required]),
@@ -100,7 +104,7 @@ export class FamilyComponent implements OnInit {
       postaladdressname: new FormControl('', [Validators.required]),
       residentialFacility: new FormControl(''),     
     });
-
+    this.FillOriginalVillageDDL();
   }
 
   isAllSelected() {
@@ -129,6 +133,10 @@ export class FamilyComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  FillOriginalVillageDDL() {
+    this.allOriginalVillages = this.familyservice.getOriginalVillage();
   }
 
   loadAllFamily() {
@@ -222,7 +230,7 @@ export class FamilyComponent implements OnInit {
       this.familyForm.controls['currentstate'].setValue(result.currentState);
       this.familyForm.controls['currentpincode'].setValue(result.currentPincode);
       this.familyForm.controls['originalvillage'].setValue(result.originalVillage);
-      this.familyForm.controls['originaldistrict'].setValue(result.originalDistrict);  
+      //this.familyForm.controls['originaldistrict'].setValue(result.originalDistrict);  
       this.familyForm.controls['residentialFacility'].setValue(result.residentialFacility);
       this.familyForm.enable();
       this.isDisabled = false;

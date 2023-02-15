@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { Family } from '../model/Family';
+import { OriginalVillage } from '../model/OriginalVillage';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,9 @@ export class FamilyService {
   public createfamily(family: Family) {       
     return this.http.post(`${environment.apiUrl}/Family/AddFamily`, family);
   }
+  public getOriginalVillage() {
+    return this.http.get<OriginalVillage[]>(`${environment.apiUrl}/OriginalVillage/GetOriginalVillages`);
+  }
 
 
   public updatefamily(family: Family): Observable<Family> {
@@ -40,16 +44,5 @@ export class FamilyService {
     var result = this.http.delete<any>(`${environment.apiUrl}/Family/DeleteFamily/?id=` + familyid);    
     return result;
   }
-  //public updateHero(hero: SuperHero): Observable<SuperHero[]> {
-  //  return this.http.put<SuperHero[]>(
-  //    `${environment.apiUrl}/${this.url}`,
-  //    hero
-  //  );
-  //}
-
-  //public deleteHero(hero: SuperHero): Observable<SuperHero[]> {
-  //  return this.http.delete<SuperHero[]>(
-  //    `${environment.apiUrl}/${this.url}/${hero.id}`
-  //  );
-  //}
+  
 }

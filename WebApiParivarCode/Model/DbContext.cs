@@ -14,6 +14,8 @@ namespace WebApiParivarCode.Model
         public DbSet<DaughterDetail> DaughterDetails { get; set; }
         public DbSet<Relation> Relations { get; set; }
 
+        public DbSet<OriginalVillage> OriginalVillages { get; set; }
+
         public DbSet<UserLogin> UserLogins { get; set; }
     }
 }

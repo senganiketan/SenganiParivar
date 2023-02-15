@@ -40,7 +40,7 @@
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </table>
-            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginatorFamily [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
           </div>
         </div>
       </mat-tab>
@@ -99,7 +99,7 @@
               <mat-header-row *matHeaderRowDef="displayedColumnsdaughter"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumnsdaughter;"></mat-row>
             </table>
-            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginatorDaughters [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
           </div>
         </div>
       </mat-tab>
