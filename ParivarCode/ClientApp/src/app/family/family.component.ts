@@ -71,9 +71,9 @@ export class FamilyComponent implements OnInit {
     return this.familyForm.get('postaladdressname');
   }
 
-  get residentialFacility(): any {
-    return this.familyForm.get('residentialFacility');
-  }
+  //get residentialFacility(): any {
+  //  return this.familyForm.get('residentialFacility');
+  //}
 
   get modifiedbyid(): any {
     return sessionStorage.getItem("session-mobile"); // We need to assign login page mobile number here.
@@ -102,7 +102,7 @@ export class FamilyComponent implements OnInit {
       currentstate: new FormControl('Gujarat', [Validators.required]),
       currentpincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
       postaladdressname: new FormControl('', [Validators.required]),
-      residentialFacility: new FormControl(''),     
+      residentialFacility: new FormControl('0'),     
     });
     this.FillOriginalVillageDDL();
   }
@@ -168,7 +168,6 @@ export class FamilyComponent implements OnInit {
   onSubmitfamilyForm(family: any) {
     this.dataSaved = false;
     console.log(this.currentpincode.value);
-    console.log(this.residentialFacility.value);
     console.log(this.familyForm.status);
 
     if (this.familyForm.valid) {
@@ -179,7 +178,7 @@ export class FamilyComponent implements OnInit {
   CreateUpdateFamily(family: Family) {
     family.modifiedByID = this.modifiedbyid;
     family.modifiedDate = this.modifiedDate;
-    family.residentialFacility = this.residentialFacility.value == 1 ? true : false;
+    family.residentialFacility =  false;
    
     if (this.familyIdUpdate == null) {
 
