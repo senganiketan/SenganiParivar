@@ -38,7 +38,7 @@ INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'અન્ય',1)
 INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'દીકરી',2)
 INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'ફઈ',2)
 INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'બહેન',2)
-INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'નણંદ',2)
+INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'પૌત્રી',2)
 INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'ભત્રીજી',2)
 INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'અન્ય',2)
 

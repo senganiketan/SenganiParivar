@@ -21,7 +21,7 @@ Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Perso
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'ગઢસીસા','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'ઘડુલી','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'ટોડીયા','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
-Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'તલવાણા','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
+Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'તલવાણા/રામનગર','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'દુર્ગાપર','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'દેશલપર(વાંઢાય)','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'દોલતપર','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
