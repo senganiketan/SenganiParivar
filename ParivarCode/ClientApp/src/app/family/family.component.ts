@@ -22,7 +22,6 @@ import { Observable } from 'rxjs';
 
 export class FamilyComponent implements OnInit {
 
-
   family: Family[] = [];
   dataSaved = false;
   familyForm: any;
@@ -31,9 +30,9 @@ export class FamilyComponent implements OnInit {
   allOriginalVillages!: Observable<OriginalVillage[]>;
 
   familyIdUpdate = null as any;
-  massage = null; 
+  massage = null;
   isDisabled = false;
-  isAddMemmbersbtnDisabled=false;
+  isAddMemmbersbtnDisabled = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   displayedColumns: string[] = ['PostalAddressName', 'CurrentVillage', 'CurrentDistrict', 'CurrentState', 'CurrentPincode', 'Edit'];
@@ -71,6 +70,22 @@ export class FamilyComponent implements OnInit {
     return this.familyForm.get('postaladdressname');
   }
 
+  get contactpersonname1(): any {
+    return this.familyForm.get('contactpersonname1');
+  }
+
+  get contactpersonname2(): any {
+    return this.familyForm.get('contactpersonname2');
+  }
+
+  get contactpersonmobile1(): any {
+    return this.familyForm.get('contactpersonmobile1');
+  }
+
+  get contactpersonmobile2(): any {
+    return this.familyForm.get('contactpersonmobile2');
+  }
+
   //get residentialFacility(): any {
   //  return this.familyForm.get('residentialFacility');
   //}
@@ -85,26 +100,30 @@ export class FamilyComponent implements OnInit {
 
 
 
-
   constructor(private formbulider: UntypedFormBuilder, private familyservice: FamilyService, private sessionstorage: SessionStorageService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
     this.loadAllFamily();
   }
 
   ngOnInit() {
-    
+
     this.familyForm = new FormGroup({
       originalvillage: new FormControl('', [Validators.required]),
-      originaldistrict: new FormControl('Kutch'),
+      originaldistrict: new FormControl(''),
       currentaddress: new FormControl('', [Validators.required]),
       currentvillage: new FormControl('', [Validators.required]),
       currentdistrict: new FormControl('', [Validators.required]),
       currentstate: new FormControl('Gujarat', [Validators.required]),
       currentpincode: new FormControl('', [Validators.required, Validators.pattern('[0-9]{6}')]),
       postaladdressname: new FormControl('', [Validators.required]),
-      residentialFacility: new FormControl('0'),     
+      residentialFacility: new FormControl('0'),
+      contactpersonname1: new FormControl(''),
+      contactpersonname2: new FormControl(''),
+      contactpersonmobile1: new FormControl(''),
+      contactpersonmobile2: new FormControl('')
     });
     this.FillOriginalVillageDDL();
+
   }
 
   isAllSelected() {
@@ -137,13 +156,14 @@ export class FamilyComponent implements OnInit {
 
   FillOriginalVillageDDL() {
     this.allOriginalVillages = this.familyservice.getOriginalVillage();
+
   }
 
   loadAllFamily() {
     let mobile = Number(this.sessionstorage.getData("session-mobile"));
     this.familyservice.getfamilyByMobile(mobile).subscribe(data => {
-      if (data.length > 0) {        
-        this.sessionstorage.saveData("session-familyId", data[0].familyID);  
+      if (data.length > 0) {
+        this.sessionstorage.saveData("session-familyId", data[0].familyID);
         this.familyForm.disable();
         this.isDisabled = true;
         this.isAddMemmbersbtnDisabled = false;
@@ -178,8 +198,8 @@ export class FamilyComponent implements OnInit {
   CreateUpdateFamily(family: Family) {
     family.modifiedByID = this.modifiedbyid;
     family.modifiedDate = this.modifiedDate;
-    family.residentialFacility =  false;
-   
+    family.residentialFacility = false;
+
     if (this.familyIdUpdate == null) {
 
       this.familyservice.createfamily(family)
@@ -234,6 +254,13 @@ export class FamilyComponent implements OnInit {
       this.familyForm.enable();
       this.isDisabled = false;
 
+      this.familyForm.controls['contactpersonname1'].disable();
+      this.familyForm.controls['contactpersonname2'].disable();
+      this.familyForm.controls['contactpersonmobile1'].disable();
+      this.familyForm.controls['contactpersonmobile2'].disable();
+
+      this.DisplayRepresentativesByVillage(result.originalVillage);
+
     });
   }
 
@@ -270,6 +297,31 @@ export class FamilyComponent implements OnInit {
         panelClass: ['my-snack-bar']
       });
     }
+  }
+
+
+  onOriginalVillage() {
+    console.log('selected value - ' + this.originalvillage.value);
+    this.DisplayRepresentativesByVillage(this.originalvillage.value);
+  }
+
+  DisplayRepresentativesByVillage(originalvillage: any) {
+
+    this.allOriginalVillages.forEach((value) => {
+      value.forEach((obj) => {
+        if (obj.originalVillageName == originalvillage) {
+          this.familyForm.controls['contactpersonname1'].setValue(obj.person1Name);
+          this.familyForm.controls['contactpersonname2'].setValue(obj.person2Name);
+          this.familyForm.controls['contactpersonmobile1'].setValue(obj.person1Mobile);
+          this.familyForm.controls['contactpersonmobile2'].setValue(obj.person2Mobile);
+
+          this.familyForm.controls['contactpersonname1'].disable();
+          this.familyForm.controls['contactpersonname2'].disable();
+          this.familyForm.controls['contactpersonmobile1'].disable();
+          this.familyForm.controls['contactpersonmobile2'].disable();
+        }
+      });
+    });
   }
 
 
