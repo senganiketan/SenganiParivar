@@ -35,7 +35,7 @@ namespace WebApiParivarCode.Repository
                                                 y => y.RelationID,
                                                 (x, y) => new DaughterDetailList
                                                 {
-                                                    DaughterDetailID=x.DaughterDetailID,
+                                                    DaughterDetailID = x.DaughterDetailID,
                                                     FirstName = x.FirstName,
                                                     Surname = x.Surname,
                                                     FatherInLawName = x.FatherInLawName,
@@ -44,7 +44,7 @@ namespace WebApiParivarCode.Repository
                                                     Active = x.Active,
                                                     GiftRecieved = x.GiftRecieved,
                                                     Age = x.Age,
-                                                    Mobile = x.Mobile==null? null: x.Mobile,
+                                                    Mobile = x.Mobile == null ? null : x.Mobile,
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
@@ -63,43 +63,36 @@ namespace WebApiParivarCode.Repository
 
         public async Task<IEnumerable<DaughterDetailList>> GetAllDaughterDetails()
         {
-            List<DaughterDetailList> daughterDetailList = new List<DaughterDetailList>();
+            //List<DaughterDetailList> daughterDetailList = new List<DaughterDetailList>();
+            List<DaughterDetailList> daughterDetailList;
 
-            daughterDetailList = await _context.DaughterDetails
-                                        .Where(x => x.Active == true)
-                                        .Join(_context.Relations,
-                                                x => x.RelationID,
-                                                y => y.RelationID,
-                                                (x, y) => new { x, y })
-                                        .Join(_context.FamilyMembers,
-                                                f => f.x.FamilyID,
-                                                fm => fm.FamilyID,                                                
-                                                (f, fm) => new { f, fm }).Where(f => f.fm.RelationID == 1 && f.fm.Active == true)
-                                        .Join(_context.Families,
-                                                a => a.f.x.FamilyID,
-                                                fa => fa.FamilyID,
-                                                (a, fa) => new { a, fa }).Where(f => f.fa.Active == true)
-                                        .Select(m => new DaughterDetailList
-                                        {
-                                            DaughterDetailID = m.a.f.x.DaughterDetailID,
-                                            FirstName = m.a.f.x.FirstName,
-                                            Surname = m.a.f.x.Surname,
-                                            FatherInLawName = m.a.f.x.FatherInLawName,
-                                            HusbandName = m.a.f.x.HusbandName,
-                                            Village = m.a.f.x.Village,
-                                            Active = m.a.f.x.Active,
-                                            GiftRecieved = m.a.f.x.GiftRecieved,
-                                            Age = m.a.f.x.Age,
-                                            Mobile = m.a.f.x.Mobile == null ? null : m.a.f.x.Mobile,
-                                            FamilyID = m.a.f.x.FamilyID,
-                                            AttendingProgram = m.a.f.x.AttendingProgram,
-                                            RelationID = m.a.f.x.RelationID,
-                                            RelationName = m.a.f.y.RelationName,
-                                            ModifiedByID = Convert.ToInt64(m.a.f.x.ModifiedByID),
-                                            ModifiedDate = Convert.ToDateTime(m.a.f.x.ModifiedDate),
-                                            VadilNuName = m.a.fm.FirstName,
-                                            VadilNuCurrentVillage = m.fa.CurrentState,
-                                        }).ToListAsync();
+            daughterDetailList = (from dd in _context.DaughterDetails
+                                  join r in _context.Relations on dd.RelationID equals r.RelationID
+                                  join fm in _context.FamilyMembers on dd.FamilyID equals fm.FamilyID into ddj
+                                  from subpet in ddj.Where(ddj => ddj.RelationID == 1 && ddj.Active == true).DefaultIfEmpty()
+                                  join f in _context.Families on dd.FamilyID equals f.FamilyID
+                                  where dd.Active == true && f.Active == true
+                                  select new DaughterDetailList
+                                  {
+                                      DaughterDetailID = dd.DaughterDetailID,
+                                      FirstName = dd.FirstName,
+                                      Surname = dd.Surname,
+                                      FatherInLawName = dd.FatherInLawName,
+                                      HusbandName = dd.HusbandName,
+                                      Village = dd.Village,
+                                      Active = dd.Active,
+                                      GiftRecieved = dd.GiftRecieved,
+                                      Age = dd.Age,
+                                      Mobile = dd.Mobile == null ? null : dd.Mobile,
+                                      FamilyID = dd.FamilyID,
+                                      AttendingProgram = dd.AttendingProgram,
+                                      RelationID = dd.RelationID,
+                                      RelationName = r.RelationName,
+                                      ModifiedByID = Convert.ToInt64(dd.ModifiedByID),
+                                      ModifiedDate = Convert.ToDateTime(dd.ModifiedDate),
+                                      VadilNuName = subpet.FirstName,
+                                      VadilNuCurrentVillage = f.OriginalVillage,
+                                  }).ToList();
 
             return daughterDetailList;
         }
@@ -140,7 +133,7 @@ namespace WebApiParivarCode.Repository
 
         public async Task<DaughterDetail> InsertDaughterDetail(DaughterDetail objDaughterDetail)
         {
-            objDaughterDetail.ModifiedDate=DateTime.Now;
+            objDaughterDetail.ModifiedDate = DateTime.Now;
             objDaughterDetail.Active = true;
             _context.DaughterDetails.Add(objDaughterDetail);
             await _context.SaveChangesAsync();
