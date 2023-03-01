@@ -20,10 +20,10 @@
             <a class="nav-link text-light" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/allfamilydetails']">All Family Details</a>
+            <a class="nav-link text-light" [routerLink]="['/allfamilydetails']" matTooltip="પરિવારમાં કેટલા સભ્યોની નોંધણી થઇ ?">All Family Details</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-light" [routerLink]="['/login-data']">Login</a>
+            <a class="nav-link text-light" [routerLink]="['/login-data']" matTooltip="નોંધણી કરવા માટે">Login</a>
           </li>
         </ul>
         <ul class="navbar-nav flex-grow" *ngIf="isLoggedIn">
