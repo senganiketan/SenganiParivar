@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
 })
 
 export class FamilyComponent implements OnInit {
-
+  representativeNamesMobile = '';
   family: Family[] = [];
   dataSaved = false;
   familyForm: any;
@@ -106,6 +106,8 @@ export class FamilyComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    
 
     this.familyForm = new FormGroup({
       originalvillage: new FormControl('', [Validators.required]),
@@ -314,6 +316,8 @@ export class FamilyComponent implements OnInit {
           this.familyForm.controls['contactpersonname2'].setValue(obj.person2Name);
           this.familyForm.controls['contactpersonmobile1'].setValue(obj.person1Mobile);
           this.familyForm.controls['contactpersonmobile2'].setValue(obj.person2Mobile);
+
+          this.representativeNamesMobile = obj.person1Name + '(' + obj.person1Mobile + '), and ' + obj.person2Name + '(' + obj.person2Mobile + ')';
 
           this.familyForm.controls['contactpersonname1'].disable();
           this.familyForm.controls['contactpersonname2'].disable();
