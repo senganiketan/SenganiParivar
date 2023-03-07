@@ -32,7 +32,7 @@ export class DaughterDetailComponent implements OnInit {
   massage = null;
   familyID?: number;
   sessionmobile: number;
-
+  familyMemberName: any;
 
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -91,14 +91,6 @@ export class DaughterDetailComponent implements OnInit {
     return sessionStorage.getItem("session-mobile"); // We need to assign login page mobile number here.
   }
 
-  get familymembername(): any {
-    return this.daughterdetailForm.get('familymembername');
-  }
-
-  get familyMainID(): any {
-    return this.daughterdetailForm.get('familyMainID');
-  }
-
 
   constructor(private formbulider: UntypedFormBuilder, private daughterdetailservice: DaughterDetailService, private sessionstorage: SessionStorageService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
@@ -123,8 +115,6 @@ export class DaughterDetailComponent implements OnInit {
       giftRecieved: new FormControl('0'),
       attendingProgram: new FormControl('1'),
       modifiedbyid: new FormControl(this.modifiedbyid),
-      familymembername: new FormControl(''),
-      familyMainID: new FormControl(''),
       alive: new FormControl('3', [Validators.required])
     });
     this.FillRelationDDL();
@@ -145,11 +135,8 @@ export class DaughterDetailComponent implements OnInit {
 
   loadMainFamilyMemberDetails() {
     this.daughterdetailservice.getfamilymemberbyidmobile(this.sessionmobile, this.familyID).subscribe(result => {
-      this.daughterdetailForm.controls['familymembername'].setValue(result.firstName);
-      this.daughterdetailForm.controls['familyMainID'].setValue(this.familyID);
+      this.familyMemberName = result.firstName;
     });
-    this.daughterdetailForm.controls['familymembername'].disable();
-    this.daughterdetailForm.controls['familyMainID'].disable();
   }
 
   deleteDaughter(daughterDetailID: any) {
@@ -254,13 +241,10 @@ export class DaughterDetailComponent implements OnInit {
 
 
   resetForm() {
-    var vadilname = this.daughterdetailForm.controls['familymembername'].value;
     this.daughterdetailForm.reset();
-    this.daughterdetailForm.controls['familymembername'].setValue(vadilname);
     this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
     this.daughterdetailForm.controls['giftRecieved'].setValue('0');
     this.daughterdetailForm.controls['attendingProgram'].setValue('1');
-    this.daughterdetailForm.controls['familyMainID'].setValue(this.familyID);
   }
 
   SavedSuccessful(isUpdate: number) {
@@ -288,10 +272,7 @@ export class DaughterDetailComponent implements OnInit {
   }
 
   ClearForm() {
-    var vadilname = this.daughterdetailForm.controls['familymembername'].value;
     this.daughterdetailForm.reset();
-    this.daughterdetailForm.controls['familymembername'].setValue(vadilname);
-    this.daughterdetailForm.controls['familyMainID'].setValue(this.familyID);
     this.daughterdetailForm.controls['familyid'].setValue(this.familyID);
     this.daughterdetailForm.controls['giftRecieved'].setValue('0');
     this.daughterdetailForm.controls['attendingProgram'].setValue('1');

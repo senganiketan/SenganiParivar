@@ -92,9 +92,7 @@ export class FamilyMemberComponent implements OnInit {
     return sessionStorage.getItem("session-mobile"); // We need to assign login page mobile number here.
   }
 
-  get familyMainID(): any {
-    return this.familymemberForm.get('familyMainID');
-  }
+
 
   constructor(private formbulider: UntypedFormBuilder, private familymemberservice: FamilyMemberService, private sessionstorage: SessionStorageService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) {
 
@@ -117,7 +115,6 @@ export class FamilyMemberComponent implements OnInit {
       business: new FormControl(''),
       mobile: new FormControl('', [Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]),
       attendingProgram: new FormControl('1'),
-      familyMainID: new FormControl(''),
       modifiedbyid: new FormControl(this.modifiedbyid)
     });
     this.FillRelationDDL();
@@ -165,8 +162,6 @@ export class FamilyMemberComponent implements OnInit {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.familymemberForm.controls['familyMainID'].setValue(this.familyID);
-      this.familymemberForm.controls['familyMainID'].disable();
       
     });
   }
@@ -263,7 +258,6 @@ export class FamilyMemberComponent implements OnInit {
     this.familymemberForm.controls['gender'].setValue('male');
     this.familymemberForm.controls['attendingProgram'].setValue('1');
     this.familymemberForm.controls['maritalstatus'].setValue('Single');
-    this.familymemberForm.controls['familyMainID'].setValue(this.familyID);
 
   }
 
@@ -300,7 +294,6 @@ export class FamilyMemberComponent implements OnInit {
     this.familymemberForm.controls['gender'].setValue('male');
     this.familymemberForm.controls['attendingProgram'].setValue('1');
     this.familymemberForm.controls['maritalstatus'].setValue('Single');
-    this.familymemberForm.controls['familyMainID'].setValue(this.familyID);
   }
 
   numberOnly(event: { which: any; keyCode: any; }): boolean {
