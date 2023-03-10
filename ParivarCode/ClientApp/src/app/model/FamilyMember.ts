@@ -15,4 +15,5 @@ export class FamilyMember {
   modifiedbyid?: bigint;
   modifiedDate?: Date;
   relationName = "";
+  attendingProgramValue?: string;
 }

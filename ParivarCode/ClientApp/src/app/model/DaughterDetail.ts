@@ -19,4 +19,5 @@ export class DaughterDetail {
   aliveName = "";
   vadilNuName = "";
   vadilNuCurrentVillage = "";
+  attendingProgramValue?: string;
 }

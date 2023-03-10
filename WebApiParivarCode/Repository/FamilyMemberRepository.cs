@@ -50,7 +50,7 @@ namespace WebApiParivarCode.Repository
                                                     MaritalStatus = x.MaritalStatus,
                                                     Education = x.Education,
                                                     Business = x.Business,
-                                                    Mobile = x.Mobile == null ? null :x.Mobile,
+                                                    Mobile = x.Mobile == null ? null : x.Mobile,
                                                     FamilyID = x.FamilyID,
                                                     AttendingProgram = x.AttendingProgram,
                                                     RelationID = x.RelationID,
@@ -82,21 +82,22 @@ namespace WebApiParivarCode.Repository
                                         (f, fm) => new { f, fm })
                                         .Select(m => new FamilyMemberList
                                         {
-                                            FamilyMemberID = m.f.x.FamilyMemberID,
                                             FirstName = m.f.x.FirstName,
                                             FatherHusbandName = m.f.x.FatherHusbandName,
                                             Gender = m.f.x.Gender,
                                             Age = m.f.x.Age,
                                             Mobile = m.f.x.Mobile,
+                                            Education = m.f.x.Education,
+                                            Business = m.f.x.Business,
                                             MaritalStatus = m.f.x.MaritalStatus,
                                             FamilyID = m.f.x.FamilyID,
-                                            AttendingProgram = m.f.x.AttendingProgram,
                                             RelationName = m.f.y.RelationName,
                                             CurrentVillage = m.fm.CurrentVillage,
-                                            OriginalVillage = m.fm.OriginalVillage
+                                            OriginalVillage = m.fm.OriginalVillage,
+                                            AttendingProgramValue = m.f.x.AttendingProgram == true ? "Yes" : "No",
                                         }).ToListAsync();
 
-            return familyMemberList;
+            return familyMemberList.OrderByDescending(f => f.FamilyID);
 
         }
 
@@ -115,24 +116,25 @@ namespace WebApiParivarCode.Repository
                                         fm => fm.x.FamilyID,
                                         f => f.FamilyID,
                                         (f, fm) => new { f, fm })
-                                        .Where(v=>v.fm.OriginalVillage == villageName)
+                                        .Where(v => v.fm.OriginalVillage == villageName)
                                         .Select(m => new FamilyMemberList
                                         {
-                                            FamilyMemberID = m.f.x.FamilyMemberID,
                                             FirstName = m.f.x.FirstName,
                                             FatherHusbandName = m.f.x.FatherHusbandName,
                                             Gender = m.f.x.Gender,
                                             Age = m.f.x.Age,
                                             Mobile = m.f.x.Mobile,
+                                            Education = m.f.x.Education,
+                                            Business = m.f.x.Business,
                                             MaritalStatus = m.f.x.MaritalStatus,
                                             FamilyID = m.f.x.FamilyID,
-                                            AttendingProgram = m.f.x.AttendingProgram,
                                             RelationName = m.f.y.RelationName,
                                             CurrentVillage = m.fm.CurrentVillage,
-                                            OriginalVillage = m.fm.OriginalVillage
+                                            OriginalVillage = m.fm.OriginalVillage,
+                                            AttendingProgramValue = m.f.x.AttendingProgram == true ? "Yes" : "No",
                                         }).ToListAsync();
 
-            return familyMemberList;
+            return familyMemberList.OrderByDescending(f => f.FamilyID);
 
         }
 

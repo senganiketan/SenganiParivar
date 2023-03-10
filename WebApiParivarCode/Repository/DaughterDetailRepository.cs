@@ -51,7 +51,7 @@ namespace WebApiParivarCode.Repository
                                                     RelationID = x.RelationID,
                                                     RelationName = y.RelationName,
                                                     Alive = x.Alive,
-                                                    AliveName = (x.Alive == 1 ? "દિકરી હયાત છે" : (x.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે")),
+                                                    AliveName = x.Alive == 1 ? "દિકરી હયાત છે" : (x.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે"),
                                                     ModifiedByID = Convert.ToInt64(x.ModifiedByID),
                                                     ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
                                                 }
@@ -64,7 +64,6 @@ namespace WebApiParivarCode.Repository
 
         public async Task<IEnumerable<DaughterDetailList>> GetAllDaughterDetails()
         {
-            //List<DaughterDetailList> daughterDetailList = new List<DaughterDetailList>();
             List<DaughterDetailList> daughterDetailList;
 
             daughterDetailList = (from dd in _context.DaughterDetails
@@ -75,27 +74,23 @@ namespace WebApiParivarCode.Repository
                                   where dd.Active == true && f.Active == true
                                   select new DaughterDetailList
                                   {
-                                      DaughterDetailID = dd.DaughterDetailID,
+                                      FamilyID = dd.FamilyID,
                                       FirstName = dd.FirstName,
                                       Surname = dd.Surname,
                                       FatherInLawName = dd.FatherInLawName,
                                       HusbandName = dd.HusbandName,
                                       Village = dd.Village,
                                       Active = dd.Active,
-                                      GiftRecieved = dd.GiftRecieved,
                                       Age = dd.Age,
                                       Mobile = dd.Mobile == null ? null : dd.Mobile,
-                                      FamilyID = dd.FamilyID,
-                                      AttendingProgram = dd.AttendingProgram,
-                                      RelationID = dd.RelationID,
+                                      AttendingProgramValue = dd.AttendingProgram == true ? "Yes" : "No",
                                       RelationName = r.RelationName,
-                                      ModifiedByID = Convert.ToInt64(dd.ModifiedByID),
-                                      ModifiedDate = Convert.ToDateTime(dd.ModifiedDate),
                                       VadilNuName = subpet.FirstName,
                                       VadilNuCurrentVillage = f.OriginalVillage,
+                                      AliveName = dd.Alive == 1 ? "દિકરીહયાત છે" : (dd.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે"),
                                   }).ToList();
 
-            return daughterDetailList;
+            return daughterDetailList.OrderByDescending(f => f.FamilyID);
         }
 
         public async Task<IEnumerable<DaughterDetailList>> GetAllDaughterDetailsSearch(string villageName)
@@ -110,6 +105,7 @@ namespace WebApiParivarCode.Repository
                                   where dd.Active == true && f.Active == true && dd.Village == villageName
                                   select new DaughterDetailList
                                   {
+                                      FamilyID = dd.FamilyID,
                                       DaughterDetailID = dd.DaughterDetailID,
                                       FirstName = dd.FirstName,
                                       Surname = dd.Surname,
@@ -120,17 +116,17 @@ namespace WebApiParivarCode.Repository
                                       GiftRecieved = dd.GiftRecieved,
                                       Age = dd.Age,
                                       Mobile = dd.Mobile == null ? null : dd.Mobile,
-                                      FamilyID = dd.FamilyID,
-                                      AttendingProgram = dd.AttendingProgram,
+                                      AttendingProgramValue = dd.AttendingProgram == true ? "Yes" : "No",
                                       RelationID = dd.RelationID,
                                       RelationName = r.RelationName,
                                       ModifiedByID = Convert.ToInt64(dd.ModifiedByID),
                                       ModifiedDate = Convert.ToDateTime(dd.ModifiedDate),
                                       VadilNuName = subpet.FirstName,
                                       VadilNuCurrentVillage = f.OriginalVillage,
+                                      AliveName = dd.Alive == 1 ? "દિકરીહયાત છે" : (dd.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે"),
                                   }).ToList();
 
-            return daughterDetailList;
+            return daughterDetailList.OrderByDescending(f => f.FamilyID);
         }
 
         public async Task<DaughterDetail> GetDaughterDetailByID(int DaughterDetailID)

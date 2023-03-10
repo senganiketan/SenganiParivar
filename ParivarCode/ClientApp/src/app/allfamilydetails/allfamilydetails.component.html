@@ -27,6 +27,10 @@
           </div>
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+              <ng-container matColumnDef="familyId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FamilyId</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.familyID}} </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="firstName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>FirstName</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.firstName}} </mat-cell>
@@ -35,13 +39,29 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Father/HusbandName</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.fatherHusbandName}} </mat-cell>
               </ng-container>
+              <ng-container matColumnDef="age">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Age</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.age}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="gender">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Gender</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.gender}} </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="maritalStatus">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>MaritalStatus</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.maritalStatus}} </mat-cell>
               </ng-container>
+              <ng-container matColumnDef="education">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Education</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.education}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="business">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Business</mat-header-cell>
+                <mat-cell *matCellDef="let familymember"> {{familymember.business}} </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="attendingProgram">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>AttendingProgram</mat-header-cell>
-                <mat-cell *matCellDef="let familymember">  {{familymember.attendingProgram ==0? 'No' : 'Yes'}} </mat-cell>
+                <mat-cell *matCellDef="let familymember">  {{familymember.attendingProgramValue}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="relationName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Relation</mat-header-cell>
@@ -92,6 +112,10 @@
           </div>
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSourcedaughter" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+              <ng-container matColumnDef="familyId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>FamilyId</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.familyID}} </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="firstName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>FirstName</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.firstName}} </mat-cell>
@@ -120,19 +144,17 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Village</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.village}} </mat-cell>
               </ng-container>
-              <!--<ng-container matColumnDef="giftRecieved">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>GiftRecieved</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.giftRecieved}} </mat-cell>
-              </ng-container>-->
-              tC
-              er
+              <ng-container matColumnDef="alive">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>હયાત</mat-header-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.aliveName}} </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="mobile">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.mobile}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="attendingProgram">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>ProgramAttend</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgram ==0? 'No' : 'Yes'}} </mat-cell>
+                <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgramValue}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="vadilNuName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>VadilNuName</mat-header-cell>

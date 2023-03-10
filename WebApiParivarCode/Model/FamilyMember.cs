@@ -42,5 +42,7 @@ namespace WebApiParivarCode.Model
         public string? RelationName { get; set; }
         public string? OriginalVillage { get; set; }
         public string? CurrentVillage { get; set; }
+
+        public string? AttendingProgramValue { get; set; }
     }
 }

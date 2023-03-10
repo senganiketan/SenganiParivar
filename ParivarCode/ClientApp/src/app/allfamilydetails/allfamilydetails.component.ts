@@ -27,8 +27,8 @@ export class AllFamilyDetailsComponent implements OnInit {
   @ViewChild(MatSort) sortFamily !: MatSort;
   @ViewChild(MatSort) sortDaughters !: MatSort;
 
-  displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName', 'maritalStatus', 'mobile', 'attendingProgram', 'currentVillage', 'originalVillage'];
-  displayedColumnsdaughter: string[] = ['firstName', 'husbandName', 'surname', 'fatherInLawName', 'relationName', 'age', 'village', 'mobile', 'attendingProgram', 'vadilNuName', 'vadilNuCurrentVillage'];
+  displayedColumns: string[] = ['familyId', 'firstName', 'fatherHusbandName', 'age', 'relationName', 'gender', 'education','business','maritalStatus', 'mobile', 'attendingProgram', 'currentVillage', 'originalVillage'];
+  displayedColumnsdaughter: string[] = ['familyId', 'firstName', 'husbandName', 'surname', 'fatherInLawName', 'relationName', 'age', 'village', 'mobile', 'attendingProgram','alive', 'vadilNuName', 'vadilNuCurrentVillage'];
 
   constructor(private allfamilyDetailsService: AllFamilyDetailsService, private familyservice: FamilyService) {
     this.loadAllFamily();
@@ -66,7 +66,9 @@ export class AllFamilyDetailsComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
+    debugger;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
