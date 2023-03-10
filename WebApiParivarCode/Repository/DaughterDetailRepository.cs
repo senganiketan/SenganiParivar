@@ -11,6 +11,7 @@ namespace WebApiParivarCode.Repository
         Task<DaughterDetail> UpdateDaughterDetail(DaughterDetail objDaughterDetail);
         bool DeleteDaughterDetail(int DaughterDetailID);
         Task<IEnumerable<DaughterDetailList>> GetAllDaughterDetails();
+        Task<IEnumerable<DaughterDetailList>> GetAllDaughterDetailsSearch(string villageName);
     }
 
     public class DaughterDetailRepository : IDaughterDetailRepository
@@ -72,6 +73,41 @@ namespace WebApiParivarCode.Repository
                                   from subpet in ddj.Where(ddj => ddj.RelationID == 1 && ddj.Active == true).DefaultIfEmpty()
                                   join f in _context.Families on dd.FamilyID equals f.FamilyID
                                   where dd.Active == true && f.Active == true
+                                  select new DaughterDetailList
+                                  {
+                                      DaughterDetailID = dd.DaughterDetailID,
+                                      FirstName = dd.FirstName,
+                                      Surname = dd.Surname,
+                                      FatherInLawName = dd.FatherInLawName,
+                                      HusbandName = dd.HusbandName,
+                                      Village = dd.Village,
+                                      Active = dd.Active,
+                                      GiftRecieved = dd.GiftRecieved,
+                                      Age = dd.Age,
+                                      Mobile = dd.Mobile == null ? null : dd.Mobile,
+                                      FamilyID = dd.FamilyID,
+                                      AttendingProgram = dd.AttendingProgram,
+                                      RelationID = dd.RelationID,
+                                      RelationName = r.RelationName,
+                                      ModifiedByID = Convert.ToInt64(dd.ModifiedByID),
+                                      ModifiedDate = Convert.ToDateTime(dd.ModifiedDate),
+                                      VadilNuName = subpet.FirstName,
+                                      VadilNuCurrentVillage = f.OriginalVillage,
+                                  }).ToList();
+
+            return daughterDetailList;
+        }
+
+        public async Task<IEnumerable<DaughterDetailList>> GetAllDaughterDetailsSearch(string villageName)
+        {
+            List<DaughterDetailList> daughterDetailList;
+
+            daughterDetailList = (from dd in _context.DaughterDetails
+                                  join r in _context.Relations on dd.RelationID equals r.RelationID
+                                  join fm in _context.FamilyMembers on dd.FamilyID equals fm.FamilyID into ddj
+                                  from subpet in ddj.Where(ddj => ddj.RelationID == 1 && ddj.Active == true).DefaultIfEmpty()
+                                  join f in _context.Families on dd.FamilyID equals f.FamilyID
+                                  where dd.Active == true && f.Active == true && dd.Village == villageName
                                   select new DaughterDetailList
                                   {
                                       DaughterDetailID = dd.DaughterDetailID,

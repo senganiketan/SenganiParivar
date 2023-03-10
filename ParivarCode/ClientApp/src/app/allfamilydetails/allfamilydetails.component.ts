@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild,QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild, QueryList } from '@angular/core';
 import { AllFamilyDetailsService } from './allfamilydetails.service';
 import { MatTableDataSource, } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FamilyMember } from '../model/FamilyMember';
 import { DaughterDetail } from '../model/DaughterDetail';
+import { FamilyService } from '../family/family.service'
+import { OriginalVillage } from '../model/OriginalVillage';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-allfamilydetails',
@@ -17,21 +20,26 @@ export class AllFamilyDetailsComponent implements OnInit {
   familymember: FamilyMember[] = [];
   dataSource !: MatTableDataSource<FamilyMember>;
   dataSourcedaughter !: MatTableDataSource<DaughterDetail>;
-
+  allOriginalVillages!: Observable<OriginalVillage[]>;
 
   @ViewChild('paginatorFamily', { static: true }) paginatorFamily!: MatPaginator;
   @ViewChild('paginatorDaughters', { static: true }) paginatorDaughters!: MatPaginator;
   @ViewChild(MatSort) sortFamily !: MatSort;
-  @ViewChild(MatSort) sortDaughters !: MatSort; 
+  @ViewChild(MatSort) sortDaughters !: MatSort;
 
   displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName', 'maritalStatus', 'mobile', 'attendingProgram', 'currentVillage', 'originalVillage'];
   displayedColumnsdaughter: string[] = ['firstName', 'husbandName', 'surname', 'fatherInLawName', 'relationName', 'age', 'village', 'mobile', 'attendingProgram', 'vadilNuName', 'vadilNuCurrentVillage'];
 
-  constructor(private allfamilyDetailsService: AllFamilyDetailsService) {
+  constructor(private allfamilyDetailsService: AllFamilyDetailsService, private familyservice: FamilyService) {
     this.loadAllFamily();
     this.loadAllDaughters();
   }
   ngOnInit() {
+    this.FillOriginalVillageDDL();
+  }
+
+  FillOriginalVillageDDL() {
+    this.allOriginalVillages = this.familyservice.getOriginalVillage();
   }
 
   loadAllFamily() {
@@ -49,6 +57,30 @@ export class AllFamilyDetailsComponent implements OnInit {
       this.dataSourcedaughter.sort = this.sortDaughters;
     });
   }
+
+
+  onOriginalVillage() {
+  }
+
+  onDaughterOriginalVillage() {
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  applyDaughterFilter(filterValue: string) {
+    this.dataSourcedaughter.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSourcedaughter.paginator) {
+      this.dataSourcedaughter.paginator.firstPage();
+    }
+  }
+
 }
 
 

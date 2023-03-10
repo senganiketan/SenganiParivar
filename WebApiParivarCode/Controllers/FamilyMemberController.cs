@@ -29,6 +29,13 @@ namespace WebApiParivarCode.Controllers
         }
 
         [HttpGet]
+        [Route("GetAllFamilyMember/{VillageName}")]
+        public async Task<IActionResult> GetAllByVillage(string VillageName)
+        {
+            return Ok(await _familyMemberRepository.GetAllFamilyMembersByVillage(VillageName));
+        }
+
+        [HttpGet]
         [Route("GetFamilyMemberByMemberID/{Id}")]
         public async Task<IActionResult> GetFamilyMemberByMemberId(int Id)
         {

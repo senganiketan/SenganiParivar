@@ -15,6 +15,7 @@ namespace WebApiParivarCode.Repository
         Task<FamilyMember> UpdateFamilyMember(FamilyMember objFamilyMember);
         bool DeleteFamilyMember(int ID);
         Task<FamilyMember> GetFamilyMemberByIdMobile(int familyID, decimal mobile);
+        Task<IEnumerable<FamilyMemberList>> GetAllFamilyMembersByVillage(string villageName);
 
         Task<IEnumerable<FamilyMemberList>> GetAllFamilyMembers();
     }
@@ -79,6 +80,42 @@ namespace WebApiParivarCode.Repository
                                         fm => fm.x.FamilyID,
                                         f => f.FamilyID,
                                         (f, fm) => new { f, fm })
+                                        .Select(m => new FamilyMemberList
+                                        {
+                                            FamilyMemberID = m.f.x.FamilyMemberID,
+                                            FirstName = m.f.x.FirstName,
+                                            FatherHusbandName = m.f.x.FatherHusbandName,
+                                            Gender = m.f.x.Gender,
+                                            Age = m.f.x.Age,
+                                            Mobile = m.f.x.Mobile,
+                                            MaritalStatus = m.f.x.MaritalStatus,
+                                            FamilyID = m.f.x.FamilyID,
+                                            AttendingProgram = m.f.x.AttendingProgram,
+                                            RelationName = m.f.y.RelationName,
+                                            CurrentVillage = m.fm.CurrentVillage,
+                                            OriginalVillage = m.fm.OriginalVillage
+                                        }).ToListAsync();
+
+            return familyMemberList;
+
+        }
+
+        public async Task<IEnumerable<FamilyMemberList>> GetAllFamilyMembersByVillage(string villageName)
+        {
+            List<FamilyMemberList> familyMemberList = new List<FamilyMemberList>();
+
+
+            familyMemberList = await _context.FamilyMembers
+                                        .Where(x => x.Active == true)
+                                        .Join(_context.Relations,
+                                                x => x.RelationID,
+                                                y => y.RelationID,
+                                                (x, y) => new { x, y })
+                                        .Join(_context.Families,
+                                        fm => fm.x.FamilyID,
+                                        f => f.FamilyID,
+                                        (f, fm) => new { f, fm })
+                                        .Where(v=>v.fm.OriginalVillage == villageName)
                                         .Select(m => new FamilyMemberList
                                         {
                                             FamilyMemberID = m.f.x.FamilyMemberID,

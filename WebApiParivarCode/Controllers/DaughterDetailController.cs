@@ -28,6 +28,13 @@ namespace WebApiParivarCode.Controllers
             return Ok(await _daughterDetailRepository.GetAllDaughterDetails());
         }
 
+        [HttpPost]
+        [Route("GetAllDaughterDetailsSearch/{VillageName}")]
+        public async Task<IActionResult> GetAllSearch(string VillageName)
+        {
+            return Ok(await _daughterDetailRepository.GetAllDaughterDetailsSearch(VillageName));
+        }
+
         [HttpGet]
         [Route("GetDaughterDetailByID/{DaughterDetailID}")]
         public async Task<IActionResult> GetDaughterDetailById(int DaughterDetailID)
@@ -51,10 +58,10 @@ namespace WebApiParivarCode.Controllers
         [HttpPut]
         [Route("UpdateDaughterDetail")]
         public async Task<IActionResult> Put(DaughterDetail objDaughterDetail)
-        {            
+        {
             return Ok(await _daughterDetailRepository.UpdateDaughterDetail(objDaughterDetail));
         }
-       
+
 
         [HttpDelete]
         [Route("DeleteDaughterDetail")]

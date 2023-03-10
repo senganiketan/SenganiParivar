@@ -20,4 +20,12 @@ export class AllFamilyDetailsService {
   public getAllDaughters(): Observable<DaughterDetail[]> {
     return this.http.get<DaughterDetail[]>(`${environment.apiUrl}/DaughterDetail/GetAllDaughterDetails`);
   }
+
+  public getAllDaughtersSearch(village : string): Observable<DaughterDetail[]> {
+    return this.http.get<DaughterDetail[]>(`${environment.apiUrl}/DaughterDetail/GetAllDaughterDetails?village=` + village);
+  }
+
+  public getAllfamilymembersSearch(village: string): Observable<FamilyMember[]> {
+    return this.http.get<FamilyMember[]>(`${environment.apiUrl}/FamilyMember/GetAllFamilyMember?village=` + village);
+  }
 }
