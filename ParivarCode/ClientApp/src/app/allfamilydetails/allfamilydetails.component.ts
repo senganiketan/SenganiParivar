@@ -65,10 +65,8 @@ export class AllFamilyDetailsComponent implements OnInit {
   onDaughterOriginalVillage() {
   }
 
-  applyFilter(filterValue: string) {
-    debugger;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    
+  applyFilter(filterValue: string) {    
+    this.dataSource.filter = filterValue.trim().toLowerCase();   
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
