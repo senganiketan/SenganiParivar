@@ -50,7 +50,7 @@ namespace WebApiParivarCode.Model
 
         public string? VadilNuName { get; set; }
 
-        public string? VadilNuCurrentVillage { get; set; }
+        public string? VadilNuOrginalVillage { get; set; }
         public string? AttendingProgramValue { get; set; }
 
     }

@@ -28,7 +28,7 @@ export class AllFamilyDetailsComponent implements OnInit {
   @ViewChild(MatSort) sortDaughters !: MatSort;
 
   displayedColumns: string[] = ['familyId', 'firstName', 'fatherHusbandName', 'age', 'relationName', 'gender', 'education','business','maritalStatus', 'mobile', 'attendingProgram', 'currentVillage', 'originalVillage'];
-  displayedColumnsdaughter: string[] = ['familyId', 'firstName', 'husbandName', 'surname', 'fatherInLawName', 'relationName', 'age', 'village', 'mobile', 'attendingProgram','alive', 'vadilNuName', 'vadilNuCurrentVillage'];
+  displayedColumnsdaughter: string[] = ['familyId', 'firstName', 'husbandName', 'surname', 'fatherInLawName', 'relationName', 'age', 'village', 'mobile', 'attendingProgram', 'alive', 'vadilNuName', 'vadilNuOrginalVillage'];
 
   constructor(private allfamilyDetailsService: AllFamilyDetailsService, private familyservice: FamilyService) {
     this.loadAllFamily();

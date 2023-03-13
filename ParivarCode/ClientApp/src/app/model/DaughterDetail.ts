@@ -18,6 +18,6 @@ export class DaughterDetail {
   RelationName = "";
   aliveName = "";
   vadilNuName = "";
-  vadilNuCurrentVillage = "";
+  vadilNuOrginalVillage = "";
   attendingProgramValue?: string;
 }

@@ -86,7 +86,7 @@ namespace WebApiParivarCode.Repository
                                       AttendingProgramValue = dd.AttendingProgram == true ? "Yes" : "No",
                                       RelationName = r.RelationName,
                                       VadilNuName = subpet.FirstName,
-                                      VadilNuCurrentVillage = f.OriginalVillage,
+                                      VadilNuOrginalVillage = f.OriginalVillage,
                                       AliveName = dd.Alive == 1 ? "દિકરીહયાત છે" : (dd.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે"),
                                   }).ToList();
 
@@ -122,7 +122,7 @@ namespace WebApiParivarCode.Repository
                                       ModifiedByID = Convert.ToInt64(dd.ModifiedByID),
                                       ModifiedDate = Convert.ToDateTime(dd.ModifiedDate),
                                       VadilNuName = subpet.FirstName,
-                                      VadilNuCurrentVillage = f.OriginalVillage,
+                                      VadilNuOrginalVillage = f.OriginalVillage,
                                       AliveName = dd.Alive == 1 ? "દિકરીહયાત છે" : (dd.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે"),
                                   }).ToList();
 

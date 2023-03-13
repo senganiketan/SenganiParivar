@@ -162,9 +162,9 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>વડીલનુ નામ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail">  {{daughterdetail.vadilNuName}} </mat-cell>
               </ng-container>
-              <ng-container matColumnDef="vadilNuCurrentVillage">
+              <ng-container matColumnDef="vadilNuOrginalVillage">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>વડીલનુ મૂળ ગામ</mat-header-cell>
-                <mat-cell *matCellDef="let daughterdetail">  {{daughterdetail.vadilNuCurrentVillage}} </mat-cell>
+                <mat-cell *matCellDef="let daughterdetail">  {{daughterdetail.vadilNuOrginalVillage}} </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumnsdaughter"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumnsdaughter;"></mat-row>
