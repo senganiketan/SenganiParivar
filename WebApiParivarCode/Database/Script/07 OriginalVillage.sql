@@ -42,5 +42,5 @@ Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Perso
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'લુડવા','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'વાલકા','Kishor Dharamshi',7020962950,'Dilip Hiralal',9825975949);
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'વિરાણી કોરાવાળી','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
-Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'અન્ય','Ketan Hiralal',9979253044,'Dilip Hiralal',9825975949);
+
 
