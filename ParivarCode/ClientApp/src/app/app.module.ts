@@ -27,6 +27,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -80,6 +81,7 @@ import { httpInterceptorProviders } from './service/http.interceptor';
     MatDialogModule,
     MatTabsModule,
     //NgbModule,
+    MatProgressSpinnerModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },    
       { path: 'login-data', component: LoginComponent },

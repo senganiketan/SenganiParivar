@@ -108,7 +108,7 @@ export class FamilyMemberComponent implements OnInit {
       firstname: new FormControl('', [Validators.required]),
       fatherhusbandname: new FormControl('', [Validators.required]),
       relationid: new FormControl('', [Validators.required]),
-      gender: new FormControl('male'),
+      gender: new FormControl('Male'),
       age: new FormControl(''),
       maritalstatus: new FormControl('Single'),
       education: new FormControl(''),
@@ -255,7 +255,7 @@ export class FamilyMemberComponent implements OnInit {
   resetForm() {
     this.familymemberForm.reset();
     this.familymemberForm.controls['familyid'].setValue(this.familyID);
-    this.familymemberForm.controls['gender'].setValue('male');
+    this.familymemberForm.controls['gender'].setValue('Male');
     this.familymemberForm.controls['attendingProgram'].setValue('1');
     this.familymemberForm.controls['maritalstatus'].setValue('Single');
 
@@ -291,7 +291,7 @@ export class FamilyMemberComponent implements OnInit {
   ClearForm() {
     this.familymemberForm.reset();
     this.familymemberForm.controls['familyid'].setValue(this.familyID);
-    this.familymemberForm.controls['gender'].setValue('male');
+    this.familymemberForm.controls['gender'].setValue('Male');
     this.familymemberForm.controls['attendingProgram'].setValue('1');
     this.familymemberForm.controls['maritalstatus'].setValue('Single');
   }
