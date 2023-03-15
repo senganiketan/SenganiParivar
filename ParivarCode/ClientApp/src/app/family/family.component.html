@@ -23,7 +23,7 @@
               <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-12">
                   <mat-form-field appearance="fill">
-                    <mat-label>Original Village</mat-label>
+                    <mat-label>મૂળ ગામ</mat-label>
                     <mat-select formControlName="originalvillage" autocomplete="off" (selectionChange)="onOriginalVillage()">
                       <mat-option *ngFor="let villages of (allOriginalVillages | async)" [value]="villages.originalVillageName">
                         {{villages.originalVillageName}}
@@ -58,13 +58,13 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
           <mat-form-field appearance="fill">
-            <mat-label>FullName</mat-label>
+            <mat-label>પત્રવ્યવહાર માટે નામ</mat-label>
             <input id="postaladdressname" matInput type="text" placeholder="Postal Address Name" [formControl]="postaladdressname" mat-raised-button matTooltip="પત્રવ્યવહાર માટે નામ" />
           </mat-form-field>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12">
           <mat-form-field appearance="fill">
-            <mat-label>Current Address</mat-label>
+            <mat-label>હાલનુ એડ્રેસ</mat-label>
             <textarea id="CurrentAddress" matInput type="text" placeholder="CurrentAddress" [formControl]="currentaddress"></textarea>
           </mat-form-field>
         </div>
@@ -82,19 +82,19 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-12">
           <mat-form-field appearance="fill">
-            <mat-label>Current Village</mat-label>
+            <mat-label>હાલનુ ગામ</mat-label>
             <input id="CurrentVillage" matInput type="text" placeholder="CurrentVillage" [formControl]="currentvillage">
           </mat-form-field>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12">
           <mat-form-field appearance="fill">
-            <mat-label>Current District</mat-label>
+            <mat-label>હાલનો જિલ્લો</mat-label>
             <input id="CurrentDistrict" matInput type="text" placeholder="CurrentDistrict" [formControl]="currentdistrict">
           </mat-form-field>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12">
           <mat-form-field appearance="fill">
-            <mat-label>Current State</mat-label>
+            <mat-label>હાલનુ રાજ્ય</mat-label>
             <mat-select [formControl]="currentstate">
               <mat-option value="Andhra Pradesh">Andhra Pradesh</mat-option>
               <mat-option value="Arunachal Pradesh">Arunachal Pradesh</mat-option>
@@ -130,7 +130,7 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12">
           <mat-form-field appearance="fill">
-            <mat-label>Current Pincode</mat-label>
+            <mat-label>હાલનો પીન કોડ</mat-label>
             <input id="CurrentPincode" matInput minLength="5" maxLength="6" placeholder="CurrentPincode" [formControl]="currentpincode">
           </mat-form-field>
         </div>
@@ -184,7 +184,7 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
       <ng-container matColumnDef="FamilyID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Family ID</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>કુટુંબ ID</mat-header-cell>
         <mat-cell *matCellDef="let family"> {{family.familyID}} </mat-cell>
       </ng-container>
 
@@ -198,7 +198,7 @@
         <mat-cell *matCellDef="let family"> {{family.originalDistrict}} </mat-cell>
       </ng-container>-->
       <ng-container matColumnDef="PostalAddressName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Postal Address Name</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>પત્રવ્યવહાર માટે નામ</mat-header-cell>
         <mat-cell *matCellDef="let family"> {{family.postalAddressName}} </mat-cell>
       </ng-container>
       <!--<ng-container matColumnDef="CurrentAddress">
@@ -206,19 +206,19 @@
         <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
       </ng-container>-->
       <ng-container matColumnDef="CurrentVillage">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Current Village</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનુ ગામ</mat-header-cell>
         <mat-cell *matCellDef="let family"> {{family.currentVillage}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="CurrentDistrict">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Current District</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનો જિલ્લો</mat-header-cell>
         <mat-cell *matCellDef="let family"> {{family.currentDistrict}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="CurrentState">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Current State</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનુ રાજ્ય</mat-header-cell>
         <mat-cell *matCellDef="let family"> {{family.currentState}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="CurrentPincode">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Original Village</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>મૂળ ગામ</mat-header-cell>
         <mat-cell *matCellDef="let family"> {{family.originalVillage}} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="Edit">
