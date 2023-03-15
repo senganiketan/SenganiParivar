@@ -44,30 +44,6 @@ Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Perso
 Insert INTO OriginalVillage (OriginalVillageName,Person1Name,Person1Mobile,Person2Name,Person2Mobile) values(N'વિરાણી કોરાવાળી','Bhavesh Jethalal Senghani',9819070008,'Rajesh Manilal Senghani',9925514713);
 
 
---Aapde total 2 name ane mobile number joie chhe game wise. To haji niche na game ma detail joise. jo upar whats up group ma send kari hoy ane amara thi na lakhai hoy to pan re-send karo please.
-
-
---અરજણપુરા na 2 jana na name aapo.
---ખોભડી ma haji ek name joise.
---ગુંદિયાલી ma haju ek 
---ઘડુલી maa haju ek
---ટોડીયા ma be jana
---દેશલપર(વાંઢાય) ma ek
---દોલતપર ma be
---ધારેશી ma ek
---પદમપુર ma ek
---બિદડા ma be
---ભીટારા ma be
---મદનપુરા ma be
---મમાયમોરા ma be
---મંગવાના ma ek
---રત્નાપર ma ek
---રાજપર ma ek
---રામપર(સ) ma be
---રાયણ ma ek
---લુડવા ma be
---વાલકા ma 
---વિરાણી કોરાવાળી ma ek
 
 
 
