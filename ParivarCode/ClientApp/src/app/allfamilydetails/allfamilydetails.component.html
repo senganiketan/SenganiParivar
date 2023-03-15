@@ -82,7 +82,7 @@
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </table>
-            <mat-paginator #paginatorFamily [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+            <mat-paginator #paginatorFamilyMembers [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
           </div>
         </div>
       </mat-tab>
@@ -164,11 +164,79 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header>હાજરી</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgramValue}} </mat-cell>
               </ng-container>
-
               <mat-header-row *matHeaderRowDef="displayedColumnsdaughter"></mat-header-row>
               <mat-row *matRowDef="let row; columns: displayedColumnsdaughter;"></mat-row>
             </table>
             <mat-paginator #paginatorDaughters [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="કુટુંબ">
+        <div class="example-container-table">
+          <div>
+            <!--<div class="col-lg-3 col-md-6 col-sm-12">
+              Search :
+            </div>-->
+            <div class="row">
+              <!--<div class="col-lg-3 col-md-6 col-sm-12">
+                <mat-form-field appearance="fill">
+                  <mat-label>Original Village</mat-label>
+                  <mat-select autocomplete="off" >
+                    <mat-option *ngFor="let villages of (allOriginalVillages | async)" [formControl]="familyOriginalVillage" [value]="villages.originalVillageName">
+                      {{villages.originalVillageName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>-->
+              <div class="col-lg-3 col-md-6 col-sm-12">
+                <mat-form-field>
+                  <input matInput id="family" (keyup)="applyFamilyFilter($event.target.value)" placeholder="Search">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSourceFamily" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+              <ng-container matColumnDef="familyId">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>કુટુંબ ID</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.familyID}} </mat-cell>
+              </ng-container>
+              <!--<ng-container matColumnDef="originalDistrict">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>originalDistrict</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.originalDistrict}} </mat-cell>
+              </ng-container>-->
+              <ng-container matColumnDef="postalAddressName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>postalAddressName</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.postalAddressName}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="currentAddress">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>currentAddress</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="currentVillage">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>currentVillage</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.currentVillage}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="currentDistrict">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>currentDistrict</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.currentDistrict}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="currentState">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>currentState</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.currentState}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="currentPincode">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>currentPincode</mat-header-cell>
+                <mat-cell *matCellDef="let family">  {{family.currentPincode}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="originalVillage">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>originalVillage</mat-header-cell>
+                <mat-cell *matCellDef="let family"> {{family.originalVillage}} </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumnsFamily"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumnsFamily;"></mat-row>
+            </table>
+            <mat-paginator #paginatorFamily [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
           </div>
         </div>
       </mat-tab>

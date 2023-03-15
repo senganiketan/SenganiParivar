@@ -11,6 +11,7 @@ namespace WebApiParivarCode.Repository
         Task<Family> InsertFamily(Family objFamily);
         Task<Family> UpdateFamily(Family objFamily);
         bool DeleteFamily(int ID);
+        Task<IEnumerable<Family>> GetAllFamily();
     }
 
     public class FamilyRepository : IFamilyRepository
@@ -63,8 +64,8 @@ namespace WebApiParivarCode.Repository
         }
 
         public async Task<IEnumerable<Family>> GetFamilyByMobile(decimal Mobile)
-        {  
-            var result = await _context.Families.Where(x => x.ModifiedByID == Mobile && x.Active== true).Select(x => new Family
+        {
+            var result = await _context.Families.Where(x => x.ModifiedByID == Mobile && x.Active == true).Select(x => new Family
             {
                 FamilyID = x.FamilyID,
                 OriginalVillage = x.OriginalVillage,
@@ -107,7 +108,7 @@ namespace WebApiParivarCode.Repository
         public bool DeleteFamily(int ID)
         {
             bool result = false;
-            
+
             var family = _context.Families.Where(x => x.FamilyID == ID).Select(x => new Family
             {
                 FamilyID = x.FamilyID,
@@ -134,6 +135,22 @@ namespace WebApiParivarCode.Repository
                 result = true;
             }
             return result;
+        }
+
+        public async Task<IEnumerable<Family>> GetAllFamily()
+        {
+            return await _context.Families.Where(x => x.Active).Select(x => new Family
+            {
+                FamilyID = x.FamilyID,
+                OriginalVillage = x.OriginalVillage,
+                //OriginalDistrict = x.OriginalDistrict,
+                PostalAddressName = x.PostalAddressName,
+                CurrentAddress = x.CurrentAddress,
+                CurrentVillage = x.CurrentVillage,
+                CurrentDistrict = x.CurrentDistrict,
+                CurrentState = x.CurrentState,
+                CurrentPincode = x.CurrentPincode,
+            }).ToListAsync();
         }
     }
 }

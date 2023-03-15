@@ -66,7 +66,14 @@ namespace WebApiParivarCode.Controllers
         {
             _familyRepository.DeleteFamily(id);
             return new JsonResult("Deleted Successfully");
-        }          
+        }
+
+        [HttpGet]
+        [Route("GetAllFamily")]
+        public async Task<IActionResult> GetAll()
+        {
+            return Ok(await _familyRepository.GetAllFamily());
+        }
 
     }
 }

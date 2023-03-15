@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { FamilyMember } from '../model/FamilyMember';
 import { DaughterDetail } from '../model/DaughterDetail'
+import { Family } from '../model/Family';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ import { DaughterDetail } from '../model/DaughterDetail'
 export class AllFamilyDetailsService {
 
   constructor(private http: HttpClient) {
+  }
+
+  public getAllfamily(): Observable<Family[]> {
+    return this.http.get<Family[]>(`${environment.apiUrl}/Family/GetAllFamily`);
   }
 
   public getAllfamilymembers(): Observable<FamilyMember[]> {
