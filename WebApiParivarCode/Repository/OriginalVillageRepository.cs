@@ -25,7 +25,7 @@ namespace WebApiParivarCode.Repository
                 Person1Mobile = x.Person1Mobile,
                 Person2Name = x.Person2Name,
                 Person2Mobile = x.Person2Mobile
-            }).ToListAsync();
+            }).OrderBy(x=>x.OriginalVillageName).ToListAsync();
         }
     }
 
