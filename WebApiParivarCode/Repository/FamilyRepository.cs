@@ -139,7 +139,7 @@ namespace WebApiParivarCode.Repository
 
         public async Task<IEnumerable<Family>> GetAllFamily()
         {
-            return await _context.Families.Where(x => x.Active).Select(x => new Family
+            var familyList = await _context.Families.Where(x => x.Active).Select(x => new Family
             {
                 FamilyID = x.FamilyID,
                 OriginalVillage = x.OriginalVillage,
@@ -151,6 +151,8 @@ namespace WebApiParivarCode.Repository
                 CurrentState = x.CurrentState,
                 CurrentPincode = x.CurrentPincode,
             }).ToListAsync();
+
+            return familyList.OrderByDescending(f => f.FamilyID);
         }
     }
 }
