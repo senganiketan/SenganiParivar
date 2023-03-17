@@ -96,6 +96,9 @@ table {
   background-color: red;
   color: white;
 }
+.mat-button-wrapper {
+  color: white;
+}
 
 .btn-left {
   margin-right: 15px !important;

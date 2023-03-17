@@ -28,7 +28,7 @@
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSourceFamily" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
               <ng-container matColumnDef="familyId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>કુટુંબ ક્રમાંક</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">કુટુંબ ક્રમાંક</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.familyID}} </mat-cell>
               </ng-container>
               <!--<ng-container matColumnDef="originalDistrict">
@@ -36,31 +36,31 @@
             <mat-cell *matCellDef="let family"> {{family.originalDistrict}} </mat-cell>
           </ng-container>-->
               <ng-container matColumnDef="postalAddressName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>નામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell" >નામ</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.postalAddressName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="currentAddress">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનુ એડ્રેસ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">હાલનુ એડ્રેસ</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentAddress}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="currentVillage">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનુ ગામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">હાલનુ ગામ</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentVillage}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="currentDistrict">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનો જિલ્લો</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">હાલનો જિલ્લો</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentDistrict}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="currentState">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનુ રાજ્ય</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">હાલનુ રાજ્ય</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.currentState}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="currentPincode">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનો પીન કોડ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">હાલનો પીન કોડ</mat-header-cell>
                 <mat-cell *matCellDef="let family">  {{family.currentPincode}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="originalVillage">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>મૂળ ગામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">મૂળ ગામ</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.originalVillage}} </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumnsFamily"></mat-header-row>
@@ -97,35 +97,35 @@
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
               <ng-container matColumnDef="familyId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>કુટુંબ ક્રમાંક</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell" >કુટુંબ ક્રમાંક</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.familyID}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>નામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">નામ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.firstName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="fatherHusbandName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>પિતા/પતિનું નામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">પિતા/પતિનું નામ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.fatherHusbandName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="age">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>ઉંમર</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">ઉંમર</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.age}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="gender">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>પુરુષ/સ્ત્રી</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">પુરુષ/સ્ત્રી</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.gender}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="maritalStatus">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>વૈવાહિક સ્થિતિ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">વૈવાહિક સ્થિતિ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.maritalStatus}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="education">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>શિક્ષણ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">શિક્ષણ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.education}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="business">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>વ્યવસાય</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">વ્યવસાય</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.business}} </mat-cell>
               </ng-container>
               <!--<ng-container matColumnDef="attendingProgram">
@@ -133,19 +133,19 @@
             <mat-cell *matCellDef="let familymember">  {{familymember.attendingProgramValue}} </mat-cell>
           </ng-container>-->
               <ng-container matColumnDef="relationName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>સંબંધ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">સંબંધ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.relationName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="mobile">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>મોબાઇલ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell" >મોબાઇલ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.mobile}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="currentVillage">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હાલનુ ગામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">હાલનુ ગામ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember">  {{familymember.currentVillage}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="originalVillage">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>મૂળ ગામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">મૂળ ગામ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.originalVillage}} </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -182,55 +182,55 @@
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSourcedaughter" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
               <ng-container matColumnDef="familyId">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>કુટુંબ ક્રમાંક</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">કુટુંબ ક્રમાંક</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.familyID}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="firstName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>દીકરીનુ નામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">દીકરીનુ નામ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.firstName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="husbandName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>પતિનું નામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">પતિનું નામ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.husbandName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="surname">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>અટક</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">અટક</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.surname}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="fatherInLawName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>સસરાનુ નામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">સસરાનુ નામ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.fatherInLawName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="relationName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>સંબંધ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">સંબંધ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.relationName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="age">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>ઉંમર</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">ઉંમર</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.age}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="village">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>દીકરીનુહાલનુ ગામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">દીકરીનુહાલનુ ગામ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.village}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="alive">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હયાત</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-headerclass="mat-header-cell">હયાત</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.aliveName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="vadilNuName">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>વડીલનુ નામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">વડીલનુ નામ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail">  {{daughterdetail.vadilNuName}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="vadilNuOrginalVillage">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>વડીલનુ મૂળ ગામ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">વડીલનુ મૂળ ગામ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail">  {{daughterdetail.vadilNuOrginalVillage}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="mobile">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>મોબાઇલ</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">મોબાઇલ</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.mobile}} </mat-cell>
               </ng-container>
               <ng-container matColumnDef="attendingProgram">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>હાજરી</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">હાજરી</mat-header-cell>
                 <mat-cell *matCellDef="let daughterdetail"> {{daughterdetail.attendingProgramValue}} </mat-cell>
               </ng-container>
               <mat-header-row *matHeaderRowDef="displayedColumnsdaughter"></mat-header-row>
