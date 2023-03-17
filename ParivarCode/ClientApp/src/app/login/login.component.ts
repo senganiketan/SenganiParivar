@@ -131,7 +131,7 @@ export class LoginComponent {
       }
       else {
 
-        this._snackBar.open('OTP is Invalid', 'Close', {
+        this._snackBar.open('OTP is Invalid', '', {
           horizontalPosition: 'center',
           verticalPosition: 'top',
           duration: 5000,
@@ -170,7 +170,7 @@ export class LoginComponent {
   }
 
   SnackBarOTPSentSuccessfully() {
-    this._snackBar.open('OTP sent Successfully', 'Close', {
+    this._snackBar.open('OTP sent Successfully', '', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
       duration: 8000,
@@ -178,7 +178,7 @@ export class LoginComponent {
     });
   }
   SnackBarOTPNotSent() {
-    this._snackBar.open('OTP is not sent. Please try again', 'Close', {
+    this._snackBar.open('OTP is not sent. Please try again', '', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
       duration: 8000,
