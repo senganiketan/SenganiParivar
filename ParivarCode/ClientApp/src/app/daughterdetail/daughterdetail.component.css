@@ -145,4 +145,5 @@ mat-header-cell {
 }
 .font-orange {
   color: #e65100;
+  font-weight: bold;
 }

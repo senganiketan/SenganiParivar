@@ -151,6 +151,7 @@ input::-webkit-inner-spin-button {
 }
 .font-orange {
   color: #e65100;
+  font-weight: bold;
 }
 
 

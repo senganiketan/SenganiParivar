@@ -5,7 +5,7 @@
     <mat-toolbar color="accent" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
       <div align="center" class="row text-left" mat-raised-button matTooltip="પત્રવ્યવહાર માટે ઘરનુ અથવા વ્યવસાય નુ સરનામું">
         <!--<div class="col-lg-5 col-md-12 col-sm-12">Family location</div>-->
-        <div class="col-lg-6 col-md-12 col-sm-12">પત્રવ્યવહાર માટે સરનામું</div>
+        <div class="col-lg-6 col-md-12 col-sm-12">પત્રવ્યવહાર માટે વિગત</div>
       </div>
     </mat-toolbar>
     <br />
@@ -51,7 +51,7 @@
     <mat-card-header class="mat-card-custom-header">
       <mat-card-title-group>
         <!--<mat-card-title>પત્રવ્યવહાર માટે સરનામું</mat-card-title>-->
-        <mat-card-subtitle>પત્રવ્યવહાર માટે વિગત</mat-card-subtitle>
+        <mat-card-subtitle>પત્રવ્યવહાર માટે સરનામું</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
@@ -183,8 +183,8 @@
 <div class="example-container-table">
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
-      <ng-container matColumnDef="FamilyID">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>કુટુંબ ID</mat-header-cell>
+      <ng-container matColumnDef="familyID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>કુટુંબ ક્રમાંક</mat-header-cell>
         <mat-cell *matCellDef="let family"> {{family.familyID}} </mat-cell>
       </ng-container>
 
