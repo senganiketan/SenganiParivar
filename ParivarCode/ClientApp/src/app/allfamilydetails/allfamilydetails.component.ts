@@ -36,9 +36,9 @@ export class AllFamilyDetailsComponent implements OnInit {
   displayedColumnsFamily: string[] = ['familyId', 'postalAddressName', 'currentAddress', 'currentVillage', 'currentDistrict', 'currentState', 'currentPincode', 'originalVillage'];
 
   constructor(private allfamilyDetailsService: AllFamilyDetailsService, private familyservice: FamilyService) {
-    this.loadAllFamilyMembers();
-    this.loadAllDaughters();
     this.loadAllFamily();
+    this.loadAllFamilyMembers();
+    this.loadAllDaughters();    
   }
   ngOnInit() {
     this.FillOriginalVillageDDL();
