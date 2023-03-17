@@ -183,9 +183,9 @@ export class FamilyComponent implements OnInit {
     family.modifiedByID = this.modifiedbyid;
     family.modifiedDate = this.modifiedDate;
     family.residentialFacility = false;
+    this.isDisabled = true;
 
     if (this.familyIdUpdate == null) {
-
       this.familyservice.createfamily(family)
         .subscribe({
           next: (any) => {
@@ -194,8 +194,7 @@ export class FamilyComponent implements OnInit {
             this.loadAllFamily();
             this.familyIdUpdate = null;
             this.familyForm.reset();
-            this.familyForm.disable();
-            this.isDisabled = true;
+            this.familyForm.disable();            
             this.representativeNamesMobile = '';
           },
           error: (err) => {
@@ -213,8 +212,7 @@ export class FamilyComponent implements OnInit {
         this.loadAllFamily();
         this.familyIdUpdate = null;
         this.familyForm.reset();
-        this.familyForm.disable();
-        this.isDisabled = true;
+        this.familyForm.disable();       
         this.representativeNamesMobile = '';
       });
     }
