@@ -36,7 +36,7 @@ export class DaughterDetailComponent implements OnInit {
 
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   displayedColumns: string[] = ['firstName', 'husbandName', 'relationName', 'age', 'mobile', 'alive', 'Edit', 'Delete'];//'attendingProgram',
   //displayedColumns: string[] = ['firstName', 'fatherInLawName','husbandName', 'relationName',  'age', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -250,23 +250,26 @@ export class DaughterDetailComponent implements OnInit {
   SavedSuccessful(isUpdate: number) {
     if (isUpdate == 0) {
       this._snackBar.open('Record Updated Successfully!', 'Close', {
-        duration: 2000,
+        duration: 8000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
     else if (isUpdate == 1) {
       this._snackBar.open('Record Saved Successfully!', 'Close', {
-        duration: 2000,
+        duration: 8000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
     else if (isUpdate == 2) {
       this._snackBar.open('Record Deleted Successfully!', 'Close', {
-        duration: 2000,
+        duration: 8000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
+        panelClass: ['my-snack-bar']
       });
     }
   }

@@ -41,7 +41,7 @@ export class FamilyMemberComponent implements OnInit {
   isFeMale = false;
   isDaughterDetailbtnDisabled = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName', 'maritalStatus', 'mobile', 'attendingProgram', 'Edit', 'Delete'];
   //displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -264,7 +264,7 @@ export class FamilyMemberComponent implements OnInit {
   SavedSuccessful(isUpdate: number) {
     if (isUpdate == 0) {
       this._snackBar.open('Record Updated Successfully!', '', {
-        duration: 2000,
+        duration: 8000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
         panelClass: ['my-snack-bar']
@@ -272,7 +272,7 @@ export class FamilyMemberComponent implements OnInit {
     }
     else if (isUpdate == 1) {
       this._snackBar.open('Record Saved Successfully!', '', {
-        duration: 2000,
+        duration: 8000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
         panelClass: ['my-snack-bar']
@@ -280,7 +280,7 @@ export class FamilyMemberComponent implements OnInit {
     }
     else if (isUpdate == 2) {
       this._snackBar.open('Record Deleted Successfully!', '', {
-        duration: 2000,
+        duration: 8000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
         panelClass: ['my-snack-bar']

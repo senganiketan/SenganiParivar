@@ -173,7 +173,7 @@ export class LoginComponent {
     this._snackBar.open('OTP sent Successfully', '', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      duration: 6000,
+      duration: 8000,
       panelClass: ['my-snack-bar']
     });
   }
@@ -181,7 +181,7 @@ export class LoginComponent {
     this._snackBar.open('OTP is not sent. Please try again', '', {
       horizontalPosition: 'center',
       verticalPosition: 'top',
-      duration: 6000,
+      duration: 8000,
       panelClass: ['my-snack-bar-error']
     });
   }
