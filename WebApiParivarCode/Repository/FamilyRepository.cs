@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using WebApiParivarCode.Model;
 
 namespace WebApiParivarCode.Repository
@@ -65,22 +66,26 @@ namespace WebApiParivarCode.Repository
 
         public async Task<IEnumerable<Family>> GetFamilyByMobile(decimal Mobile)
         {
-            var result = await _context.Families.Where(x => x.ModifiedByID == Mobile && x.Active == true).Select(x => new Family
-            {
-                FamilyID = x.FamilyID,
-                OriginalVillage = x.OriginalVillage,
-                OriginalDistrict = x.OriginalDistrict,
-                PostalAddressName = x.PostalAddressName,
-                CurrentAddress = x.CurrentAddress,
-                CurrentVillage = x.CurrentVillage,
-                CurrentDistrict = x.CurrentDistrict,
-                CurrentState = x.CurrentState,
-                CurrentPincode = x.CurrentPincode,
-                ResidentialFacility = x.ResidentialFacility,
-                ModifiedByID = Convert.ToInt64(x.ModifiedByID),
-                ModifiedDate = Convert.ToDateTime(x.ModifiedDate)
-            }).ToListAsync();
-            return result;
+            var result = (from f in _context.Families
+                          join fm in _context.FamilyMembers on f.FamilyID equals fm.FamilyID into ffm
+                          from subpet in ffm.DefaultIfEmpty()
+                          where (f.ModifiedByID == Mobile && f.Active == true) || (subpet.Mobile == Mobile && subpet.Active == true)                          
+                          select new Family
+                          {
+                              FamilyID = f.FamilyID,
+                              OriginalVillage = f.OriginalVillage,
+                              OriginalDistrict = f.OriginalDistrict,
+                              PostalAddressName = f.PostalAddressName,
+                              CurrentAddress = f.CurrentAddress,
+                              CurrentVillage = f.CurrentVillage,
+                              CurrentDistrict = f.CurrentDistrict,
+                              CurrentState = f.CurrentState,
+                              CurrentPincode = f.CurrentPincode,
+                              ResidentialFacility = f.ResidentialFacility,
+                              ModifiedByID = Convert.ToInt64(f.ModifiedByID),
+                              ModifiedDate = Convert.ToDateTime(f.ModifiedDate)
+                          }).ToList().DistinctBy(Family=>Family.FamilyID);
+            return result;           
         }
         public async Task<Family> InsertFamily(Family objFamily)
         {

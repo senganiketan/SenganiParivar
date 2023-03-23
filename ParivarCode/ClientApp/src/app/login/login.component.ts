@@ -53,7 +53,12 @@ export class LoginComponent {
       this.otphide = false;
       this.btnmobilehide = true;
 
-      this.userlogin.otp = this.loginservice.generateOTP();
+      if (this.mobile.value == 9825975949) { //We will send 1234 OTP when mobile number is specific
+          this.userlogin.otp = 1234;
+      }
+      else {
+           this.userlogin.otp = this.loginservice.generateOTP();
+      }
 
       var mobilenumber = "91" + this.mobile.value;
       var smsbody = this.userlogin.otp + " OTP is login to Shree Hirjidada Website - RworldComp";

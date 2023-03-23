@@ -44,5 +44,7 @@ INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'અન્ય',2)
 
 INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'પુત્રવધુ',1)
 INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'ભાભી',1)
+INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'પૌત્ર',1)
+INSERT [dbo].[Relation] ([RelationName],[UseType]) VALUES (N'પૌત્રી',1)
 
 GO
