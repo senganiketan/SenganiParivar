@@ -109,7 +109,7 @@
           <div class="btn-right">
             <div class="row">
               <div class="col-lg-3 col-md-4 col-sm-12 mrg-btm-5 mrg-top-5">
-                <button type="submit" class="btn-orange" mat-raised-button>submit</button>
+                <button type="submit" class="btn-orange" mat-raised-button [disabled]="isDisabled">submit</button>
               </div>
               <div class="col-lg-3 col-md-4 col-sm-12 mrg-btm-5 mrg-top-5">
                 <button type="button" class="btn-orange" mat-raised-button (click)='ClearForm()'>clear</button>

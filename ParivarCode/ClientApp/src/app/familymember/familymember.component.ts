@@ -42,6 +42,7 @@ export class FamilyMemberComponent implements OnInit {
   isDaughterDetailbtnDisabled = false;
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  isDisabled = false;
   displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName', 'maritalStatus', 'mobile', 'attendingProgram', 'Edit', 'Delete'];
   //displayedColumns: string[] = ['firstName', 'fatherHusbandName', 'relationName',  'age', 'maritalStatus', 'education', 'business', 'mobile', 'attendingProgram',  'Edit', 'Delete'];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
@@ -186,14 +187,15 @@ export class FamilyMemberComponent implements OnInit {
     familymember.modifiedbyid = this.modifiedbyid;
     familymember.age = this.familymemberForm.controls['age'].value == "" ? null : this.familymemberForm.controls['age'].value;
     familymember.mobile = this.familymemberForm.controls['mobile'].value == "" ? null : this.familymemberForm.controls['mobile'].value;
-    familymember.relationID = this.familymemberForm.controls['relationid'].value;
-
-
+    familymember.relationID = this.familymemberForm.controls['relationid'].value;  
+      
     if (this.familyMemberIdUpdate == null) {
+      this.isDisabled = true;
       this.familymemberservice.createfamilyMember(familymember)
         .subscribe({
           next: (any) => {
             this.dataSaved = true;
+            this.isDisabled = false;
             this.SavedSuccessful(1);
             this.loadAllFamily();
             this.familyMemberIdUpdate = null;
@@ -210,8 +212,8 @@ export class FamilyMemberComponent implements OnInit {
 
       this.familymemberservice.updatefamilyMember(familymember)
         .subscribe({
-          next: (any) => {
-            this.dataSaved = true;
+          next: (any) => {            
+            this.dataSaved = true;         
             this.SavedSuccessful(0);
             this.loadAllFamily();
             this.familyMemberIdUpdate = null;
@@ -222,7 +224,7 @@ export class FamilyMemberComponent implements OnInit {
           }
         }
         );
-    }
+    }   
   }
 
   loadFamilyToEdit(familymemberid: number) {

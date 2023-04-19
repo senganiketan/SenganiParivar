@@ -33,6 +33,7 @@ export class DaughterDetailComponent implements OnInit {
   familyID?: number;
   sessionmobile: number;
   familyMemberName: any;
+  isDisabled = false;
 
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -184,10 +185,12 @@ export class DaughterDetailComponent implements OnInit {
     daughterdetail.mobile = this.daughterdetailForm.controls['mobile'].value == "" ? null : this.daughterdetailForm.controls['mobile'].value;
 
     if (this.daughterDetailIdUpdate == null) {
+      this.isDisabled = true;
       this.daughterdetailservice.createdaughterdetail(daughterdetail)
         .subscribe({
           next: (any) => {
             this.dataSaved = true;
+            this.isDisabled = false;
             this.SavedSuccessful(1);
             this.loadAllDaughterDetails();
             this.daughterDetailIdUpdate = null;
