@@ -202,6 +202,7 @@ export class FamilyMemberComponent implements OnInit {
             this.resetForm();
           },
           error: (err) => {
+            this.isDisabled = false;
             console.log(err);
           }
         }
