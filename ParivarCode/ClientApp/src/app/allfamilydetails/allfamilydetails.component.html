@@ -4,20 +4,25 @@
       <mat-tab label="પત્રવ્યવહારની વિગત">
         <div class="example-container-table">
           <div>
+            <h2>1. Export Table (Material and normal table)</h2>
+            <div class="export-container">
+              <button mat-raised-button color="primary" (click)="exportArray()">Export Material Table</button>
+            </div>
+
             <!--<div class="col-lg-3 col-md-6 col-sm-12">
-          Search :
-        </div>-->
+    Search :
+  </div>-->
             <div class="row">
               <!--<div class="col-lg-3 col-md-6 col-sm-12">
-            <mat-form-field appearance="fill">
-              <mat-label>Original Village</mat-label>
-              <mat-select autocomplete="off" >
-                <mat-option *ngFor="let villages of (allOriginalVillages | async)" [formControl]="familyOriginalVillage" [value]="villages.originalVillageName">
-                  {{villages.originalVillageName}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>-->
+      <mat-form-field appearance="fill">
+        <mat-label>Original Village</mat-label>
+        <mat-select autocomplete="off" >
+          <mat-option *ngFor="let villages of (allOriginalVillages | async)" [formControl]="familyOriginalVillage" [value]="villages.originalVillageName">
+            {{villages.originalVillageName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>-->
               <div class="col-lg-3 col-md-6 col-sm-12">
                 <mat-form-field>
                   <input matInput id="family" (keyup)="applyFamilyFilter($event.target.value)" placeholder="Search">
@@ -27,14 +32,11 @@
           </div>
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSourceFamily" matSort class="mat-elevation-z8" style="box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);">
+
               <ng-container matColumnDef="familyId">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">કુટુંબ ક્રમાંક</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.familyID}} </mat-cell>
               </ng-container>
-              <!--<ng-container matColumnDef="originalDistrict">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>originalDistrict</mat-header-cell>
-            <mat-cell *matCellDef="let family"> {{family.originalDistrict}} </mat-cell>
-          </ng-container>-->
               <ng-container matColumnDef="postalAddressName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">વ્યક્તિનું નામ</mat-header-cell>
                 <mat-cell *matCellDef="let family"> {{family.postalAddressName}} </mat-cell>

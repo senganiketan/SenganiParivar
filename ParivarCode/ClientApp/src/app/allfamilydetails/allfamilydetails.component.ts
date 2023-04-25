@@ -9,6 +9,7 @@ import { FamilyService } from '../family/family.service'
 import { OriginalVillage } from '../model/OriginalVillage';
 import { Family } from '../model/Family';
 import { Observable } from 'rxjs';
+import { TableUtil } from "./tableUtil";
 
 @Component({
   selector: 'app-allfamilydetails',
@@ -23,6 +24,7 @@ export class AllFamilyDetailsComponent implements OnInit {
   dataSourcedaughter !: MatTableDataSource<DaughterDetail>;
   dataSourceFamily !: MatTableDataSource<Family>;
   allOriginalVillages!: Observable<OriginalVillage[]>;
+  familydatasourceArray: Family[] = [];
 
   @ViewChild('paginatorFamilyMembers', { static: true }) paginatorFamilyMembers!: MatPaginator;
   @ViewChild('paginatorDaughters', { static: true }) paginatorDaughters!: MatPaginator;
@@ -69,6 +71,8 @@ export class AllFamilyDetailsComponent implements OnInit {
       this.dataSourceFamily = new MatTableDataSource(data);
       this.dataSourceFamily.paginator = this.paginatorFamily;
       this.dataSourceFamily.sort = this.sortFamily;
+
+      this.familydatasourceArray = data;
     });
   }
 
@@ -93,6 +97,8 @@ export class AllFamilyDetailsComponent implements OnInit {
     if (this.dataSourceFamily.paginator) {
       this.dataSourceFamily.paginator.firstPage();
     }
+
+    this.familydatasourceArray = this.dataSourceFamily.filteredData;
   }
 
   applyDaughterFilter(filterValue: string) {
@@ -103,6 +109,30 @@ export class AllFamilyDetailsComponent implements OnInit {
     }
   }
 
+
+  exportArray() {    
+    const onlyNameAndSymbolArr: Partial<FamilyElement>[] = this.familydatasourceArray.map(x => ({
+      familyID: x.familyID,
+      postalAddressName: x.postalAddressName,
+      currentAddress: x.currentAddress,        
+      currentVillage: x.currentVillage,
+      currentState: x.currentVillage,
+      currentDistrict: x.currentDistrict,
+      currentPincode: x.currentPincode,
+      originalVillage: x.originalVillage, 
+    }));
+    TableUtil.exportArrayToExcel(onlyNameAndSymbolArr, "Family");
+  }
 }
 
-
+export interface FamilyElement {
+  familyID: number;
+  postalAddressName: string; 
+  originalVillage: string;
+  originalDistrict: string;  
+  currentAddress: string; 
+  currentVillage: string; 
+  currentDistrict: string; 
+  currentState: string; 
+  currentPincode : number;
+}
