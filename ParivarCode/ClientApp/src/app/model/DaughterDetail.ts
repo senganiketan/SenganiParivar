@@ -1,4 +1,5 @@
 export class DaughterDetail {
+  [x: string]: any;
   daughterDetailID?: number;
   familyID?: number;
   firstName = "";
