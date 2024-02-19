@@ -8,10 +8,22 @@
       <mat-tab label="પત્રવ્યવહારની વિગત">
         <div class="example-container-table">
           <div>
-            <div class="row">             
+            <div class="row">
+              <div class="col-lg-3 col-md-6 col-sm-12" [formGroup]="formGroupVillage">
+                <mat-form-field>
+                  <mat-label>મૂળ ગામ</mat-label>
+                  <mat-select formControlName="originalvillage" autocomplete="off" (selectionChange)="applyFamilyFilter(Search.value,originalVillage.value)" #originalVillage>
+                    <mat-option value="All">-- બધા ગામ --</mat-option>
+                    <mat-option *ngFor="let villages of (allOriginalVillages | async)" [value]="villages.originalVillageName">
+                      {{villages.originalVillageName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
               <div class="col-lg-3 col-md-6 col-sm-12">
                 <mat-form-field>
-                  <input matInput id="family" (keyup)="applyFamilyFilter($event.target.value)" placeholder="Search">
+                  <input matInput id="family" (keyup)="applyFamilyFilter(Search.value,originalVillage.value)" placeholder="Search" #Search>
+                  <!--<input matInput id="family" (keyup)="applyFamilyFilter($event.target.value)" placeholder="Search" #Search>-->
                 </mat-form-field>
               </div>
             </div>
@@ -62,19 +74,19 @@
         <div class="example-container-table">
           <div>
             <!--<div class="col-lg-3 col-md-6 col-sm-12">
-            Search :
-          </div>-->
+              Search :
+            </div>-->
             <div class="row">
               <!--<div class="col-lg-3 col-md-6 col-sm-12">
-              <mat-form-field appearance="fill">
-                <mat-label>Original Village</mat-label>
-                <mat-select autocomplete="off" >
-                  <mat-option *ngFor="let villages of (allOriginalVillages | async)" [formControl]="familyOriginalVillage" [value]="villages.originalVillageName">
-                    {{villages.originalVillageName}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>-->
+                <mat-form-field appearance="fill">
+                  <mat-label>Original Village</mat-label>
+                  <mat-select autocomplete="off" >
+                    <mat-option *ngFor="let villages of (allOriginalVillages | async)" [formControl]="familyOriginalVillage" [value]="villages.originalVillageName">
+                      {{villages.originalVillageName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>-->
               g-
               <div class="col-lg-3 col-md-6 col-sm-12">
                 <mat-form-field>
@@ -118,11 +130,11 @@
                 <mat-cell *matCellDef="let familymember"> {{familymember.business}} </mat-cell>
               </ng-container>
               <!--<ng-container matColumnDef="attendingProgram">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>હાજરી</mat-header-cell>
-              <mat-cell *matCellDef="let familymember">  {{familymember.attendingProgramValue}} </mat-cell>
-            </ng-container>-->
+                <mat-header-cell *matHeaderCellDef mat-sort-header>હાજરી</mat-header-cell>
+                <mat-cell *matCellDef="let familymember">  {{familymember.attendingProgramValue}} </mat-cell>
+              </ng-container>-->
               <ng-container matColumnDef="relationName">
- de
+                de
                 el
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="mat-header-cell">સંબંધ</mat-header-cell>
                 <mat-cell *matCellDef="let familymember"> {{familymember.relationName}} </mat-cell>
@@ -150,19 +162,19 @@
         <div class="example-container-table">
           <div>
             <!--<div class="col-lg-3 col-md-6 col-sm-12">
-            Search :
-          </div>-->
+              Search :
+            </div>-->
             <div class="row">
               <!--<div class="col-lg-3 col-md-6 col-sm-12">
-              <mat-form-field appearance="fill">
-                <mat-label>Original Village</mat-label>
-                <mat-select autocomplete="off">
-                  <mat-option *ngFor="let villages of (allOriginalVillages | async)" [value]="villages.originalVillageName">
-                    {{villages.originalVillageName}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>-->
+                <mat-form-field appearance="fill">
+                  <mat-label>Original Village</mat-label>
+                  <mat-select autocomplete="off">
+                    <mat-option *ngFor="let villages of (allOriginalVillages | async)" [value]="villages.originalVillageName">
+                      {{villages.originalVillageName}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>-->
               g-
               <div class="col-lg-3 col-md-6 col-sm-12">
                 <mat-form-field>
@@ -237,6 +249,6 @@
 
 
   </mat-card>
-  
+
 </div>
 

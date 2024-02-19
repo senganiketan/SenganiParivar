@@ -11,6 +11,8 @@ import { Family } from '../model/Family';
 import { Observable } from 'rxjs';
 import { TableUtil } from "./tableUtil";
 import { SessionStorageService } from '../service/sessionstorage.service';
+import { FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-allfamilydetails',
@@ -29,6 +31,9 @@ export class AllFamilyDetailsComponent implements OnInit {
   familymemberdatasourceArray: FamilyMember[] = [];
   daughterdatasourceArray: DaughterDetail[] = [];
   isAdminLoggedIn = false;
+  formGroupVillage: any;
+
+ 
 
   @ViewChild('paginatorFamilyMembers', { static: true }) paginatorFamilyMembers!: MatPaginator;
   @ViewChild('paginatorDaughters', { static: true }) paginatorDaughters!: MatPaginator;
@@ -40,7 +45,9 @@ export class AllFamilyDetailsComponent implements OnInit {
   displayedColumns: string[] = ['familyId', 'firstName', 'fatherHusbandName', 'age', 'relationName', 'gender', 'education', 'business', 'maritalStatus', 'mobile', 'currentVillage', 'originalVillage'];
   displayedColumnsdaughter: string[] = ['familyId', 'firstName', 'husbandName', 'surname', 'fatherInLawName', 'relationName', 'age', 'village', 'vadilNuName', 'vadilNuOrginalVillage', 'mobile', 'attendingProgram', 'alive'];
   displayedColumnsFamily: string[] = ['familyId', 'postalAddressName', 'currentAddress', 'currentVillage', 'currentDistrict', 'currentState', 'currentPincode', 'originalVillage'];
-
+  get originalvillage(): any {
+    return this.formGroupVillage.get('originalvillage');
+  }
   constructor(private allfamilyDetailsService: AllFamilyDetailsService, private familyservice: FamilyService,private sessionstorage: SessionStorageService,) {
     this.loadAllFamily();
     this.loadAllFamilyMembers();
@@ -51,12 +58,26 @@ export class AllFamilyDetailsComponent implements OnInit {
       this.isAdminLoggedIn = true;
     }
 
+    this.formGroupVillage = new FormGroup({
+      originalvillage: new FormControl(''),
+   });
     this.FillOriginalVillageDDL();
   }
 
-  FillOriginalVillageDDL() {
+  FillOriginalVillageDDL() {  
     this.allOriginalVillages = this.familyservice.getOriginalVillage();
   }
+
+  onOriginalVillage() {
+    console.log('selected value - ' + this.originalvillage.value);
+    if (this.originalvillage.value == "All") {
+      this.originalvillage.value = "";
+    }
+   // this.applyFamilyFilter(this.originalvillage.value);
+   
+  }
+
+
   loadAllFamily() {
     this.allfamilyDetailsService.getAllfamily().subscribe(data => {
       this.dataSourceFamily = new MatTableDataSource(data);
@@ -84,12 +105,20 @@ export class AllFamilyDetailsComponent implements OnInit {
     });
   }
 
-  applyFamilyFilter(filterValue: string) {
-    this.dataSourceFamily.filter = filterValue.trim().toLowerCase();
+  applyFamilyFilter(filterValue1: string, filterValue2: string) {
+    this.dataSourceFamily.filter = [filterValue1.trim().toLowerCase(), filterValue2.trim().toLowerCase()].join('');
+
+    
+   /* this.dataSourceFamily.filter = this.originalvillage.value.trim().toLowerCase();*/
+
     if (this.dataSourceFamily.paginator) {
       this.dataSourceFamily.paginator.firstPage();
     }
     this.familydatasourceArray = this.dataSourceFamily.filteredData;
+
+
+
+ 
   }
 
   applyFilter(filterValue: string) {
