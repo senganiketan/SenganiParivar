@@ -147,8 +147,7 @@ namespace WebApiParivarCode.Repository
             var familyList = await _context.Families.Where(x => x.Active).Select(x => new Family
             {
                 FamilyID = x.FamilyID,
-                OriginalVillage = x.OriginalVillage,
-                //OriginalDistrict = x.OriginalDistrict,
+                OriginalVillage = x.OriginalVillage,              
                 PostalAddressName = x.PostalAddressName,
                 CurrentAddress = x.CurrentAddress,
                 CurrentVillage = x.CurrentVillage,
@@ -157,7 +156,7 @@ namespace WebApiParivarCode.Repository
                 CurrentPincode = x.CurrentPincode,
             }).ToListAsync();
 
-            return familyList.OrderByDescending(f => f.FamilyID);
+            return familyList.OrderBy(f => f.OriginalVillage).ThenBy(f => f.FamilyID);
         }
     }
 }

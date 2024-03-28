@@ -56,7 +56,7 @@ namespace WebApiParivarCode.Repository
                                                     RelationID = x.RelationID,
                                                     RelationName = y.RelationName,
                                                     ModifiedByID = Convert.ToInt64(x.ModifiedByID),
-                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate),
+                                                    ModifiedDate = Convert.ToDateTime(x.ModifiedDate),                                                   
                                                 }
                                         ).ToListAsync();
 
@@ -97,7 +97,7 @@ namespace WebApiParivarCode.Repository
                                             AttendingProgramValue = m.f.x.AttendingProgram == true ? "Yes" : "No",
                                         }).ToListAsync();
 
-            return familyMemberList.OrderByDescending(f => f.FamilyID);
+            return familyMemberList.OrderBy(f => f.OriginalVillage).ThenBy(f => f.FamilyID);
 
         }
 

@@ -90,7 +90,7 @@ namespace WebApiParivarCode.Repository
                                       AliveName = dd.Alive == 1 ? "દિકરીહયાત છે" : (dd.Alive == 2 ? "જમાઈ હયાત છે" : "બન્ને હયાત છે"),
                                   }).ToList();
 
-            return daughterDetailList.OrderByDescending(f => f.FamilyID);
+            return daughterDetailList.OrderBy(f => f.VadilNuOrginalVillage).ThenBy(f => f.FamilyID);
         }
 
         public async Task<IEnumerable<DaughterDetailList>> GetAllDaughterDetailsSearch(string villageName)

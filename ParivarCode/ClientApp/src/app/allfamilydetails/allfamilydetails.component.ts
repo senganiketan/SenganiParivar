@@ -112,48 +112,50 @@ export class AllFamilyDetailsComponent implements OnInit {
 
   exportArray() {
     const FamilyConstant: Partial<FamilyElement>[] = this.familydatasourceArray.map(x => ({
-      familyID: x.familyID,
-      postalAddressName: x.postalAddressName,
-      currentAddress: x.currentAddress,
-      currentVillage: x.currentVillage,
-      currentState: x.currentVillage,
-      currentDistrict: x.currentDistrict,
-      currentPincode: x.currentPincode,
-      originalVillage: x.originalVillage,
+      FamilyID: x.familyID,
+      OriginalVillage: x.originalVillage,
+      PostalAddressName: x.postalAddressName,
+      CurrentAddress: x.currentAddress,
+      CurrentVillage: x.currentVillage,
+      CurrentState: x.currentVillage,
+      CurrentDistrict: x.currentDistrict,
+      currentPincode: x.currentPincode      
     }));
 
 
     const FamilyMembersConstant: Partial<FamilyMemberElement>[] = this.familymemberdatasourceArray.map(x => ({
-      familyID: x.familyID,
-      firstName: x.firstName,
-      fatherHusbandName: x.fatherHusbandName,
-      gender: x.gender,
-      age: x.age,
-      maritalStatus: x.maritalStatus,
-      education: x.education,
-      business: x.business,
-      mobile: x.mobile,
+      FamilyID: x.familyID,
+      OriginalVillage: x.originalVillage,
+      FirstName: x.firstName,
+      FatherHusbandName: x.fatherHusbandName,
+      Gender: x.gender,
+      Age: x.age,
+      MaritalStatus: x.maritalStatus,
+     // Education: x.education,
+     // Business: x.business,
+      Mobile: x.mobile,
       relationName: x.relationName,
-      attendingProgramValue: x.attendingProgramValue,
+      //attendingProgramValue: x.attendingProgramValue,
+      
       //currentVillage: x.currentVillage,
       // originalVillage : 
     }));
 
 
     const DaughterConstant: Partial<DaughterElement>[] = this.daughterdatasourceArray.map(x => ({
-      familyID: x.familyID,
-      firstName: x.firstName,
-      husbandName: x.husbandName,
-      surname: x.surname,
-      fatherInLawName: x.fatherInLawName,
+      FamilyID: x.familyID,
+      VadilNuOrginalVillage: x.vadilNuOrginalVillage,
+      AliveName: x.aliveName,
+      ParnitDikariFirstName: x.firstName,
+      ParnitDikariHusbandName: x.husbandName,
+      ParnitDikariSurname: x.surname,
+      ParnitDikariSasraNuName: x.fatherInLawName,
       RelationName: x.relationName,
-      age: x.age,
-      village: x.village,
-      vadilNuName: x.vadilNuName,
-      vadilNuOrginalVillage: x.vadilNuOrginalVillage,
-      mobile: x.mobile,
-      attendingProgramValue: x.attendingProgramValue,
-      aliveName: x.aliveName
+      Age: x.age,
+      DikariNuVillage: x.village,
+      VadilNuName: x.vadilNuName,      
+      ParnitDikariMobile: x.mobile,    
+     
     }));
 
     TableUtil.exportArrayToExcel(FamilyConstant, FamilyMembersConstant, DaughterConstant);
