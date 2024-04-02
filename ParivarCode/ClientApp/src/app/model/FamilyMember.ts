@@ -16,5 +16,5 @@ export class FamilyMember {
   modifiedDate?: Date;
   relationName = "";
   attendingProgramValue?: string;
-  originalVillage = "";
+  OriginalVillage = "";
 }

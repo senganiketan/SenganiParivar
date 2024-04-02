@@ -125,7 +125,7 @@ export class AllFamilyDetailsComponent implements OnInit {
 
     const FamilyMembersConstant: Partial<FamilyMemberElement>[] = this.familymemberdatasourceArray.map(x => ({
       FamilyID: x.familyID,
-      OriginalVillage: x.originalVillage,
+      OriginalVillage: x.OriginalVillage,
       FirstName: x.firstName,
       FatherHusbandName: x.fatherHusbandName,
       Gender: x.gender,

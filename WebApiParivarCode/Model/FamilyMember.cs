@@ -21,7 +21,7 @@ namespace WebApiParivarCode.Model
         public bool Active { get; set; }
         public Int64 ModifiedByID { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public string? OriginalVillage { get; set; }
+      //  public string? OriginalVillage { get; set; }
     }
     public class FamilyMemberList
     {
